@@ -15,6 +15,8 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { CustomersComponent } from './customers/customers.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
+import { AlertifyService } from './_services/alertify.service';
+import { AuthGuard } from './_guard/auth.guard';
 
 @NgModule({
    declarations: [
@@ -36,7 +38,9 @@ import { InvoicesComponent } from './invoices/invoices.component';
    ],
    providers: [
       AuthService,
-      ErrorInterceptorProvider
+      ErrorInterceptorProvider,
+      AlertifyService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
