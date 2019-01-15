@@ -7,18 +7,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './_services/auth.service';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      NavbarComponent
+      NavbarComponent,
+      HomeComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule
-   
    ],
    providers: [
       AuthService
