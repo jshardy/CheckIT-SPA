@@ -7,8 +7,10 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { AuthGuard } from './_guard/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  // this is literally nothing
+  { path: '', component: HomeComponent },
   {
+    // this is accept any of the routes
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
@@ -18,7 +20,7 @@ const routes: Routes = [
       { path: 'invoices', component: InvoicesComponent}
     ]
   },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({
