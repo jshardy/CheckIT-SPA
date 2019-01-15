@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="#">CheckIT</a>
 
@@ -24,7 +24,7 @@
     </form>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
-      <a class="dropdown-toggle text-light" dropdownToggle>
+      <a class="dropdown-toggle" dropdownToggle>
         <!-- Display username -->
         {{authService.decodedToken?.unique_name | titlecase}}
       </a>
