@@ -1,2 +1,37 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<!-- nav bar container -->
+<div class="navbar-nav" *ngIf="currentUser">    
+    <ul>                
+        <!-- List of links to other areas -->
+        <li><a class="nav-item home" routerLink="/">Home</a></li>
+        <li><a class="nav-item invoices"routerLink="/invoices">Invoices</a></li>
+        <li><a class="nav-item inventory" routerLink="/inventory">Inventory</a></li>
+        <li><a class="nav-item customers" routerLink="/customers">Customers</a></li>
+        <li><a class="nav-item search" routerLink="/search">Search</a></li>
+        <li><a class="nav-item logout" (click)="logout()">Logout</a></li>
+        <!-- Make a small box to show any Inventory Alerts After the Links? -->
+        <!-- Possibly make the CheckIt text a drop down menu? -->
+        <li style="float:right"><a class="brand" href="/">CheckIt</a></li> 
+    </ul>    
+</div> 
+
+<!-- main app container -->
+<div class="jumbotron">        
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">                
+                <alert></alert>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- credits -->
+<div class="text-center">
+    <p>
+        CheckIt an Open Source Financial Solution
+    </p>
+    <p>
+        <a>Learn More</a>
+    </p>
+</div>
