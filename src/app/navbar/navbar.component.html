@@ -1,45 +1,38 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#" [routerLink]="['/home']">CheckIT</a>
+<!-- nav bar container -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="currentUser"> -->
+    <!-- <a class="navbar-brand" routerLink="#">CheckIt</a> -->
+        <!-- <button class="navbar-toggler" type="button" data-toggler="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">     -->
+            <!-- <span class="navbar-toggler-icon"></span> -->
+        <!-- </button> -->
+        <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
+            <!-- <div class="navbar-nav">                 -->
+                <!-- List of links to other areas -->
+                <!-- <a class="nav-item nav-link" routerLink="/">Home</a> -->
+                <!-- <a class="nav-item nav-link" routerLink="/invoices">Invoices<span class="sr-only">(current)</span></a> -->
+                <!-- <button class="btn btn-invoices" routerLink="/invoices">Invoices</button> -->
+                <!-- <button class="btn btn-inventory" routerLink="/inventory">Inventory</button> -->
+                <!-- <button class="btn btn-customers" routerLink="/customers">Customers</button> -->
+                <!-- <button class="btn btn-search" routerLink="/search">Search</button> -->
+                <!-- <button class="btn btn-logout" (click)="logout()">Logout</button> -->
+        <!-- </div> -->
+    <!-- </div> -->
+<!-- </nav> -->
 
-    <!-- This is an example of Angular routing for links -->
-    <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/customers']">Customers</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"[routerLink]="['/invoices']">Invoices</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['/inventory']">Inventory</a>
-      </li>
-    </ul>
-
-    <!-- This is the login form in top right -->
-    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
-      <input class="form-control mr-sm-2" type="text" name="username" #username="ngModel" placeholder="Username" required
-        [(ngModel)]="model.username">
-
-      <input class="form-control mr-sm-2" type="Password" name="password" #password="ngModel" placeholder="Password"
-        required [(ngModel)]="model.password">
-      <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-    </form>
-
-    <!-- After the login, the username and menu appear -->
-    <div *ngIf="loggedIn()" class="dropdown" dropdown>
-      <a class="dropdown-toggle" dropdownToggle>
-        <!-- Display username -->
-        {{authService.decodedToken?.unique_name | titlecase}}
-      </a>
-
-      <div class="dropdown-menu mt-3" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Settings</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()"><i class=fa fa-sign-out></i>Logout</a>
-      </div>
-    </div>
-  </div>
-</nav>
+<!-- The nav bar -->
+<div class="navbar-nav" *ngIf="currentUser">    
+    <ul>                
+        <!-- List of links to other areas -->
+        <li><a class="nav-item home" routerLink="/">Home</a></li>
+        <li><a class="nav-item invoices"routerLink="/invoices">Invoices</a></li>
+        <li><a class="nav-item inventory" routerLink="/inventory">Inventory</a></li>
+        <li><a class="nav-item customers" routerLink="/customers">Customers</a></li>
+        <li><a class="nav-item search" routerLink="/search">Search</a></li>
+        <li><a class="nav-item logout" (click)="logout()">Logout</a></li>
+        <!-- Make a small box to show any Inventory Alerts After the Links? -->
+        <!-- Possibly make the CheckIt text a drop down menu? -->
+        <li style="float:right"><a class="brand" href="/">CheckIt</a></li> 
+    </ul>    
+</div>
 
 <!-- This is for testing, don't use in production - Josh
   <pre>
