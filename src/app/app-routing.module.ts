@@ -13,80 +13,25 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerForm: FormGroup;
-  loading = false;
-  submitted = false;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private authenticationService: AuthService,
-    private userService: UserService,
-    private alertService: AlertifyService
-  ) { 
-      // redirect to home if already logged in
-      if (this.authenticationService.currentUserValue) 
-      { 
-          this.router.navigate(['/']);
-      }
-  }
-
-  ngOnInit() 
+// this is literally nothing
+  { path: '', component: HomeComponent },
   {
-      this.registerForm = this.formBuilder.group({
-          firstName: ['', Validators.required],
-          lastName: ['', Validators.required],
-          username: ['', Validators.required],
-          password: ['', [Validators.required, Validators.minLength(6)]]
-      });
-  }
+    // this is accept any of the routes
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      { path: 'customers', component: CustomersComponent},
+      { path: 'inventory', component: InventoryComponent},
+      { path: 'invoices', component: InvoicesComponent}
+    ]
+  },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];
 
-// convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-
-  onSubmit() 
-  {
-      this.submitted = true;
-
-      // stop here if form is invalid
-      if (this.registerForm.invalid) 
-      {
-          return;
-      }
-
-      this.loading = true;
-      this.userService.register(this.registerForm.value)
-          .pipe(first())
-          .subscribe(
-              data => {
-                  this.alertService.success('Registration successful', true);
-                  this.router.navigate(['/login']);
-              },
-              error => {
-                  this.alertService.error(error);
-                  this.loading = false;
-              });
-  }
-
-  // @Output() cancelRegister = new EventEmitter();
-  // model: any = {};
-
-  // constructor(private authService: AuthService, private alertify: AlertifyService) { }
-
-  // ngOnInit() {
-  // }
-
-  // register() {
-  //   this.authService.register(this.model).subscribe(() => {
-  //     this.alertify.success('registration successful');
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
-
-  // cancel() {
-  //   this.cancelRegister.emit(false);
-
-  // }
-
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
 }

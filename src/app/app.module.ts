@@ -7,9 +7,9 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 
 // used to create fake backend
-import { fakeBackendProvider } from './_helpers/fake-backend';
+//import { fakeBackendProvider } from './_helpers/fake-backend';
 
-import { routing } from './app-routing';
+import { AppRoutingModule } from './app-routing';
 import { AppComponent } from './app.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
@@ -20,10 +20,10 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthGuard } from './_guard/auth.guard';
-import { LoginComponent } from './login/login.component';
+//import { LoginComponent } from './login/login.component';
 import { JwtInterceptor} from './_helpers/jwt.interceptor';
 import { ErrorInterceptor} from './_helpers/error.interceptor';
-import { AlertComponent } from './alert/alert.component';
+//import { AlertComponent } from './alert/alert.component';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
@@ -36,14 +36,14 @@ import { NavbarComponent } from './navbar/navbar.component';
       CustomersComponent,
       InvoicesComponent,
       InventoryComponent,
-      LoginComponent,
-      AlertComponent,
+      //LoginComponent,
+      //AlertComponent,
       SearchComponent,
       NavbarComponent
    ],
    imports: [
       BrowserModule,
-      routing,
+      AppRoutingModule,
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
@@ -51,15 +51,15 @@ import { NavbarComponent } from './navbar/navbar.component';
       RouterModule
    ],
    providers: [
-      // AuthService,
-      // ErrorInterceptorProvider,
-      // AlertifyService,
-      // AuthGuard,
-      { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-      { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+      AuthService,
+      ErrorInterceptorProvider,
+      AlertifyService,
+      AuthGuard,
+      // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+      // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        //fakeBackendProvider
    ],
    bootstrap: [
       AppComponent

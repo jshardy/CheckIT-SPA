@@ -1,3 +1,21 @@
-<p>
-  invoices works!
-</p>
+<section>
+    <form #invoiceForm="ngForm" (ngSubmit)="getInvoiceById(invoiceId.value)">
+      <label>
+        Invoice ID:
+        <input type="text" [formControl]="invoiceId">
+      </label>
+      <button [disabled]="!loginForm.valid" type="submit">Search</button>
+    </form>
+   <p>
+     Value: {{invoiceId.value}}
+   </p>
+    <br>
+    <ul>
+      <li>Invoice Id: {{invoice.id}}</li>
+      <li>Business Id: {{invoice.businessId}}</li>
+      <li>Date: {{invoice.date}}</li>
+      <li>Incoming Inventory: {{invoice.IncomingInv}}</li>
+      <li>Outgoing Inventory: {{invoice.OutgoingInv}}</li>
+      <li>Total Cost: {{invoice.totalcost}}</li>
+    </ul>
+  </section>

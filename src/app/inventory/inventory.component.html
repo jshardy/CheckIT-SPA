@@ -1,3 +1,15 @@
-<p>
-  inventory works!
-</p>
+<section>
+ <h2>Inventory</h2>
+  <ul class="inventory">
+    <li *ngFor="let item of items">
+      <span class="badge">{{item.id}}</span> {{item.itemname}}
+    </li>
+  </ul>
+</section>
+<aside>
+    <form>
+      Inventory ID:<br>
+      <input type="text" name="InventoryID" value=""><br>
+      <input type="submit" value="Submit">
+    </form>
+</aside>

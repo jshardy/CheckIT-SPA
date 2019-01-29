@@ -1,3 +1,21 @@
-<p>
-  customers works!
-</p>
+<section>
+  <form #customerForm="ngForm" (ngSubmit)="getCustomerById(customerId.value)">
+    <label>
+      Customer ID:
+      <input type="text" [formControl]="customerId">
+    </label>
+    <button [disabled]="!loginForm.valid" type="submit">Search</button>
+  </form>
+ <p>
+   Value: {{customerId.value}}
+ </p>
+  <br>
+  <ul>
+    <li>Customer Id: {{customer.id}}</li>
+    <li>Firstname: {{customer.firstname}}</li>
+    <li>Last name: {{customer.lastname}}</li>
+    <li>Company Name: {{customer.CompanyName}}</li>
+    <li>Phone Number: {{customer.PhoneNumber}}</li>
+    <li>Email: {{customer.Email}}</li>
+  </ul>
+</section>
