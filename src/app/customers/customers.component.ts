@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
 
 import { Customer } from '../_models/customer';
 import { CustomerService } from './../_services/customer.service';
@@ -11,14 +10,12 @@ import { CustomerService } from './../_services/customer.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  customerId = new FormControl('');
-  customers: Observable<Customer[]>;
-  customer: Customer;
-  selectedCustomer: Customer;
+  customers: Customer[];
+
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    // this.getCustomers();
+    this.getCustomers();
   }
   addCustomer(customer) {
     // this.customerService.createCustomer(customer).subscribe( results => this.customers.push(customer));
@@ -28,6 +25,14 @@ export class CustomersComponent implements OnInit {
   }
 
   getCustomerById(id) {
-    this.customerService.getCustomerById(id).subscribe(res => this.customer );
+    // this.customerService.getCustomerById(id).subscribe(res => this.customer );
    }
+  getCustomers(): void {
+    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+  }
+
+  deleteCustomer(customer: Customer): void {
+    this.customers = this.customers.filter(h => h !== customer);
+    this.customerService.deleteCustomer(customer).subscribe();
+  }
 }

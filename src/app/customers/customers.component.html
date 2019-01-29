@@ -1,21 +1,19 @@
-<section>
-  <form #customerForm="ngForm" (ngSubmit)="getCustomerById(customerId.value)">
-    <label>
-      Customer ID:
-      <input type="text" [formControl]="customerId">
-    </label>
-    <button [disabled]="!loginForm.valid" type="submit">Search</button>
-  </form>
- <p>
-   Value: {{customerId.value}}
- </p>
-  <br>
-  <ul>
-    <li>Customer Id: {{customer.id}}</li>
-    <li>Firstname: {{customer.firstname}}</li>
-    <li>Last name: {{customer.lastname}}</li>
-    <li>Company Name: {{customer.CompanyName}}</li>
-    <li>Phone Number: {{customer.PhoneNumber}}</li>
-    <li>Email: {{customer.Email}}</li>
-  </ul>
-</section>
+<h2>Customers</h2>
+
+<div>
+  <label>Customer Entry Form:
+  <input #customerName/>
+</label>
+  <button (click)="addCustomer(customerName.value); customerName.value=''">
+    add
+  </button>
+</div>
+
+<ul class="customers">
+  <li *ngFor="let customer of customers">
+    <a>
+      <span class="badge">{{customer.id}}</span> {{customer.firstname}} {{customer.lastname}}
+      <button class="delete" title="delete customer" (click)="deleteCustomer(customer)">x</button>
+    </a>
+  </li>
+</ul>
