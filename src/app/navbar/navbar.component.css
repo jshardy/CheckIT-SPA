@@ -4,25 +4,50 @@
 .navbar {
   background: #a7b8c7;
 }
+.btnLogin {
+  border: 1px solid green;
+  width: 50px;
+  height: 30px;
+}
 /* CheckIt "logo" on the left of the router links in navbar */
 .navbar-brand {
-  font-size: 150%;
+  font-size: 200%;
   color: black;
 }
 .navbar-brand:hover {
   border: 2px solid white;
-  color: #a7c7b6;
+  color: #e0e0e0;
   background-color: #6f90ad;
 }
 
 /* the router links in the navbar along top */
 .nav-item a {
   color: black;
+  font-size: 150%;
 }
 .nav-item a:hover {
-  color: #a7c7b6;
+  color: #e0e0e0;
 }
 .nav-item:hover {
   border: 2px solid white;
   background-color: #6f90ad;
 }
+/* dropdown menu on right of navbar */
+.dropdown-toggle {
+  color: black;
+  font-size: 140%;
+}
+.dropdown-toggle:hover {
+  border: 2px solid white;
+  color: #e0e0e0;
+  background-color: #6f90ad;
+}
+.dropdown-menu {
+  border: 2px solid #6f90ad;
+  color: black;
+  background-color: #e0e0e0;
+}
+.dropdown-item:hover {
+  background-color: #6f90ad;
+}
+
