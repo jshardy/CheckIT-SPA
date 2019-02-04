@@ -3,7 +3,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Customer } from '../_models/customer';
 import { CustomerService } from './../_services/customer.service';
-import { CUSTOMERS } from '../mock-customers';
 
 @Component({
   selector: 'app-customers',
@@ -11,7 +10,7 @@ import { CUSTOMERS } from '../mock-customers';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  customers = CUSTOMERS;
+  // customers = CUSTOMERS;
 
   constructor(private customerService: CustomerService) { }
 

@@ -17,6 +17,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthGuard } from './_guard/auth.guard';
+import { InvoiceService } from './_services/invoice.service';
 
 @NgModule({
    declarations: [
@@ -40,7 +41,8 @@ import { AuthGuard } from './_guard/auth.guard';
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      InvoiceService
    ],
    bootstrap: [
       AppComponent

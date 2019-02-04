@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Invoice } from '../_models/invoice';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + localStorage.getItem('token')
+  })
+};
 
 @Injectable({
     providedIn: 'root'
   })
 export class InvoiceService {
-    apiURL = 'http://localhost:5000/api/InvoiceController/';
+  // located in environments/environment.ts
+  // make URL changes there.
+  baseURL = environment.apiURL + 'Invoice/';
 
-    constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
     // used to create and add a Invoice to the database
   public createInvoice(invoice: Invoice) {
@@ -29,11 +38,11 @@ export class InvoiceService {
 
   // fetches a Invoice's info by searching for their ID
   public getInvoiceById(id): Observable<Invoice> {
-    return this.httpClient.get<Invoice>(`this.apiURL + 'ReturnOneInvoice/${id}'`);
+    return this.http.get<Invoice>(this.baseURL + 'ReturnOneInvoice/' + id, httpOptions);
   }
 
   // fetches all the Invoice to show off a list of them
-  // public getInvoices(): Observable<Invoice[]> {
-  //   return this.httpClient.get<Invoice[]>(`${this.apiURL}ReturnInvoices`);
-  // }
+  public getInvoices(): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices/', httpOptions);
+  }
 }

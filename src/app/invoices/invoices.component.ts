@@ -3,7 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { InvoiceService } from './../_services/invoice.service';
 import { Invoice } from './../_models/invoice';
-import { INVOICES } from './../mock-invoices';
+import { AlertifyService } from '../_services/alertify.service';
+// import { INVOICES } from './../mock-invoices';
 
 
 @Component({
@@ -12,19 +13,28 @@ import { INVOICES } from './../mock-invoices';
   styleUrls: ['./invoices.component.css']
 })
 export class InvoicesComponent implements OnInit {
-  // invoiceId = new FormControl('');
-  invoices = INVOICES;
-  // invoice: Invoice;
+  invoices: Invoice[];
+  invoiceSingle: Invoice;
 
-  constructor(private invoiceService: InvoiceService) { }
+  constructor(private invoiceService: InvoiceService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.getInvoices();
   }
 
-  getInvoiceById(id) {
-    // this.invoiceService.getInvoiceById(id).subscribe(results => this.invoice = results);
+  getInvoiceById(id: number) {
+    this.invoiceService.getInvoiceById(id).subscribe((invoice: Invoice) => {
+      this.invoiceSingle = invoice;
+    }, error => {
+        this.alertify.error(error);
+    });
   }
+
   getInvoices() {
-    // return this.invoiceService.getInvoices().subscribe(results => this.invoices = results);
+    return this.invoiceService.getInvoices().subscribe((invoices: Invoice[]) => {
+      this.invoices = invoices;
+    }, error => {
+        this.alertify.error('What is wrong?');
+    });
   }
 }
