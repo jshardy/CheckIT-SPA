@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export class Item 
 {
     id: number;
@@ -7,3 +8,14 @@ export class Item
     location: string;
     
 }
+=======
+// Converted to interface instead of class
+export interface Item {
+  id: number;
+  upc?: number;
+  price?: number;
+  name?: string;
+  description?: string;
+  quantity?: number;
+}
+>>>>>>> FAST-GUI

@@ -1,14 +1,19 @@
+<<<<<<< HEAD
 import { AlertifyService } from './alertify.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap} from 'rxjs/operators';
 import { Customer } from '../_models/customer';
 import { Observable, of } from 'rxjs';
+=======
+import { Injectable } from '@angular/core';
+>>>>>>> FAST-GUI
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
+<<<<<<< HEAD
   apiURL = 'http://localhost:5000/api/Customer';
   customers$: Observable<Customer[]>;
   customer: Observable<Customer>;
@@ -64,4 +69,8 @@ export class CustomerService {
   private log(message: String) {
     this.alertify.message(`CustomerService: ${message}`);
   }
+=======
+
+  constructor() { }
+>>>>>>> FAST-GUI
 }

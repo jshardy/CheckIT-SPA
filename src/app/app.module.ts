@@ -4,6 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
+=======
+import { JwtModule } from '@auth0/angular-jwt';
+import { NbThemeModule } from '@nebular/theme';
+
+>>>>>>> FAST-GUI
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -16,6 +22,12 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthGuard } from './_guard/auth.guard';
+import { InvoiceService } from './_services/invoice.service';
+
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 // simulating the web api until for testing purposes
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -29,13 +41,14 @@ import { InMemoryDataService } from './InMemoryData.service';
       RegisterComponent,
       CustomersComponent,
       InvoicesComponent,
-      InventoryComponent
+      InventoryComponent,
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
+<<<<<<< HEAD
       ReactiveFormsModule,
       BsDropdownModule.forRoot(),
       RouterModule,
@@ -46,12 +59,25 @@ import { InMemoryDataService } from './InMemoryData.service';
       HttpClientInMemoryWebApiModule.forRoot(
         InMemoryDataService, { dataEncapsulation: false}
       )
+=======
+      NbThemeModule.forRoot(),
+      BsDropdownModule.forRoot(),
+      RouterModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: tokenGetter,
+          whitelistedDomains: ['localhost:5000'],
+          blacklistedRoutes: ['localhost:5000/api/auth']
+        }
+      })
+>>>>>>> FAST-GUI
    ],
    providers: [
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
-      AuthGuard
+      AuthGuard,
+      InvoiceService
    ],
    bootstrap: [
       AppComponent

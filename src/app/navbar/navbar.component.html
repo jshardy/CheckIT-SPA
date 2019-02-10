@@ -8,7 +8,7 @@
         <a class="nav-link" [routerLink]="['/customers']">Customers</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link"[routerLink]="['/invoices']">Invoices</a>
+        <a class="nav-link" [routerLink]="['/invoices']">Invoices</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/inventory']">Inventory</a>
@@ -17,8 +17,8 @@
 
     <!-- This is the login form in top right -->
     <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
-      <input class="form-control mr-sm-2" type="text" name="username" #username="ngModel" placeholder="Username" required
-        [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2" type="text" name="username" #username="ngModel" placeholder="Username"
+        required [(ngModel)]="model.username">
 
       <input class="form-control mr-sm-2" type="Password" name="password" #password="ngModel" placeholder="Password"
         required [(ngModel)]="model.password">

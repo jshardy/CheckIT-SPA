@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section>
     <form #invoiceForm="ngForm" (ngSubmit)="getInvoiceById(invoiceId.value)">
       <label>
@@ -19,3 +20,23 @@
       <li>Total Cost: {{invoice.totalcost}}</li>
     </ul>
   </section>
+=======
+<h2>Invoices</h2>
+
+<div>
+  <label>Invoice Id:
+    <input #invoiceId/>
+  </label>
+  <button (click)="getInvoiceById(invoiceId.value); invoiceId.value=''">
+    Search
+  </button>
+</div>
+
+<ul class="invoices">
+  <li *ngFor="let invoice of invoices">
+    <a>
+      <span class="badge">{{invoice.id}}</span>{{invoice.invoiceDate}}
+    </a>
+  </li>
+</ul>
+>>>>>>> FAST-GUI

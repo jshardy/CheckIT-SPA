@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Item } from '../_models/item';
+<<<<<<< HEAD
 import { ItemService } from './../_services/item.service';
+=======
+import { ItemService } from './../_services/inventory.service';
+>>>>>>> FAST-GUI
 
 @Component({
   selector: 'app-inventory',
