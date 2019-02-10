@@ -5,11 +5,13 @@ import { Invoice } from '../_models/invoice';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': 'Bearer ' + localStorage.getItem('token')
-  })
-};
+// Removed because using JWT Service now adds it automatically to each
+// request.
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Authorization': 'Bearer ' + localStorage.getItem('token')
+//   })
+// };
 
 @Injectable({
     providedIn: 'root'
@@ -38,11 +40,11 @@ export class InvoiceService {
 
   // fetches a Invoice's info by searching for their ID
   public getInvoiceById(id): Observable<Invoice> {
-    return this.http.get<Invoice>(this.baseURL + 'ReturnOneInvoice/' + id, httpOptions);
+    return this.http.get<Invoice>(this.baseURL + 'ReturnOneInvoice/' + id);
   }
 
   // fetches all the Invoice to show off a list of them
   public getInvoices(): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices/', httpOptions);
+    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices/');
   }
 }

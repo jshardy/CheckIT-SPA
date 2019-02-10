@@ -14,7 +14,9 @@ export class AlertifyService {
       // e represents the user clicking ok
       if (e) {
         okCallback();
-      } else { }
+      } else {
+        
+      }
     });
   }
 
