@@ -10,20 +10,12 @@ import { CustomerService } from './../_services/customer.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-<<<<<<< HEAD
-  customers: Customer[];
-=======
   // customers = CUSTOMERS;
->>>>>>> FAST-GUI
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.getCustomers();
-=======
     // this.getCustomers();
->>>>>>> FAST-GUI
   }
   addCustomer(customer) {
     // this.customerService.createCustomer(customer).subscribe( results => this.customers.push(customer));
@@ -36,20 +28,11 @@ export class CustomersComponent implements OnInit {
     // this.customerService.getCustomerById(id).subscribe(res => this.customer );
    }
   getCustomers(): void {
-<<<<<<< HEAD
-    this.customerService.getCustomers().subscribe(customers => this.customers = customers);
-  }
-
-  deleteCustomer(customer: Customer): void {
-    this.customers = this.customers.filter(h => h !== customer);
-    this.customerService.deleteCustomer(customer).subscribe();
-=======
     // this.customerService.getCustomers().subscribe(customers => this.customers = customers);
   }
 
   deleteCustomer(customer: Customer): void {
     // this.customers = this.customers.filter(h => h !== customer);
     // this.customerService.deleteCustomer(customer).subscribe();
->>>>>>> FAST-GUI
   }
 }

@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-export class invoice
-{
-    id: number;
-    totalcost: number;
-    invoicedate: Date;
-    
-}
-=======
 import { Item } from './item';
 
 // Converted to interface instead of class
@@ -19,4 +10,3 @@ export interface Invoice {
   amountPaid?: number;
   items?: Item[];
 }
->>>>>>> FAST-GUI

@@ -1,19 +1,13 @@
-import { Component, OnInit} from '@angular/core';
-import { Router} from '@angular/router';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { first } from 'rxjs/operators';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { CustomersComponent } from './customers/customers.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { AuthGuard } from './_guard/auth.guard';
 
-import { UserService} from '../_services/user.service';
-import { AuthService } from '../_services/auth.service';
-import { AlertifyService } from '../_services/alertify.service';
-
-@Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
-})
-export class RegisterComponent implements OnInit {
-// this is literally nothing
+const routes: Routes = [
+  // this is literally nothing
   { path: '', component: HomeComponent },
   {
     // this is accept any of the routes
@@ -34,4 +28,3 @@ export class RegisterComponent implements OnInit {
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-}

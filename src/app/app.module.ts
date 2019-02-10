@@ -1,15 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
-<<<<<<< HEAD
-=======
 import { JwtModule } from '@auth0/angular-jwt';
 import { NbThemeModule } from '@nebular/theme';
 
->>>>>>> FAST-GUI
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -29,10 +26,6 @@ export function tokenGetter() {
   return localStorage.getItem('token');
 }
 
-// simulating the web api until for testing purposes
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './InMemoryData.service';
-
 @NgModule({
    declarations: [
       AppComponent,
@@ -48,18 +41,6 @@ import { InMemoryDataService } from './InMemoryData.service';
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
-<<<<<<< HEAD
-      ReactiveFormsModule,
-      BsDropdownModule.forRoot(),
-      RouterModule,
-      // for testing purposes
-      HttpClientModule,
-      // This module intercepts Http requests and returns simulated server respones
-      // Remove once testing the Http requests are configured and tested
-      HttpClientInMemoryWebApiModule.forRoot(
-        InMemoryDataService, { dataEncapsulation: false}
-      )
-=======
       NbThemeModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule,
@@ -70,7 +51,6 @@ import { InMemoryDataService } from './InMemoryData.service';
           blacklistedRoutes: ['localhost:5000/api/auth']
         }
       })
->>>>>>> FAST-GUI
    ],
    providers: [
       AuthService,

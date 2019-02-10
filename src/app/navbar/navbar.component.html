@@ -29,7 +29,7 @@
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="dropdown-toggle" dropdownToggle>
         <!-- Display username -->
-         <!-- {{authService.decodedToken?.unique_name | titlecase}} -->
+        {{authService.decodedToken?.unique_name | titlecase}}
       </a>
 
       <div class="dropdown-menu mt-3" *dropdownMenu>
