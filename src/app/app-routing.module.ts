@@ -5,6 +5,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AuthGuard } from './_guard/auth.guard';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       { path: 'customers', component: CustomersComponent},
       { path: 'inventory', component: InventoryComponent},
-      { path: 'invoices', component: InvoicesComponent}
+      { path: 'invoices', component: InvoicesComponent},
+      { path: 'invoices/invoice', component: InvoiceComponent }
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

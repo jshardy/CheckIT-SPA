@@ -31,7 +31,9 @@ export class AuthService {
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !this.jwtHelper.isTokenExpired(token);
+    // uncomment this to enable authorization
+    // const token = localStorage.getItem('token');
+    // return !this.jwtHelper.isTokenExpired(token);
+    return true;
   }
 }

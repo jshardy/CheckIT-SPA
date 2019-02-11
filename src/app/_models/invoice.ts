@@ -2,11 +2,10 @@ import { Item } from './item';
 
 // Converted to interface instead of class
 export interface Invoice {
-  id: number;
-  businessId: number;
+  id?: number;
   invoiceDate?: string;
-  outgoingInv?: number;
-  incomingInv?: number;
+  outgoingInv?: boolean;
+  incomingInv?: boolean;
   amountPaid?: number;
-  items?: Item[];
+  lineItems?: Item[];
 }

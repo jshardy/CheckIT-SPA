@@ -20,6 +20,7 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceService } from './_services/invoice.service';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 export function tokenGetter() {
@@ -35,6 +36,7 @@ export function tokenGetter() {
       CustomersComponent,
       InvoicesComponent,
       InventoryComponent,
+      InvoiceComponent,
    ],
    imports: [
       BrowserModule,
