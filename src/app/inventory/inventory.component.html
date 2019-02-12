@@ -1,15 +1,39 @@
-<section>
-  <h2>Inventory</h2>
-   <ul class="inventory">
-     <li *ngFor="let item of items">
-       <span class="badge">{{item.id}}</span> {{item.itemname}}
-     </li>
-   </ul>
- </section>
- <aside>
-     <form>
-       Inventory ID:<br>
-       <input type="text" name="InventoryID" value=""><br>
-       <input type="submit" value="Submit">
-     </form>
- </aside>
+<body>
+  <div class="invWrapper">
+    <h2>Inventory List</h2>
+    <table style="width:80%">
+      <tr>
+        <th>Inventory Id</th>
+        <th>UPC</th>
+        <th>Unit Price</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity in Stock</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>11111111</td>
+        <td>$2.75</td>
+        <td>Snackers</td>
+        <td>Candy Bar</td>
+        <td>27</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>222222222</td>
+        <td>$5.89</td>
+        <td>Buttah</td>
+        <td>Bettah With it</td>
+        <td>32</td>
+      </tr>
+    </table>
+  </div>
+</body>
+<!-- Possibly for future use to search for an individual item? -->
+<!-- <aside>
+    <form>
+      Inventory ID:<br>
+      <input type="text" name="InventoryID" value=""><br>
+      <input type="submit" value="Submit">
+    </form>
+</aside> -->
