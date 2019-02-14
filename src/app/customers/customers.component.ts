@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Customer } from '../_models/customer';
 import { CustomerService } from './../_services/customer.service';
+import { Address } from '../_models/address'
+
 
 @Component({
   selector: 'app-customers',

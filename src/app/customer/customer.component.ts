@@ -16,7 +16,7 @@ export class CustomerComponent implements OnInit {
   currentCustomer?: Customer;
   customerAddress?: Address;
 
-  constructor() {
+  constructor() { 
     this.customerAddress = ({
       id: 5,
       country: "United States",
