@@ -1,9 +1,28 @@
-<h2>Customers</h2>
-<ul class="customers">
-  <li *ngFor="let customer of customers">
-    <a>
-      <span class="badge">{{customer.id}}</span> {{customer.firstname}} {{customer.lastname}}
-    </a>
-    <button class="delete" title="delete customer" (click)="deleteCustomer(customer)">x</button>
-  </li>
-</ul>
+<h2>Customer Search</h2>
+<table>
+  <tr>
+    <td>
+      Attribute
+    </td>
+    <td>
+      Search by:
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <input class="input-label" type="text" value="Search"/>
+    </td>
+    <td>
+      <select>
+        <option value="none">Select a search option</option>
+        <option value="id">ID</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+        <option value="fname">First Name</option>
+        <option value="lname">Last Name</option>
+        <option value="company">Company Name</option>
+      </select>
+    </td>
+  </tr>
+</table>
+
