@@ -1,8 +1,8 @@
 <h2>Customers</h2>
-<ul class="customers">
+<ul class="customers123">
   <li *ngFor="let customer of customers">
     <a>
-      <span class="badge">{{customer.id}}</span> {{customer.firstname}} {{customer.lastname}}
+      <span class="badge">{{customer.id}}</span> {{customer.firstName}} {{customer.lastName}}
     </a>
     <button class="delete" title="delete customer" (click)="deleteCustomer(customer)">x</button>
   </li>

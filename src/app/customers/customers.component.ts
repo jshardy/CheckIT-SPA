@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { Customer } from '../_models/customer';
-import { CustomerService } from './../_services/customer.service';
+import { CustomerService } from '../_services/customer.service';
+
 
 @Component({
   selector: 'app-customers',
@@ -10,12 +11,12 @@ import { CustomerService } from './../_services/customer.service';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  // customers = CUSTOMERS;
+  public customers: Customer[];
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    // this.getCustomers();
+    this.getCustomers();
   }
   addCustomer(customer) {
     // this.customerService.createCustomer(customer).subscribe( results => this.customers.push(customer));
@@ -27,8 +28,10 @@ export class CustomersComponent implements OnInit {
   getCustomerById(id) {
     // this.customerService.getCustomerById(id).subscribe(res => this.customer );
    }
-  getCustomers(): void {
-    // this.customerService.getCustomers().subscribe(customers => this.customers = customers);
+  getCustomers() {
+    return this.customerService.getCustomers().subscribe((customer: Customer[]) => {
+      this.customers = customer;
+    });
   }
 
   deleteCustomer(customer: Customer): void {
