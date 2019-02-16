@@ -10,9 +10,9 @@ import { ItemService } from './../_services/inventory.service';
 })
 export class InventoryComponent implements OnInit {
 
-  items: Item[];
-  item: Item;
-  selectedItem: Item;
+  items?: Item[];
+  item?: Item;
+  selectedItem?: Item;
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
