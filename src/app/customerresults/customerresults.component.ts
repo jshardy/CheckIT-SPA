@@ -39,21 +39,25 @@ export class CustomerResultsComponent implements OnInit {
     });
     this.customer1 = ({
       id: 1,
-      firstname: "John",
-      lastname: "Doe",
+      firstName: "John",
+      lastName: "Doe",
       companyName: "McAfee Security",
-      address: this.address1,
+      isCompany: false,
+      custAddress: this.address1,
       phoneNumber: "555-555-5555",
-      email: "john.doe@example.com"
+      email: "john.doe@example.com",
+      customerInvoiceList: null
      });
      this.customer2 = ({
        id: 2,
-       firstname: "Jane",
-       lastname: "Smith",
+       firstName: "Jane",
+       lastName: "Smith",
        companyName: "Norton Security",
-       address: this.address2,
+       isCompany: false,
+       custAddress: this.address2,
        phoneNumber: "000-000-0000",
-       email: "jane.smith@example.com"
+       email: "jane.smith@example.com",
+       customerInvoiceList: null
       });
     this.customers = [this.customer1, this.customer2];
   }

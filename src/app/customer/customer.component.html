@@ -18,20 +18,20 @@
                 <h5>{{ currentCustomer.companyName || '' }}</h5>
               </td>
             </tr>
-            
+
             <tr>
               <td>
                 Customer ID: {{ currentCustomer.id || 'ERROR' }}<br>
                 {{ currentCustomer.firstname || 'ERROR' }} {{ currentCustomer.lastname || 'ERROR' }} <br>
                 {{ currentCustomer.phoneNumber || '-'}}<br>
                 {{ currentCustomer.email || '-'}}
-              </td> 
+              </td>
               <td>
-                {{ currentCustomer.address.street || '-' }}<br>
-                {{ currentCustomer.address.city || '-' }},
-                {{ currentCustomer.address.state || '-' }}
-                {{ currentCustomer.address.zipCode || '-' }}<br>
-                {{ currentCustomer.address.country || '-' }}
+                {{ currentCustomer.custAddress.street || '-' }}<br>
+                {{ currentCustomer.custAddress.city || '-' }},
+                {{ currentCustomer.custAddress.state || '-' }}
+                {{ currentCustomer.custAddress.zipCode || '-' }}<br>
+                {{ currentCustomer.custAddress.country || '-' }}
               </td>
             </tr>
           </table>

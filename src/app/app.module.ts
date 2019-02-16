@@ -23,6 +23,7 @@ import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerResultsComponent } from './customerresults/customerresults.component';
+import { CustomerService } from './_services/customer.service';
 
 
 export function tokenGetter() {
@@ -63,7 +64,8 @@ export function tokenGetter() {
       ErrorInterceptorProvider,
       AlertifyService,
       AuthGuard,
-      InvoiceService
+      InvoiceService,
+      CustomerService
    ],
    bootstrap: [
       AppComponent

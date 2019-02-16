@@ -1,3 +1,12 @@
+<h2>Customers</h2>
+<ul class="customers123">
+  <li *ngFor="let customer of customers">
+    <a>
+      <span class="badge">{{customer.id}}</span> {{customer.firstName}} {{customer.lastName}}
+    </a>
+    <button class="delete" title="delete customer" (click)="deleteCustomer(customer)">x</button>
+  </li>
+</ul>
 <h2>Customer Search</h2>
 <table>
   <tr>
@@ -10,10 +19,10 @@
   </tr>
   <tr>
     <td>
-        <input class="input-label" type="text" value="Search"/>
+        <input class="input-label" type="text" [(ngModel)]="input"/>
     </td>
     <td>
-      <select>
+      <select [(ngModel)]="dropdown">
         <option value="none">Select a search option</option>
         <option value="id">ID</option>
         <option value="email">Email</option>
@@ -24,7 +33,7 @@
       </select>
     </td>
     <td>
-      <button onclick="transfer()">Go</button>
+      <button (click)="transfer()">Go</button>
     </td>
   </tr>
 </table>

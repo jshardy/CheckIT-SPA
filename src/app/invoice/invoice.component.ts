@@ -16,26 +16,6 @@ export class InvoiceComponent implements OnInit {
   payeeAddr?: Address;
 
   constructor() {
-    this.currentInvoice = ({
-      id: null,
-      amountPaid: null,
-      incomingInv: null,
-      outgoingInv: null,
-      lineItems: null,
-      invoiceDate: null
-    });
-    this.addr = ({
-      street: null,
-      state: null,
-      zipCode: null
-    });
-    this.payeeAddr = ({
-      street: null,
-      state: null,
-      zipCode: null
-    });
-    this.companyLogoURL = null;
-    this.companyNameStr = null;
   }
 
   ngOnInit() {
