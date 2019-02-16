@@ -25,9 +25,9 @@
         </td>
       </tr>
 
-      <tr class="item" *ngFor="let customer of customers" onclick="window.location='../customers/customer'">
+      <tr class="item" *ngFor="let customer of customers" (click)="transfer(customer.id)">
         <td>
-          {{ customer.firstname || '-' }} {{ customer.lastname || '-' }}
+          {{ customer.firstName || '-' }} {{ customer.lastName || '-' }}
         </td>
         <td>
           {{ customer.id || '-' }}
