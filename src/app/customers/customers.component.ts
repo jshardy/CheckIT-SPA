@@ -48,11 +48,15 @@ export class CustomersComponent implements OnInit {
   {
     if (this.dropdown === 'id')
     {
-      this.router.navigate(['/customer/customers', parseInt(this.input, 10)]);
-    }
+      const passId = parseInt(this.input, 10);
+      if (!isNaN(passId))
+      {
+        this.router.navigate(['/customers/customer', { id: passId}]);
+      }
+    } 
     else if (this.dropdown !== 'none')
     {
-      this.router.navigate(['/customers/customer', this.dropdown, this.input]);
+      this.router.navigate(['/customers/results', {selection: this.dropdown, input: this.input}]);
     }
   }
 }

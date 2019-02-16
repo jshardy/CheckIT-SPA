@@ -17,7 +17,9 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       this.currentCustomer = CustomerService.getCustomer(+params['id']);
+       this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
+         this.currentCustomer = customer;
+       });
     });
   }
 

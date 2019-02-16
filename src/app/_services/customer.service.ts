@@ -19,6 +19,6 @@ export class CustomerService {
   }
 
   public getCustomer(id: number): Observable<Customer> {
-    return this.http.get<Customer>(this.baseURL);
+    return this.http.get<Customer>(this.baseURL + id);
   }
 }
