@@ -1,6 +1,6 @@
 // Converted to interface instead of class
 export interface Item {
-  id: number;
+  id?: number;
   upc?: number;
   price?: number;
   name?: string;
