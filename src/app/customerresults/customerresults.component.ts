@@ -12,14 +12,49 @@ import { CustomerService } from './../_services/customer.service';
   styleUrls: ['./customerresults.component.css']
 })
 export class CustomerResultsComponent implements OnInit {
+  sub?: any;
   customers?: Customer[];
 
-  constructor(private customerService: CustomerService, private router: Router) { }
+  constructor(private customerService: CustomerService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getCustomers();
+    this.sub = this.route.params.subscribe(params => {
+      switch (params['selection']) {
+        case 'email':
+          this.customerService.getCustomersByEmail(params['input']).subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+        case 'phone':
+          this.customerService.getCustomersByPhone(params['input']).subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+        case 'fname':
+          this.customerService.getCustomersByFirstName(params['input']).subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+        case 'lname':
+          this.customerService.getCustomersByLastName(params['input']).subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+        case 'company':
+          this.customerService.getCustomersByCompany(params['input']).subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+        default:
+          this.customerService.getCustomers().subscribe((customer: Customer[]) => {
+            this.customers = customer;
+          });
+          break;
+      }
+
+    });
   }
-  
+
   getCustomers() {
     return this.customerService.getCustomers().subscribe((customer: Customer[]) => {
       this.customers = customer;
