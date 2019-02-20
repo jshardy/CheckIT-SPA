@@ -11,10 +11,10 @@ import { LineItem } from './lineItem';
 
 // Converted to interface instead of class
 export interface Invoice {
-  id: number;
+  id?: number;
   invoiceDate?: string;
   outgoingInv?: boolean;
   amountPaid?: number;
-  invoiceCustID: number;
+  invoiceCustID?: number;
   lineItems?: LineItem[];
 }

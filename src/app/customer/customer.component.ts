@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Customer } from '../_models/customer';
-import { Address } from '../_models/address';
-import { Invoice } from '../_models/invoice';
+import { CustomerService } from '../_services/customer.service';
 
 @Component({
   selector: 'app-customer',
@@ -10,16 +10,21 @@ import { Invoice } from '../_models/invoice';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  invoice1?: Invoice;
-  invoice2?: Invoice;
-  invoices?: Invoice[];
+  sub?: any;
   currentCustomer?: Customer;
-  customerAddress?: Address;
 
-  constructor() {
-  }
+  constructor(private customerService: CustomerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+       this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
+         this.currentCustomer = customer;
+       });
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }

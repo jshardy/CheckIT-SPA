@@ -12,16 +12,13 @@ import { Invoice } from './invoice';
 // "customerInvoiceList": [
 //   {
 
-export class Customer {
-  constructor (
-  public id?: number,
-  public firstName?: string,
-  public lastName?: string,
-  public companyName?: string,
-  public isCompany?: boolean,
-  public phoneNumber?: string,
-  public email?: string,
-  public custAddress?: Address,
-  public customerInvoiceList?: Invoice[]
+export class CustomerCreateDto {
+  constructor(
+    public firstName: string,
+    public lastName: string,
+    public companyName?: string,
+    // public isCompany?: boolean,
+    public phoneNumber?: string,
+    public email?: string,
   ) { }
 }
