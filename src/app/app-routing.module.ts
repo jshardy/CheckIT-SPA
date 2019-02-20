@@ -7,6 +7,8 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
+import { InventorySearchComponent } from './inventory-search/inventory-search.component';
+import { NewItemComponent } from './inventory/newitem/newitem.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -21,7 +23,9 @@ const routes: Routes = [
       { path: 'inventory', component: InventoryComponent},
       { path: 'invoices', component: InvoicesComponent},
       { path: 'invoices/invoice', component: InvoiceComponent },
-      { path: 'customers/customer', component: CustomerComponent}
+      { path: 'customers/customer', component: CustomerComponent},
+      { path: 'inventory/search', component: InventorySearchComponent},
+      { path: 'inventory/newitem', component: NewItemComponent}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

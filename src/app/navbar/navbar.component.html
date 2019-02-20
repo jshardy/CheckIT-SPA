@@ -7,7 +7,7 @@
       <li class="nav-item" routerLinkActive="active">
         <!-- <a class="nav-link" [routerLink]="['/customers']">Customers</a> -->
         <div class="btn-group" dropdown>
-          <button id="buttonCustomers" dropdownToggle type="button" class="btn btn-primary dropdown-toggle mr-3" aria-controls="dropdown-basic">
+          <button id="buttonCustomers" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3" aria-controls="dropdown-basic">
             Customer<span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
@@ -18,7 +18,7 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <div class="btn-group" dropdown>
-          <button id="buttonInvoice" dropdownToggle type="button" class="btn btn-primary dropdown-toggle mr-3" aria-controls="dropdown-basic">
+          <button id="buttonInvoice" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3" aria-controls="dropdown-basic">
             Invoice <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
@@ -31,11 +31,12 @@
       <li class="nav-item" routerLinkActive="active">
         <!-- <a class="nav-link" [routerLink]="['/inventory']">Inventory</a> -->
         <div class="btn-group" dropdown>
-          <button id="buttonInventory" dropdownToggle type="button" class="btn btn-primary dropdown-toggle mr-3"
+          <button id="buttonInventory" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3"
             aria-controls="dropdown-basic">
             Inventory <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory']"><i class="fa fa-sticky-note" aria-hidden="true"></i>All Items</a></li>
             <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory/newitem']"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Item</a></li>
             <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/inventory/search']"><i class="fa fa-search" aria-hidden="true"></i>Search Inventory</a>
             </li>

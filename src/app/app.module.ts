@@ -23,6 +23,8 @@ import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './_services/customer.service';
+import { InventorySearchComponent } from './inventory-search/inventory-search.component';
+import { NewItemComponent } from './inventory/newitem/newitem.component';
 
 
 export function tokenGetter() {
@@ -40,6 +42,8 @@ export function tokenGetter() {
       InventoryComponent,
       InvoiceComponent,
       CustomerComponent,
+      InventorySearchComponent,
+      NewItemComponent,
    ],
    imports: [
       BrowserModule,

@@ -1,0 +1,30 @@
+<body>
+    <form>
+      <div class="form-group">
+        <label for="inventoryUPC">UPC</label>
+        <input type="text" name="UPC" id="inventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
+        <small id="helpUPC" class="form-text text-muted">Type the UPC number of the product if available.</small>
+      </div>
+      <div class="form-group">
+        <label for="inventoryPrice">Price per Unit</label>
+        <input type="money" name="InventoryPrice" id="inventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price" required>
+        <small id="helpPrice" class="form-text text-muted">Enter the price per unit of this item.</small>
+      </div>
+      <div class="form-group">
+        <label for="InventoryName">Name</label>
+        <input type="text" name="InventoryName" id="inventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name" required>
+        <small id="helpName" class="form-text text-muted">The name of the item to save into the inventory</small>
+      </div>
+      <div class="form-group">
+        <label for="InventoryDescription">Description</label>
+        <input type="text" name="Description" class="form-control" id="inventoryDescription" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description" required>
+        <small id="helpDescription" class="form-text text-muted">Enter a quick description of the item.</small>
+      </div>
+      <div class="form-group">
+        <label for="InventoryQuantity">Quantity in Stock</label>
+        <input type="text" name="Quantity" id="inventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity" required>
+        <small id="helpQuantity" class="form-text text-muted">Enter the starting quantity of stock for this item.</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Item</button>
+    </form>
+  </body>
