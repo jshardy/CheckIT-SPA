@@ -4,21 +4,20 @@
   border: 1px solid #eee;
   box-shadow: 0 0 10px rgba(0, 0, 0, .15);
   font-size: 16px;
-  line-height: 24px;
+  /* line-height: 24px; */
   font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
 }
 
-/* table, th, td {
-  border: 1px solid black;
-} */
+table {
+  border-collapse: collapse;
+}
 
-th, td {
-  padding: 15px;
+td, th {
+  padding: 8px;
   text-align: left;
 }
 
 th {
-  text-align: left;
   background-color: cornflowerblue;
 }
 
