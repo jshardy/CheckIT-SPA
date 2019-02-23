@@ -10,33 +10,62 @@
         <th>Description</th>
         <th>Quantity in Stock</th>
       </tr>
-      <ul class="InventoryList">
-      <li *ngFor="let item of items">
-        <tr>
-          <form>          
-            <div class="form-inline">
-                <input type="InventoryId" name="InventoryId" id="InvenId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId">
-                <!-- <small id="helpId" class="text-muted">Help text</small> -->
-            </div>
-            <div class="form-inline">
-              <input type="UPC" name="UPC" id="InvenUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC">
-            </div>
-            <div class="form-inline">
-                <input type="UnitPrice" name="InventoryPrice" id="InvenPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice">
-              </div>
-            <div class="form-inline">
-              <input type="InventoryName" name="InvenName" id="InvenName" class="form-control" placeholder="Name" aria-describedby="helpName">
-            </div>            
-            <div class="form-inline">
-              <input type="InventoryDescription" name="Description" id="InvenDescrip" placeholder="Description" aria-describedby="helpDescrip">
-            </div>
-            <div class="form-inline">
-              <input type="InventoryQuantity" name="Quantity" id="InvenQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity">
-            </div>
-        </form>
-        </tr>
-      </li>
-    </ul>
+      <tr>
+          <td>
+            <ul>
+              <li *ngFor="let item of items">
+                <div class="form-control">
+                  <input type="text" name=InventoryId id="InventoryId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId" readonly [(ngModel)]="item.id">
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let item of items">
+                <div class="form-control">
+                  <input type="text" name="UPC" id="InventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+                <li *ngFor="let item of items">
+                <div class="form-control">
+                  <input type="money" name="InventoryPrice" id="InventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price">
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li *ngFor="let item of items">
+                <div class="form-control">
+                  <input type="text" name="InventoryName" id="InventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name">
+                </div>
+              </li>
+            </ul>
+          </td>
+          <td> 
+            <ul>
+              <li *ngFor="let item of items">         
+                <div class="form-control">
+                  <input type="text" name="Description" class="form-control" id="InventoryDescrip" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description">
+                </div>
+              </li>
+            </ul>
+          </td> 
+          <td>
+            <ul>
+              <li *ngFor="let item of items">
+                <div class="form-control">
+                  <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
+                </div>
+              </li>
+            </ul>
+          </td>
+      </tr>
   </table>
 <body>
 <!-- Possibly for future use to search for an individual item? -->

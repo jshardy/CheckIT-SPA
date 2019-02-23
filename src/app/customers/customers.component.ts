@@ -14,7 +14,7 @@ import { RouterInitializer } from '@angular/router/src/router_module';
 })
 export class CustomersComponent implements OnInit {
   public dropdown = 'none';
-  public input = 'Search';
+  public input = '';
 
   constructor(private router: Router) { }
 
@@ -30,7 +30,7 @@ export class CustomersComponent implements OnInit {
       {
         this.router.navigate(['/customers/customer', { id: passId}]);
       }
-    } 
+    }
     else if (this.dropdown !== 'none')
     {
       this.router.navigate(['/customers/results', {selection: this.dropdown, input: this.input}]);

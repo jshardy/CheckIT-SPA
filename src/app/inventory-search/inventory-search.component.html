@@ -1,0 +1,25 @@
+<body>
+  <form>
+    <div class="form group">
+      <label for="exampleId">Inventory Id</label>
+      <input type="input" class="form-control" id="InventoryId" aria-describedby="helpId">
+      <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  <!-- Inline Forms to display and possibly edit the inventory item that is found from the search -->
+<div class="resultWrapper">
+  <div class="form-inline">
+    <input type="text" class="form-inline" id="resultId" placeholder="Result Id" [(ngModel)]="item.id" readonly>
+
+    <input type="text" class="form-inline" id="resultUPC" placeholder="UPC #" aria-describedby="searchHelpUPC" [(ngModel)]="item.upc">
+
+    <input type="money" class="form-inline" id="resultPrice" placeholder="Price Unit" aria-describedby="searchHelpPrice" [(ngModel)]="item.price">
+
+    <input type="text" class="form-inline" id="resultName" placeholder="Name" aria-describedby="searchHelpName" [(ngModel)]="item.name">
+
+    <input type="text" class='form-inline' id="resultDescription" placeholder="Description" aria-describedby="searchHelpDescription" [(ngModel)]="item.description">
+  </div>
+</div>
+</body>
+
