@@ -33,10 +33,32 @@
               <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
             </div>
             <input type="text" class="form-control" aria-label="Search" aria-describedby="inputGroup-sizing-default"
-              [(ngModel)]="input">
+              [(ngModel)]="input" (keyup)="search()">
               <td>
-                <button type="button" class="btn btn-outline-success mr-3" (click)="transfer()">Search</button>
+                <button type="button" class="btn btn-outline-success mr-3" (click)="search()">Search</button>
               </td>
             </div>
   </tr>
 </table>
+
+<div class="container customer-box">
+  <div class="row justify-content-center title">
+    <h2 class="text-center">Returned results for "{{ input }}"</h2>
+  </div>
+  <div class="row header">
+    <div class="col-6">
+      <h4>Customer</h4>
+    </div>
+    <div class="col-6 right">
+      <h4>Customer ID</h4>
+    </div>
+  </div>
+  <div class="row" *ngFor="let customer of customers" (click)="transfer(customer.id)" class="item">
+    <div class="alignleft">
+      {{ customer.firstName }} {{ customer.lastName }}
+    </div>
+    <div class="alignright">
+      {{ customer.id }}
+    </div>
+  </div>
+</div>

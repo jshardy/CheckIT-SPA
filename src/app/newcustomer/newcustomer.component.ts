@@ -11,7 +11,6 @@ import { CustomerService } from '../_services/customer.service';
 })
 export class NewcustomerComponent implements OnInit {
   customer: Customer;
-  address: Address;
   public fname: '';
   public lname: '';
   public companyName: '';
@@ -24,6 +23,7 @@ export class NewcustomerComponent implements OnInit {
   public city: '';
   public street1: '';
   public street2: '';
+  public defaultAddress: true;
 
 
   constructor(private customerService: CustomerService) {
@@ -34,12 +34,9 @@ export class NewcustomerComponent implements OnInit {
   }
 
   add() {
-    this.address = new Address(null, this.country, this.state, this.zip, this.city, this.street1, this.street2);
-    this.customer = new Customer(null, this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email);
-    this.customerService.addAddress(this.address).subscribe((add: Address) => {
-      this.address = add;
-    })
-    this.customerService.addCustomer(this.customer, this.address.id);
+    this.customer = new Customer(null, this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
+      new Address(null, this.country, this.state, this.zip, this.city, this.street1, this.street2, this.defaultAddress));
+    this.customerService.addCustomer(this.customer).subscribe();
   }
 
 }
