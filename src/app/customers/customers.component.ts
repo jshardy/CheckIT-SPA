@@ -27,9 +27,22 @@ export class CustomersComponent implements OnInit {
   }
 
   search() {
-    this.customerService.getCustomers(this.fname, this.lname, this.email, this.phone, this.company).subscribe((customer: Customer[]) => {
-      this.customers = customer;
-    });
+    if (this.allEmpty()) {
+      this.customers = [];
+    } else {
+      this.customerService.getCustomers(this.fname, this.lname, this.email, this.phone, this.company).subscribe((customer: Customer[]) => {
+        this.customers = customer;
+      });
+    }
+  }
+
+  allEmpty() {
+    if (this.fname !== '') { return false; }
+    if (this.lname !== '') { return false; }
+    if (this.phone !== '') { return false; }
+    if (this.email !== '') { return false; }
+    if (this.company !== '') { return false; }
+    return true;
   }
 
   transfer(passId: number) {
