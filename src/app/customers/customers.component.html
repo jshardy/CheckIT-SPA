@@ -2,18 +2,15 @@
 <table>
   <tr>
     <td>
-      Attribute
-    </td>
-    <td>
-      Search by:
-    </td>
-  </tr>
-  <tr>
-    <td>
-        <input class="input-label" type="text" [(ngModel)]="input"/>
-    </td>
-    <td>
-      <select [(ngModel)]="dropdown">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'id';">ID</button>
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'email';">Email</button>
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'fname';">First Name</button>
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'lname';">Last Name</button>
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'company';">Company Name</button>
+        <button type="button" class="btn btn-outline-secondary btn-secondary btn-sm" (click)="dropdown = 'phone';">Phone</button>
+      </div>
+      <!-- <select [(ngModel)]="dropdown">
         <option value="none">Select a search option</option>
         <option value="id">ID</option>
         <option value="email">Email</option>
@@ -21,10 +18,25 @@
         <option value="fname">First Name</option>
         <option value="lname">Last Name</option>
         <option value="company">Company Name</option>
-      </select>
+      </select> -->
+
     </td>
     <td>
-      <button (click)="transfer()">Go</button>
+
+      <!-- <input class="input-label mr-3" type="text" [(ngModel)]="input" placeholder="Enter your search" /> -->
     </td>
+
+  </tr>
+  <tr>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Search" aria-describedby="inputGroup-sizing-default"
+              [(ngModel)]="input">
+              <td>
+                <button type="button" class="btn btn-outline-success mr-3" (click)="transfer()">Search</button>
+              </td>
+            </div>
   </tr>
 </table>
