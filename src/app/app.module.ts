@@ -24,6 +24,7 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerResultsComponent } from './customerresults/customerresults.component';
 import { CustomerService } from './_services/customer.service';
+import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 
 
 export function tokenGetter() {
@@ -42,6 +43,7 @@ export function tokenGetter() {
       InvoiceComponent,
       CustomerComponent,
       CustomerResultsComponent,
+      NewcustomerComponent,
    ],
    imports: [
       BrowserModule,
