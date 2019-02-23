@@ -2,10 +2,10 @@
   <form>
     <div class="form group">
       <label for="exampleId">Inventory Id</label>
-      <input type="input" class="form-control" id="InventoryId" aria-describedby="helpId">
+      <input type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="input">
       <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for</small>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit()">Submit</button>
   </form>
   <!-- Inline Forms to display and possibly edit the inventory item that is found from the search -->
 <div class="resultWrapper">

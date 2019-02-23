@@ -11,6 +11,7 @@ import { CustomerResultsComponent } from './customerresults/customerresults.comp
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
+import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -29,7 +30,8 @@ const routes: Routes = [
       { path: 'customers/results', component: CustomerResultsComponent},
       { path: 'customers/new', component: NewcustomerComponent},
       { path: 'inventory/newitem', component: NewItemComponent},
-      { path: 'invenotry-search', component: InventorySearchComponent}
+      { path: 'inventory-search', component: InventorySearchComponent},
+      { path: 'inventory-results', component: InventoryResultsComponent}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
