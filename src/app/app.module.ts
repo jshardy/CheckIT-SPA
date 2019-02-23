@@ -27,6 +27,7 @@ import { CustomerService } from './_services/customer.service';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
+import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
 
 
 export function tokenGetter() {
@@ -47,7 +48,8 @@ export function tokenGetter() {
       CustomerResultsComponent,
       NewcustomerComponent,
       InventorySearchComponent,
-      NewItemComponent
+      NewItemComponent,
+      InventoryResultsComponent
    ],
    imports: [
       BrowserModule,

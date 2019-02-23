@@ -13,6 +13,7 @@ export class ItemService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // Post Statements
   // used to create and add a Item to the database
   public createItem(item: Item) {
     return this.httpClient.post<Item>(this.baseURL + 'AddInventory', item);
@@ -23,14 +24,16 @@ export class ItemService {
     return this.httpClient.post<Item>(this.baseURL + 'UpdateInventory', item);
   }
 
+  // Delete statements
   // used to delete a Item from the database, possibly not to be used
   public deleteItem(id: number) {
     return this.httpClient.delete<Item>(this.baseURL + 'DeleteInventory' + id);
   }
 
+  // Get Statements
   // fetches a Item's info by searching for their ID
-  public getItemById(Id: number): Observable<Item> {
-    return this.httpClient.get<Item>(this.baseURL + Id);
+  public getItemById(id: number): Observable<Item> {
+    return this.httpClient.get<Item>(this.baseURL + id);
   }
 
   // fetches all the Items to show off a list of them
