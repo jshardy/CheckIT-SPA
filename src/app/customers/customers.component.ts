@@ -15,8 +15,11 @@ import { CustomerService } from '../_services/customer.service';
 })
 export class CustomersComponent implements OnInit {
   customers: Customer[];
-  public dropdown = 'none';
-  public input = '';
+  public fname = '';
+  public lname = '';
+  public company = '';
+  public email = '';
+  public phone = '';
 
   constructor(private router: Router, private customerService: CustomerService) { }
 
@@ -24,38 +27,9 @@ export class CustomersComponent implements OnInit {
   }
 
   search() {
-    switch (this.dropdown) {
-      case 'email':
-        this.customerService.getCustomersByEmail(this.input).subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-      case 'phone':
-        this.customerService.getCustomersByPhone(this.input).subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-      case 'fname':
-        this.customerService.getCustomersByFirstName(this.input).subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-      case 'lname':
-        this.customerService.getCustomersByLastName(this.input).subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-      case 'company':
-        this.customerService.getCustomersByCompany(this.input).subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-      default:
-        this.customerService.getCustomers().subscribe((customer: Customer[]) => {
-          this.customers = customer;
-        });
-        break;
-    }
+    this.customerService.getCustomers(this.fname, this.lname, this.email, this.phone, this.company).subscribe((customer: Customer[]) => {
+      this.customers = customer;
+    });
   }
 
   transfer(passId: number) {

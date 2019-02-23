@@ -22,7 +22,6 @@ import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
-import { CustomerResultsComponent } from './customerresults/customerresults.component';
 import { CustomerService } from './_services/customer.service';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
@@ -44,7 +43,6 @@ export function tokenGetter() {
       InventoryComponent,
       InvoiceComponent,
       CustomerComponent,
-      CustomerResultsComponent,
       NewcustomerComponent,
       InventorySearchComponent,
       NewItemComponent

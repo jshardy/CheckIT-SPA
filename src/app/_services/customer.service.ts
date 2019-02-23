@@ -39,28 +39,18 @@ export class CustomerService {
   //   this.http.post(baseURL + '/AddCustomer', )
   // }
 
-  public getCustomers(): Observable<Customer[]> {
+  public getCustomers(firstName: string, lastName: string, email: string, phone: string, company: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams()
+      .set('FirstName', firstName.trim())
+      .set('LastName', lastName.trim())
+      .set('Email', email.trim())
+      .set('PhoneNumber', phone.trim())
+      .set('CompanyName', company.trim())
+      });
+  }
+
+  public getCustomersAll(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseURL);
-  }
-
-  public getCustomersByFirstName(firstName: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('FirstName', firstName.trim())});
-  }
-
-  public getCustomersByLastName(lastName: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('LastName', lastName.trim())});
-  }
-
-  public getCustomersByEmail(email: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('Email', email.trim())});
-  }
-
-  public getCustomersByPhone(phone: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('PhoneNumber', phone.trim())});
-  }
-
-  public getCustomersByCompany(company: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('CompanyName', company.trim())});
   }
 
   public getCustomer(id: number): Observable<Customer> {
