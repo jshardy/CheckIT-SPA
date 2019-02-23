@@ -24,12 +24,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
 import { CustomerResultsComponent } from './customerresults/customerresults.component';
 import { CustomerService } from './_services/customer.service';
-<<<<<<< HEAD
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
-=======
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
->>>>>>> 06a2a1b63b3b611c402aec12388dcf2684168e68
 
 
 export function tokenGetter() {
@@ -48,12 +45,9 @@ export function tokenGetter() {
       InvoiceComponent,
       CustomerComponent,
       CustomerResultsComponent,
-<<<<<<< HEAD
       NewcustomerComponent,
-=======
       InventorySearchComponent,
       NewItemComponent
->>>>>>> 06a2a1b63b3b611c402aec12388dcf2684168e68
    ],
    imports: [
       BrowserModule,

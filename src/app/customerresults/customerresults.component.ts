@@ -63,7 +63,7 @@ export class CustomerResultsComponent implements OnInit {
 
   deleteCustomer(customer: Customer) {
   }
-  
+
   transfer(passId: number) {
     this.router.navigate(['/customers/customer', { id: passId }]);
   }

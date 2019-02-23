@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Customer } from '../_models/customer';
+import { Address } from '../_models/address';
 import { CustomerCreateDto } from '../_models/CustomerCreateDto';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
 
@@ -65,5 +66,13 @@ export class CustomerService {
 
   public getCustomer(id: number): Observable<Customer> {
     return this.http.get<Customer>(this.baseURL + id);
+  }
+
+  public addCustomer(cust: Customer, id: number): void {
+    this.http.post(this.baseURL, cust, { params: new HttpParams().set('AddressID', id.toString())});
+  }
+
+  public addAddress(add: Address): Observable<Address> {
+    return this.http.post(environment.apiURL + 'Address/AddAddress', add);
   }
 }

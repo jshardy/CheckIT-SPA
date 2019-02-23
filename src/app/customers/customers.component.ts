@@ -21,18 +21,13 @@ export class CustomersComponent implements OnInit {
   ngOnInit() {
   }
 
-  transfer()
-  {
-    if (this.dropdown === 'id')
-    {
+  transfer() {
+    if (this.dropdown === 'id') {
       const passId = parseInt(this.input, 10);
-      if (!isNaN(passId))
-      {
+      if (!isNaN(passId)) {
         this.router.navigate(['/customers/customer', { id: passId}]);
       }
-    }
-    else if (this.dropdown !== 'none')
-    {
+    } else if (this.dropdown !== 'none') {
       this.router.navigate(['/customers/results', {selection: this.dropdown, input: this.input}]);
     }
   }

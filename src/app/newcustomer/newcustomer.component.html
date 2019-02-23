@@ -1,7 +1,25 @@
 <div>
-  <p><input placeholder="First Name"/></p>
-  <p><input placeholder="Last Name"/></p>
-  <p><input placeholder="Company Name"/></p>
-  <p><input placeholder="Phone Number"/></p>
-  <p><input placeholder="Email"/></p>
+  <p><input placeholder="First Name" [(ngModel)]="fname"/></p>
+  <p><input placeholder="Last Name" [(ngModel)]="lname"/></p>
+  <p><input placeholder="Company Name" [(ngModel)]="companyName"/>
+  <input type="checkbox" [(ngModel)]="isCompany"></p>
+  <p><input placeholder="Phone Number" [(ngModel)]="phone"/></p>
+  <p><input placeholder="Email" [(ngModel)]="email"/></p>
+  <p><input placeholder="Country" [(ngModel)]="country"/></p>
+  <p><input placeholder="State" [(ngModel)]="state"/></p>
+  <p><input placeholder="Zipcode" [(ngModel)]="zip"/></p>
+  <p><input placeholder="City" [(ngModel)]="city"/></p>
+  <p><input placeholder="Street 1" [(ngModel)]="street1"/></p>
+  <p><input placeholder="Street 2" [(ngModel)]="street2"/></p>
+  <button (click)="add()">Add</button>
+  <p><input/>{{ customer.firstName }}</p>
+  <p><input/>{{ customer.lastName }}</p>
+  <p><input/>{{ customer.companyName }}</p>
+  <p><input/>{{ customer.phoneNumber }}</p>
+  <p><input/>{{ address.country }}</p>
+  <p><input/>{{ address.state }}</p>
+  <p><input/>{{ address.zipCode }}</p>
+  <p><input/>{{ address.city }}</p>
+  <p><input/>{{ address.street }}</p>
+  <p><input/>{{ address.aptNum }}</p>
 </div>
