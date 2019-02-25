@@ -10,6 +10,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
+import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'inventory', component: InventoryComponent},
       { path: 'invoices', component: InvoicesComponent},
       { path: 'invoices/invoice', component: InvoiceComponent },
+      { path: 'invoice/new', component: NewInvoiceComponent },
       { path: 'customers/customer', component: CustomerComponent},
       { path: 'customers/new', component: NewcustomerComponent},
       { path: 'inventory/newitem', component: NewItemComponent},
