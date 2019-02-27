@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Invoice } from '../_models/invoice';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { InvoiceData } from '../_models/invoiceData';
 
 // Removed because using JWT Service now adds it automatically to each
 // request.
@@ -24,18 +25,18 @@ export class InvoiceService {
   constructor(private http: HttpClient) {}
 
     // used to create and add a Invoice to the database
-  public createInvoice(invoice: Invoice) {
-
+  public createInvoice(invoiceData: InvoiceData) {
+    return this.http.post(this.baseURL + 'AddInvoice', invoiceData);
   }
 
   // used to edit an existing Invoice's information
-  public updateInvoice(invoice: Invoice) {
-
+  public updateInvoice() {
+    // no backend web api to update invoice.
   }
 
   // used to delete a Invoice from the database, really call the Invoice archive function in the webApi
   public deleteInvoice(id: number) {
-
+    return this.http.delete(this.baseURL + 'DeleteInvoice/' + id);
   }
 
   // fetches a Invoice's info by searching for their ID

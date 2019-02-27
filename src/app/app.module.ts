@@ -6,6 +6,8 @@ import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,6 +59,8 @@ export function tokenGetter() {
       FormsModule,
       BsDropdownModule.forRoot(),
       RouterModule,
+      SelectDropDownModule,
+      TypeaheadModule.forRoot(),
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
