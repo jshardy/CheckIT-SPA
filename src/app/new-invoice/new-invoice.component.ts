@@ -44,6 +44,9 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   gotData(customer: Customer[]): void {
+    this.customers = [];
+    this.ids = [];
+    
     for (let i = 0; i < customer.length; i++) {
       this.customers.push(customer[i].firstName + ' ' + customer[i].lastName);
       this.ids.push(customer[i].id);
