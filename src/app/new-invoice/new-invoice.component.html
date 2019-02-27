@@ -12,13 +12,13 @@
     <!-- Person the invoice is mailed to -->
     <!-- <ngx-select-dropdown [config]="this.dropDownConfig" [(ngModel)]="this.customers" [multiple]="false">
     </ngx-select-dropdown> -->
-    <pre class="card card-block card-header mb-3">Customer: {{ this.selection.selected | json}}</pre>
+    <!-- <pre class="card card-block card-header mb-3">Customer: {{ this.selection.selected | json}}</pre>
     <input [(ngModel)]="this.selection.selected"
       [typeahead]="this.selection.firstLastName"
       [typeaheadScrollable]="true"
       [typeaheadOptionsInScrollableView]="10"
-      class="form-control">
-    <input [(ngModel)]="this.selection" [typeahead]="states" typeaheadOptionField="name"
+      class="form-control"> -->
+    <input [(ngModel)]="selectedValue" [typeahead]="customers" typeaheadOptionField="name"
       (typeaheadOnSelect)="onSelect($event)" class="form-control">
 
     <div id="identity">

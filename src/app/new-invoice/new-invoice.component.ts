@@ -18,6 +18,10 @@ export class NewInvoiceComponent implements OnInit {
   nInvoice: InvoiceData;
   dropDownConfig: any;
   selection: SelectionData;
+  customers: String[];
+  ids: number[];
+  selectedItem: String;
+  selectedValue: String;
 
   constructor(private invoiceService: InvoiceService, private alertify: AlertifyService, private customerService: CustomerService) {
     // this.dropDownConfig = {
@@ -34,18 +38,22 @@ export class NewInvoiceComponent implements OnInit {
 
   ngOnInit() {
     this.customerService.getCustomersAll().subscribe((customer: Customer[]) => {
-      this.selection.customers = customer;
-
       // Setup first and last names
-      for (let i = 0; i < this.selection.customers.length; i++) {
-        this.selection.firstLastName[i] = customer[i].firstName + ' ' + customer[i].lastName;
-        console.log(this.selection.firstLastName[i]);
-      }
+      this.gotData(customer);
     });
   }
 
+  gotData(customer: Customer[]): void {
+    for (let i = 0; i < customer.length; i++) {
+      this.customers.push(customer[i].firstName + ' ' + customer[i].lastName);
+      this.ids.push(customer[i].id);
+      console.log(this.customers[i] + ' - ' + this.ids[i]);
+    }
+  }
+
   onSelect(event: TypeaheadMatch): void {
-    this.selectedOption = event.item;
+    this.selectedItem = event.item;
+    this.selectedValue = event.value;
   }
 
 }
