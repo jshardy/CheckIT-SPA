@@ -8,6 +8,8 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+// import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +31,7 @@ import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
+import { TestComponent } from './test/test.component';
 
 
 export function tokenGetter() {
@@ -50,7 +53,8 @@ export function tokenGetter() {
       NewcustomerComponent,
       InventorySearchComponent,
       NewItemComponent,
-      NewInvoiceComponent
+      NewInvoiceComponent,
+      TestComponent
    ],
    imports: [
       BrowserModule,
@@ -61,6 +65,8 @@ export function tokenGetter() {
       RouterModule,
       SelectDropDownModule,
       TypeaheadModule.forRoot(),
+      // CarouselModule.forRoot(),
+      AccordionModule.forRoot(),
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,

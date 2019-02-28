@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { InvoiceData } from '../_models/invoiceData';
 import { AlertifyService } from '../_services/alertify.service';
 import { InvoiceService } from '../_services/invoice.service';
-import { ninvoke } from 'q';
 import { Customer } from '../_models/customer';
 import { CustomerService } from '../_services/customer.service';
 import { SelectionData } from './SelectionData';
@@ -46,7 +45,7 @@ export class NewInvoiceComponent implements OnInit {
   gotData(customer: Customer[]): void {
     this.customers = [];
     this.ids = [];
-    
+
     for (let i = 0; i < customer.length; i++) {
       this.customers.push(customer[i].firstName + ' ' + customer[i].lastName);
       this.ids.push(customer[i].id);
