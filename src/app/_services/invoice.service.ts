@@ -24,7 +24,7 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) {}
 
-    // used to create and add a Invoice to the database
+  // used to create and add a Invoice to the database
   public createInvoice(invoiceData: InvoiceData) {
     return this.http.post(this.baseURL + 'AddInvoice', invoiceData);
   }

@@ -17,17 +17,6 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-  // public function addCustomer(firstName: string, lastName: string, companyName?: string, phoneNumber?: string, email?: string): void {
-  //   let customerDto: CustomerCreateDto = {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     companyName: companyName,
-  //     phoneNumber: phoneNumber,
-  //     email: email
-  //   };
-  //   this.http.post(baseURL + '/AddCustomer', )
-  // }
-
   public getCustomers(firstName?: string, lastName?: string, email?: string, phone?: string, company?: string): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseURL, {
       params: new HttpParams()
