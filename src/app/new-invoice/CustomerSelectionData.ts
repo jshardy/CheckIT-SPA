@@ -4,4 +4,6 @@ import { Customer } from '../_models/customer';
 export interface CustomerSelectionData {
   id: number;
   firstLastName: String;
+  companyName: String;
+  phoneNumber: String;
 }

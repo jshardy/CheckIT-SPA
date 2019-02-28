@@ -23,10 +23,12 @@
 
     <div id="identity">
 
+        <!-- This has autodetect for company first then name -->
       <address id="address" *ngIf="customerAddress != null" enabled="false">
         <strong>{{ selectedCustomerName }}</strong>,<br>
         {{ customerAddress?.street }},<br>
-        {{ customerAddress?.city }}, {{ customerAddress?.state }}, {{ customerAddress?.zipCode }}
+        {{ customerAddress?.city }}, {{ customerAddress?.state }}, {{ customerAddress?.zipCode }}<br>
+        {{ selectedCustomer?.phoneNumber }}
       </address>
 
       <div id="logo">

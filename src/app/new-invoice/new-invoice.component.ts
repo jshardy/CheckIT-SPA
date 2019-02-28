@@ -40,7 +40,9 @@ export class NewInvoiceComponent implements OnInit {
     for (let i = 0; i < customer.length; i++) {
       const c: CustomerSelectionData = {
         id: customer[i].id,
-        firstLastName: customer[i].firstName + ' ' + customer[i].lastName
+        firstLastName: customer[i].isCompany ? customer[i].companyName : customer[i].firstName + ' ' + customer[i].lastName,
+        companyName: customer[i].isCompany ? customer[i].companyName : null,
+        phoneNumber: customer[i].phoneNumber
       };
       this.customerData.push(c);
     }
