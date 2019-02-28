@@ -11,7 +11,9 @@ import { Invoice } from '../_models/invoice';
 })
 export class TestComponent implements OnInit {
   customers: Customer[];
+  customersSearch: Customer[];
   invoices: Invoice[];
+  firstName: string;
 
   constructor(private invoiceService: InvoiceService, private customerService: CustomerService) { }
 
@@ -29,4 +31,11 @@ export class TestComponent implements OnInit {
     });
   }
 
+  SearchCustomer(): void {
+    this.customerService.getCustomers(this.firstName).subscribe((customer: Customer[]) => {
+      this.customersSearch = customer;
+    }, error => {
+        console.log('Error searching for customers');
+    });
+  }
 }

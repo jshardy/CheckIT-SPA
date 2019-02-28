@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Customer } from '../_models/customer';
 import { CustomerCreateDto } from '../_models/CustomerCreateDto';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { CustomerSearchDto } from '../_models/CustomerSearchDto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,6 @@ export class CustomerService {
   baseURL = environment.apiURL + 'Customer/';
 
   constructor(private http: HttpClient) { }
-
-// export class CustomerCreateDto {
-//   constructor(
-//     public firstName: string,
-//     public lastName: string,
-//     public companyName?: string,
-//     // public isCompany?: boolean,
-//     public phoneNumber?: string,
-//     public email?: string,
-//   ) { }
-// }
-
 
   // public function addCustomer(firstName: string, lastName: string, companyName?: string, phoneNumber?: string, email?: string): void {
   //   let customerDto: CustomerCreateDto = {
@@ -39,14 +28,26 @@ export class CustomerService {
   //   this.http.post(baseURL + '/AddCustomer', )
   // }
 
-  public getCustomers(firstName: string, lastName: string, email: string, phone: string, company: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams()
-      .set('FirstName', firstName.trim())
-      .set('LastName', lastName.trim())
-      .set('Email', email.trim())
-      .set('PhoneNumber', phone.trim())
-      .set('CompanyName', company.trim())
+  public getCustomers(firstName?: string, lastName?: string, email?: string, phone?: string, company?: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.baseURL, {
+      params: new HttpParams()
+        .set('FirstName', firstName != null ? firstName.trim() : '')
+      .set('LastName', lastName != null ? lastName.trim() : '')
+      .set('Email', email != null ? email.trim() : '')
+      .set('PhoneNumber', phone != null ? phone.trim() : '')
+      .set('CompanyName', company != null ? company.trim() : '')
       });
+  }
+
+  public getCustomers2(customer: CustomerSearchDto): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.baseURL, {
+      params: new HttpParams()
+        .set('FirstName', customer.firstName.trim())
+        .set('LastName', customer.lastName.trim())
+        .set('Email', customer.email.trim())
+        .set('PhoneNumber', customer.phoneNumber.trim())
+        .set('CompanyName', customer.companyName.trim())
+    });
   }
 
   public getCustomersAll(): Observable<Customer[]> {

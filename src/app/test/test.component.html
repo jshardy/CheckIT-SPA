@@ -2,6 +2,11 @@
   <accordion-group heading="Get Customers API">
     <pre>Get Customers Web API return:<br> {{ customers | json }}</pre>
   </accordion-group>
+  <accordion-group heading="Get Customers API">
+    <label>Customer:</label><input type="text" class="form-control" aria-label="Search for Customer" aria-describedby="inputGroup-sizing-default"
+      placeholder="Search for Customer" (change)="SearchCustomer()" (keyup)="SearchCustomer()" [(ngModel)]="firstName">
+    <pre>Get Customer Web API return:<br> {{ customersSearch | json }}</pre>
+  </accordion-group>
   <accordion-group heading="Get Invoice API">
     <pre>Get Invoices Web API return:<br> {{ invoices | json }}</pre>
   </accordion-group>
