@@ -10,16 +10,16 @@
     </div>
 
     <!-- Person the invoice is mailed to -->
-    <!-- <ngx-select-dropdown [config]="this.dropDownConfig" [(ngModel)]="this.customers" [multiple]="false">
-    </ngx-select-dropdown> -->
-    <!-- <pre class="card card-block card-header mb-3">Customer: {{ this.selection.selected | json}}</pre>
-    <input [(ngModel)]="this.selection.selected"
-      [typeahead]="this.selection.firstLastName"
-      [typeaheadScrollable]="true"
-      [typeaheadOptionsInScrollableView]="10"
-      class="form-control"> -->
-    <input [(ngModel)]="selectedValue" [typeahead]="customers" typeaheadOptionField="name"
-      (typeaheadOnSelect)="onSelect($event)" class="form-control">
+    <div class="customerName">
+      <div class="alert alert-danger" *ngIf="customerNotFound">Customer not found.</div>
+      <input [(ngModel)]="selectedCustomerName"
+            [typeahead]="customerData"
+            typeaheadOptionField="firstLastName"
+            [typeaheadOptionsInScrollableView]="5"
+            [typeaheadScrollable]="true"
+            (typeaheadOnSelect)="onCustomerSelect($event)"
+            class="form-control">
+    </div>
 
     <div id="identity">
 
@@ -133,6 +133,13 @@
       <h5>Terms</h5>
       <textarea>Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
     </div>
+  </div>
+
+  <!-- Test data section -->
+  <div>
+    <p></p><p></p><p></p>
+    <label>Test Data</label>
+    <pre>{{ customerData | json }}</pre>
   </div>
 </body>
 </html>

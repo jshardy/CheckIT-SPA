@@ -4,8 +4,9 @@ import { AlertifyService } from '../_services/alertify.service';
 import { InvoiceService } from '../_services/invoice.service';
 import { Customer } from '../_models/customer';
 import { CustomerService } from '../_services/customer.service';
-import { SelectionData } from './SelectionData';
+import { CustomerSelectionData } from './CustomerSelectionData';
 import { TypeaheadMatch } from 'ngx-bootstrap';
+import { Address } from '../_models/address';
 
 @Component({
   selector: 'app-new-invoice',
@@ -15,47 +16,35 @@ import { TypeaheadMatch } from 'ngx-bootstrap';
 
 export class NewInvoiceComponent implements OnInit {
   nInvoice: InvoiceData;
-  dropDownConfig: any;
-  selection: SelectionData;
-  customers: String[];
-  ids: number[];
-  selectedItem: String;
-  selectedValue: String;
-
+  customerData: CustomerSelectionData[] = [];
+  selectedCustomer: CustomerSelectionData;
+  selectedCustomerName: String;
+  customerNotFound: Boolean = false;
+  customerAddress: Address;
   constructor(private invoiceService: InvoiceService, private alertify: AlertifyService, private customerService: CustomerService) {
-    // this.dropDownConfig = {
-    //   displayKey: 'firstName',
-    //   search: false,
-    //   height: 'auto',
-    //   placeholder: 'Select',
-    //   moreText: 'more',
-    //   noResultsFound: 'No results found!',
-    //   searchPlaceholder: 'Search',
-    //   searchOnKey: 'firstName'
-    // };
   }
 
   ngOnInit() {
     this.customerService.getCustomersAll().subscribe((customer: Customer[]) => {
       // Setup first and last names
-      this.gotData(customer);
+      this.ParseCustomers(customer);
     });
   }
 
-  gotData(customer: Customer[]): void {
-    this.customers = [];
-    this.ids = [];
-
+  ParseCustomers(customer: Customer[]): void {
     for (let i = 0; i < customer.length; i++) {
-      this.customers.push(customer[i].firstName + ' ' + customer[i].lastName);
-      this.ids.push(customer[i].id);
-      console.log(this.customers[i] + ' - ' + this.ids[i]);
+      const c: CustomerSelectionData = {
+        id: customer[i].id,
+        firstLastName: customer[i].firstName + ' ' + customer[i].lastName
+      };
+      this.customerData.push(c);
     }
   }
 
-  onSelect(event: TypeaheadMatch): void {
-    this.selectedItem = event.item;
-    this.selectedValue = event.value;
+  onCustomerSelect(event: TypeaheadMatch): void {
+    this.selectedCustomer = event.item;
+    console.log(this.selectedCustomer);
   }
 
+  
 }

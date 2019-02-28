@@ -1,9 +1,7 @@
 import { Customer } from '../_models/customer';
 // I need a first and last name from web api in one field.
 
-export interface SelectionData {
+export interface CustomerSelectionData {
   id: number;
-  selected: String;
-  firstLastName: String[];
-  customers: Customer[];
+  firstLastName: String;
 }

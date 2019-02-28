@@ -4,6 +4,8 @@
    color: #00dd76;
  }
 
+.customerName { max-width: 180px; }
+
 * { margin: 0; padding: 0; }
 body { font: 14px/1.4 Georgia, serif; }
 #page-wrap { width: 800px; margin: 0 auto; }
