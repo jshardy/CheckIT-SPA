@@ -46,6 +46,6 @@ export class InvoiceService {
 
   // fetches all the Invoice to show off a list of them
   public getInvoices(): Observable<Invoice[]> {
-    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices/');
+    return this.http.get<Invoice[]>(this.baseURL);
   }
 }

@@ -22,8 +22,8 @@ export class TestComponent implements OnInit {
         console.log('Error getting customers');
     });
 
-    this.invoiceService.getInvoices().subscribe((invoices: Invoice[]) => {
-      this.invoices = invoices;
+    this.invoiceService.getInvoices().subscribe((invoice: Invoice[]) => {
+      this.invoices = invoice;
     }, error => {
         console.log('Error getting invoices');
     });
