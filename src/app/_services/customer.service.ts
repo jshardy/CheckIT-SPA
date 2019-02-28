@@ -31,7 +31,7 @@ export class CustomerService {
   public getCustomers(firstName?: string, lastName?: string, email?: string, phone?: string, company?: string): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseURL, {
       params: new HttpParams()
-        .set('FirstName', firstName != null ? firstName.trim() : '')
+      .set('FirstName', firstName != null ? firstName.trim() : '')
       .set('LastName', lastName != null ? lastName.trim() : '')
       .set('Email', email != null ? email.trim() : '')
       .set('PhoneNumber', phone != null ? phone.trim() : '')
@@ -40,13 +40,19 @@ export class CustomerService {
   }
 
   public getCustomers2(customer: CustomerSearchDto): Observable<Customer[]> {
+    const firstName: string = customer.firstName;
+    const lastName: string = customer.lastName;
+    const email: string = customer.email;
+    const phone: string = customer.phoneNumber;
+    const company: string = customer.companyName;
+
     return this.http.get<Customer[]>(this.baseURL, {
       params: new HttpParams()
-        .set('FirstName', customer.firstName.trim())
-        .set('LastName', customer.lastName.trim())
-        .set('Email', customer.email.trim())
-        .set('PhoneNumber', customer.phoneNumber.trim())
-        .set('CompanyName', customer.companyName.trim())
+        .set('FirstName', firstName != null ? firstName.trim() : '')
+        .set('LastName', lastName != null ? lastName.trim() : '')
+        .set('Email', email != null ? email.trim() : '')
+        .set('PhoneNumber', phone != null ? phone.trim() : '')
+        .set('CompanyName', company != null ? company.trim() : '')
     });
   }
 
