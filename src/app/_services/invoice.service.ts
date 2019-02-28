@@ -41,7 +41,7 @@ export class InvoiceService {
 
   // fetches a Invoice's info by searching for their ID
   public getInvoiceById(id): Observable<Invoice> {
-    return this.http.get<Invoice>(this.baseURL + 'ReturnOneInvoice/' + id);
+    return this.http.get<Invoice>(this.baseURL + id);
   }
 
   // fetches all the Invoice to show off a list of them
