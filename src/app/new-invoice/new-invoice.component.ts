@@ -6,7 +6,8 @@ import { Customer } from '../_models/customer';
 import { CustomerService } from '../_services/customer.service';
 import { CustomerSelectionData } from './CustomerSelectionData';
 import { TypeaheadMatch } from 'ngx-bootstrap';
-import { Address } from '../_models/address';
+import { AddressService } from '../_services/address.service';
+import { AddressOnly } from '../_models/AddressOnly';
 
 @Component({
   selector: 'app-new-invoice',
@@ -17,11 +18,15 @@ import { Address } from '../_models/address';
 export class NewInvoiceComponent implements OnInit {
   nInvoice: InvoiceData;
   customerData: CustomerSelectionData[] = [];
-  selectedCustomer: CustomerSelectionData;
-  selectedCustomerName: String;
+  selectedCustomer: CustomerSelectionData = null;
+  selectedCustomerName: String = null;
   customerNotFound: Boolean = false;
-  customerAddress: Address;
-  constructor(private invoiceService: InvoiceService, private alertify: AlertifyService, private customerService: CustomerService) {
+  customerAddress: AddressOnly = null;
+
+  constructor(private invoiceService: InvoiceService,
+    private alertify: AlertifyService,
+    private customerService: CustomerService,
+    private addressService: AddressService) {
   }
 
   ngOnInit() {
@@ -44,7 +49,14 @@ export class NewInvoiceComponent implements OnInit {
   onCustomerSelect(event: TypeaheadMatch): void {
     this.selectedCustomer = event.item;
     console.log(this.selectedCustomer);
+
+    // get the address
+    if (this.selectedCustomer != null) {
+      this.addressService.getAddressById(this.selectedCustomer.id).subscribe((address: AddressOnly) => {
+        this.customerAddress = address;
+      });
+    }
   }
 
-  
+
 }

@@ -6,14 +6,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvoiceData } from '../_models/invoiceData';
 
-// Removed because using JWT Service now adds it automatically to each
-// request.
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Authorization': 'Bearer ' + localStorage.getItem('token')
-//   })
-// };
-
 @Injectable({
     providedIn: 'root'
   })

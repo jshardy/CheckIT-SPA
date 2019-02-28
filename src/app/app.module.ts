@@ -32,6 +32,7 @@ import { InventorySearchComponent } from './inventory-search/inventory-search.co
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
+import { AddressService } from './_services/address.service';
 
 
 export function tokenGetter() {
@@ -81,7 +82,8 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       InvoiceService,
-      CustomerService
+      CustomerService,
+      AddressService
    ],
    bootstrap: [
       AppComponent

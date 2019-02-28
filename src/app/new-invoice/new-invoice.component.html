@@ -23,16 +23,16 @@
 
     <div id="identity">
 
-      <textarea id="address">
-        John Appleseed,
-        5255 Wocus Rd,
-        Klamath Falls, OR, 97601
-      </textarea>
+      <address id="address" *ngIf="customerAddress != null" enabled="false">
+        <strong>{{ selectedCustomerName }}</strong>,<br>
+        {{ customerAddress?.street }},<br>
+        {{ customerAddress?.city }}, {{ customerAddress?.state }}, {{ customerAddress?.zipCode }}
+      </address>
 
       <div id="logo">
         <div id="logohelp">
           <!-- Add code to change logo here -->
-          </div>
+         </div>
           <!-- Logo goes here -->
         <i class="fa fa-check" aria-hidden="true"></i>
       </div>
