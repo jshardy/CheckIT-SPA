@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Customer } from '../_models/customer';
 import { Address } from '../_models/address'
 import { RouterInitializer } from '@angular/router/src/router_module';
+import { CustomerService } from '../_services/customer.service';
 
 
 @Component({
@@ -13,22 +14,38 @@ import { RouterInitializer } from '@angular/router/src/router_module';
   styleUrls: ['./customers.component.css']
 })
 export class CustomersComponent implements OnInit {
-  public dropdown = 'none';
-  public input = '';
+  customers: Customer[];
+  public fname = '';
+  public lname = '';
+  public company = '';
+  public email = '';
+  public phone = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private customerService: CustomerService) { }
 
   ngOnInit() {
   }
 
-  transfer() {
-    if (this.dropdown === 'id') {
-      const passId = parseInt(this.input, 10);
-      if (!isNaN(passId)) {
-        this.router.navigate(['/customers/customer', { id: passId}]);
-      }
-    } else if (this.dropdown !== 'none') {
-      this.router.navigate(['/customers/results', {selection: this.dropdown, input: this.input}]);
+  search() {
+    if (this.allEmpty()) {
+      this.customers = [];
+    } else {
+      this.customerService.getCustomers(this.fname, this.lname, this.email, this.phone, this.company).subscribe((customer: Customer[]) => {
+        this.customers = customer;
+      });
     }
+  }
+
+  allEmpty() {
+    if (this.fname !== '') { return false; }
+    if (this.lname !== '') { return false; }
+    if (this.phone !== '') { return false; }
+    if (this.email !== '') { return false; }
+    if (this.company !== '') { return false; }
+    return true;
+  }
+
+  transfer(passId: number) {
+    this.router.navigate(['/customers/customer', { id: passId }]);
   }
 }

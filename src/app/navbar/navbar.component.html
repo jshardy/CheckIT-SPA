@@ -11,8 +11,8 @@
             Customer<span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/customers/searchcustomers']"><i class="fa fa-search" aria-hidden="true"></i>Search Customer</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/customers/new']"><i class="fa fa-user" aria-hidden="true"></i>New Customer</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/customers/searchcustomers']" routerLinkActive="active"><i class="fa fa-search" aria-hidden="true"></i>Search Customer</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/customers/new']" routerLinkActive="active"><i class="fa fa-user" aria-hidden="true"></i>New Customer</a></li>
           </ul>
         </div>
       </li>
@@ -22,8 +22,8 @@
             Invoice <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/newinvoice']"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Invoice</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/searchinvoices']"><i class="fa fa-search" aria-hidden="true"></i>Search Invoices</a>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/invoice/new']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Invoice</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/searchinvoices']" routerLinkActive="active"><i class="fa fa-search" aria-hidden="true"></i>Search Invoices</a>
             </li>
           </ul>
         </div>
@@ -36,9 +36,9 @@
             Inventory <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory']"><i class="fa fa-sticky-note" aria-hidden="true"></i>All Items</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory/newitem']"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Item</a></li>
-            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/inventory-search']"><i class="fa fa-search" aria-hidden="true"></i>Search Inventory</a>
+            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>All Items</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/inventory/newitem']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Item</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/inventory/search']" routerLinkActive="active"><i class="fa fa-search" aria-hidden="true"></i>Search Inventory</a>
             </li>
           </ul>
         </div>

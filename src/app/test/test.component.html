@@ -1,0 +1,33 @@
+<accordion>
+  <!-- Get Customers  -->
+  <accordion-group heading="Get Customers /Customers">
+    <pre>Get Customers Web API return:<br> {{ customers | json }}</pre>
+  </accordion-group>
+  <!-- Search Customers  -->
+  <accordion-group heading="Search Customers /Customers/?Params">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text">First/Last:</span>
+      </div>
+      <input type="text" placeholder="First Name" class="form-control" (change)="SearchCustomer()" (keyup)="SearchCustomer()" [(ngModel)]="firstName">
+      <input type="text" placeholder="Last Name" class="form-control" (change)="SearchCustomer()" (keyup)="SearchCustomer()" [(ngModel)]="lastName">
+    </div>
+    <pre>{{ customersSearch | json }}</pre>
+  </accordion-group>
+  <!-- Get invoices -->
+  <accordion-group heading="Get Invoice /Invoice">
+    <pre>Get Invoices Web API return:<br> {{ invoices | json }}</pre>
+  </accordion-group>
+  <accordion-group heading="Search Invoice by ID /Invoice/id">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@</span>
+      </div>
+      <input type="text" class="form-control" placeholder="Invoice ID" (change)="SearchInvoiceId()" (keyup)="SearchInvoiceId()" [(ngModel)]="invoiceSearchId">
+    </div>
+    <pre>{{ invoice | json }}</pre>
+  </accordion-group>
+  <accordion-group heading="Another group">
+    <p>More testing stuff.</p>
+  </accordion-group>
+</accordion>

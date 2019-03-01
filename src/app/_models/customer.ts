@@ -1,17 +1,19 @@
 import { Address } from './address';
 import { Invoice } from './invoice';
 
-// "id": 1,
+// {
+//   "id": 1,
 //   "firstName": "William",
-//     "lastName": "Jacmar",
-//       "companyName": "Jatri",
-//         "isCompany": true,
-//           "phoneNumber": "748-518-9986",
-//             "email": "wjacmar0@unblog.fr",
-//               "custAddress": {
-// "customerInvoiceList": [
-//   {
-
+//   "lastName": "Jacmar",
+//   "companyName": "Jatri",
+//   "isCompany": true,
+//   "phoneNumber": "748-518-9986",
+//   "email": "wjacmar0@unblog.fr",
+//   "custAddress": {
+//   "customerInvoiceList": [
+// {
+// TODO: All of your objects are wrong! You are giving me raw objects!
+// TODO: You are giving me MODELS!
 export class Customer {
   constructor (
   public id?: number,

@@ -5,7 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { NbThemeModule } from '@nebular/theme';
+import { TimeAgoPipe } from 'time-ago-pipe';
+import { SelectDropDownModule } from 'ngx-select-dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+// import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,12 +26,13 @@ import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
-import { CustomerResultsComponent } from './customerresults/customerresults.component';
 import { CustomerService } from './_services/customer.service';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
-import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
+import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
+import { TestComponent } from './test/test.component';
+import { AddressService } from './_services/address.service';
 
 
 export function tokenGetter() {
@@ -37,6 +42,7 @@ export function tokenGetter() {
 @NgModule({
    declarations: [
       AppComponent,
+      TimeAgoPipe,
       NavbarComponent,
       HomeComponent,
       RegisterComponent,
@@ -45,20 +51,23 @@ export function tokenGetter() {
       InventoryComponent,
       InvoiceComponent,
       CustomerComponent,
-      CustomerResultsComponent,
       NewcustomerComponent,
       InventorySearchComponent,
       NewItemComponent,
-      InventoryResultsComponent
+      NewInvoiceComponent,
+      TestComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       HttpClientModule,
       FormsModule,
-      NbThemeModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule,
+      SelectDropDownModule,
+      TypeaheadModule.forRoot(),
+      // CarouselModule.forRoot(),
+      AccordionModule.forRoot(),
       JwtModule.forRoot({
         config: {
           tokenGetter: tokenGetter,
@@ -73,7 +82,8 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       InvoiceService,
-      CustomerService
+      CustomerService,
+      AddressService
    ],
    bootstrap: [
       AppComponent

@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Customer } from '../_models/customer';
-import { Address } from '../_models/address';
 import { CustomerCreateDto } from '../_models/CustomerCreateDto';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { CustomerSearchDto } from '../_models/CustomerSearchDto';
 
 @Injectable({
   providedIn: 'root'
@@ -17,62 +17,43 @@ export class CustomerService {
 
   constructor(private http: HttpClient) { }
 
-// export class CustomerCreateDto {
-//   constructor(
-//     public firstName: string,
-//     public lastName: string,
-//     public companyName?: string,
-//     // public isCompany?: boolean,
-//     public phoneNumber?: string,
-//     public email?: string,
-//   ) { }
-// }
+  public getCustomers(firstName?: string, lastName?: string, email?: string, phone?: string, company?: string): Observable<Customer[]> {
+    return this.http.get<Customer[]>(this.baseURL, {
+      params: new HttpParams()
+      .set('FirstName', firstName != null ? firstName.trim() : '')
+      .set('LastName', lastName != null ? lastName.trim() : '')
+      .set('Email', email != null ? email.trim() : '')
+      .set('PhoneNumber', phone != null ? phone.trim() : '')
+      .set('CompanyName', company != null ? company.trim() : '')
+      });
+  }
 
+  public getCustomers2(customer: CustomerSearchDto): Observable<Customer[]> {
+    const firstName: string = customer.firstName;
+    const lastName: string = customer.lastName;
+    const email: string = customer.email;
+    const phone: string = customer.phoneNumber;
+    const company: string = customer.companyName;
 
-  // public function addCustomer(firstName: string, lastName: string, companyName?: string, phoneNumber?: string, email?: string): void {
-  //   let customerDto: CustomerCreateDto = {
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     companyName: companyName,
-  //     phoneNumber: phoneNumber,
-  //     email: email
-  //   };
-  //   this.http.post(baseURL + '/AddCustomer', )
-  // }
+    return this.http.get<Customer[]>(this.baseURL, {
+      params: new HttpParams()
+        .set('FirstName', firstName != null ? firstName.trim() : '')
+        .set('LastName', lastName != null ? lastName.trim() : '')
+        .set('Email', email != null ? email.trim() : '')
+        .set('PhoneNumber', phone != null ? phone.trim() : '')
+        .set('CompanyName', company != null ? company.trim() : '')
+    });
+  }
 
-  public getCustomers(): Observable<Customer[]> {
+  public getCustomersAll(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.baseURL);
-  }
-
-  public getCustomersByFirstName(firstName: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('FirstName', firstName.trim())});
-  }
-
-  public getCustomersByLastName(lastName: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('LastName', lastName.trim())});
-  }
-
-  public getCustomersByEmail(email: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('Email', email.trim())});
-  }
-
-  public getCustomersByPhone(phone: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('PhoneNumber', phone.trim())});
-  }
-
-  public getCustomersByCompany(company: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseURL, { params: new HttpParams().set('CompanyName', company.trim())});
   }
 
   public getCustomer(id: number): Observable<Customer> {
     return this.http.get<Customer>(this.baseURL + id);
   }
 
-  public addCustomer(cust: Customer, id: number): void {
-    this.http.post(this.baseURL, cust, { params: new HttpParams().set('AddressID', id.toString())});
-  }
-
-  public addAddress(add: Address): Observable<Address> {
-    return this.http.post(environment.apiURL + 'Address/AddAddress', add);
+  public addCustomer(cust: Customer): Observable<any> {
+    return this.http.post(this.baseURL + 'AddCustomer', cust);
   }
 }

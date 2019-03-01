@@ -7,11 +7,11 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
-import { CustomerResultsComponent } from './customerresults/customerresults.component';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
-import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
+import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -26,12 +26,12 @@ const routes: Routes = [
       { path: 'inventory', component: InventoryComponent},
       { path: 'invoices', component: InvoicesComponent},
       { path: 'invoices/invoice', component: InvoiceComponent },
+      { path: 'invoice/new', component: NewInvoiceComponent },
       { path: 'customers/customer', component: CustomerComponent},
-      { path: 'customers/results', component: CustomerResultsComponent},
       { path: 'customers/new', component: NewcustomerComponent},
       { path: 'inventory/newitem', component: NewItemComponent},
-      { path: 'inventory-search', component: InventorySearchComponent},
-      { path: 'inventory-results', component: InventoryResultsComponent}
+      { path: 'inventory-search', component: InventorySearchComponent },
+      { path: 'test', component: TestComponent }
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
