@@ -2,11 +2,20 @@
   <form>
     <div class="form group">
       <label for="exampleId">Inventory Id</label>
-      <input type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="input">
+      <input #searchBox type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="input">
       <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for</small>
     </div>
-    <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit()">Submit</button>
+    <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit(searchBox.value)">Submit</button>
   </form>
+  <div>
+    <h2>Search Results</h2>
+    <div><span>id: </span>{{item.id}}</div>
+    <div><span>UPC: </span>{{item.upc}}</div>
+    <div><span>price: </span>{{item.price}}</div>
+    <div><span>name: </span>{{item.name}}</div>
+    <div><span>description: </span>{{item.description}}</div>
+    <div><span>quantity: </span>{{item.quantity}}</div>
+  </div>
   <!-- Inline Forms to display and possibly edit the inventory item that is found from the search -->
 <div class="resultWrapper">
   <div class="form-inline">
@@ -19,6 +28,8 @@
     <input type="text" class="form-inline" id="resultName" placeholder="Name" aria-describedby="searchHelpName" [(ngModel)]="item.name">
 
     <input type="text" class='form-inline' id="resultDescription" placeholder="Description" aria-describedby="searchHelpDescription" [(ngModel)]="item.description">
+
+    <input type="text" class='form-inline' id="resultQuantity" placholder="Quantity" aria-describedby="searchHelpQuantity" [(ngModel)]="item.quantity">
   </div>
 </div>
 </body>

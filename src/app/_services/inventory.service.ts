@@ -33,11 +33,17 @@ export class ItemService {
   // Get Statements
   // fetches a Item's info by searching for their ID
   public getItemById(id: number): Observable<Item> {
-    return this.httpClient.get<Item>(this.baseURL + id);
+    const url = `${this.baseURL}${id}`;
+    return this.httpClient.get<Item>(url);
   }
 
   // fetches all the Items to show off a list of them
   public getItems(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(this.baseURL + 'GetAllInventories/');
+  }
+
+  // fetches an item from the UPC database connection to auto fill in information
+  public searchUPC(upc: string): Observable<Item> {
+    return this.httpClient.get<Item>(this.baseURL + 'UpcInfo' + {upc});
   }
 }
