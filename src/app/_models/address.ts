@@ -1,12 +1,12 @@
 // "id": 1,
-//   "country": "Portugal",
-//     "state": "Florida",
-//       "zipCode": "33731",
-//         "city": "Saint Petersburg",
-//           "street": "Main",
-//             "aptNum": "331",
-//               "defaultAddress": false,
-//                 "addressCustID": 1
+// "country": "Portugal",
+// "state": "Florida",
+// "zipCode": "33731",
+// "city": "Saint Petersburg",
+// "street": "Main",
+// "aptNum": "331",
+// "defaultAddress": false,
+// "addressCustID": 1
 
 export class Address {
     constructor (
