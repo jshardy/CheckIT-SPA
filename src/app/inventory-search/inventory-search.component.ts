@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ItemService } from '../_services/inventory.service';
 import { Item } from '../_models/item';
 import { AlertifyService } from './../_services/alertify.service';
@@ -10,7 +11,9 @@ import { AlertifyService } from './../_services/alertify.service';
 })
 export class InventorySearchComponent implements OnInit {
 
-  constructor(private itemService: ItemService, private alertify: AlertifyService) { }
+  constructor(private itemService: ItemService, private alertify: AlertifyService, private router: Router) { }
+  public dropdown = 'none';
+  public input = '';
 
   item?: Item;
 
@@ -18,11 +21,11 @@ export class InventorySearchComponent implements OnInit {
   }
 
   // grabs an item from the database by the InventoryId
-  onSubmit(id: number) {
-    return this.itemService.getItemById(id).subscribe((item: Item) => {
-      this.item = item;
-    }, error => {
-      this.alertify.error(error);
-    });
+  onSubmit(id: number): void {
+    const passId = parseInt(this.input, 10);
+    this.itemService.getItemById(passId).subscribe(item => this.item = item);
+    if (!isNaN(passId)) {
+      this.router.navigate(['/inventory-results', { id: passId}]);
+    }
   }
 }

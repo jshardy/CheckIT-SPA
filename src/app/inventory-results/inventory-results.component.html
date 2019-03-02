@@ -1,0 +1,35 @@
+<html>
+  <body>
+    <div class="item-box">
+        <table>
+            <tr>
+              <td class="title">
+                <h3>Iventory Information</h3>
+                <h5>{{ item.name || '' }}</h5>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                {{item.id}}
+              </td>
+              <td>
+                {{item.upc}}
+              </td>
+              <td>
+                {{item.price}}
+              </td>
+              <td>
+                {{item.name}}
+              </td>
+              <td>
+                {{item.description}}
+              </td>
+              <td>
+                {{item.quantity}}
+              </td>
+            </tr>
+          </table>
+    </div>
+  </body>
+</html>
