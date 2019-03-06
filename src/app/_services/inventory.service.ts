@@ -16,7 +16,8 @@ export class ItemService {
   // Post Statements
   // used to create and add a Item to the database
   public createItem(item: Item) {
-    return this.httpClient.post<Item>(this.baseURL + 'AddInventory', item);
+    const url = `${this.baseURL}/AddInventory`;
+    return this.httpClient.post<Item>(url, item);
   }
 
   // used to edit an existing Item's information
@@ -33,11 +34,18 @@ export class ItemService {
   // Get Statements
   // fetches a Item's info by searching for their ID
   public getItemById(id: number): Observable<Item> {
-    return this.httpClient.get<Item>(this.baseURL + id);
+    const url = `${this.baseURL}${id}`;
+    return this.httpClient.get<Item>(url);
   }
 
   // fetches all the Items to show off a list of them
   public getItems(): Observable<Item[]> {
     return this.httpClient.get<Item[]>(this.baseURL + 'GetAllInventories/');
+  }
+
+  // fetches an item from the UPC database connection to auto fill in information
+  public searchUPC(upc: string): Observable<Item> {
+    const url = `${this.baseURL}/UpcInfo/${upc}`;
+    return this.httpClient.get<Item>(url);
   }
 }
