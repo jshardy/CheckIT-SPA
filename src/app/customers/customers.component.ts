@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -48,4 +48,9 @@ export class CustomersComponent implements OnInit {
   transfer(passId: number) {
     this.router.navigate(['/customers/customer', { id: passId }]);
   }
+
+  openModal() {
+    
+  }
+
 }

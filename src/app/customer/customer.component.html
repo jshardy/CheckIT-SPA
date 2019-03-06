@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Customer information</title>
@@ -17,12 +16,19 @@
                 <h3>Customer Information</h3>
                 <h5>{{ currentCustomer.companyName || '' }}</h5>
               </td>
+              <td>
+                <button (click)='deleteCustomer()' class='btn btn-primary'>Delete</button>
+              </td>
+              <td>
+                <button (click)='modifyCustomer()' class='btn btn-outline-success'>Modify</button>
+              </td>
             </tr>
 
             <tr>
               <td>
-                Customer ID: {{ currentCustomer.id || 'ERROR' }}<br>
-                {{ currentCustomer.firstName || 'ERROR' }} {{ currentCustomer.lastName || 'ERROR' }} <br>
+                <label>Customer ID: </label>
+                {{ currentCustomer.id }}<br>
+                {{ currentCustomer.firstName }} {{ currentCustomer.lastName }} <br>
                 {{ currentCustomer.phoneNumber || '-'}}<br>
                 {{ currentCustomer.email || '-'}}
               </td>
@@ -60,5 +66,4 @@
     </table>
   </div>
 </body>
-
 </html>

@@ -56,4 +56,8 @@ export class CustomerService {
   public addCustomer(cust: Customer): Observable<any> {
     return this.http.post(this.baseURL + 'AddCustomer', cust);
   }
+
+  public deleteCustomer(id: number): Observable<any> {
+    return this.http.delete(this.baseURL + 'DeleteCustomer', { params: new HttpParams().set('id', id.toString())});
+  }
 }

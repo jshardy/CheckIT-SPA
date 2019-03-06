@@ -27,7 +27,6 @@ export class NewcustomerComponent implements OnInit {
 
 
   constructor(private customerService: CustomerService) {
-
    }
 
   ngOnInit() {
@@ -37,6 +36,7 @@ export class NewcustomerComponent implements OnInit {
     this.customer = new Customer(null, this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
       new Address(null, this.country, this.state, this.zip, this.city, this.street1, this.street2, this.defaultAddress));
     this.customerService.addCustomer(this.customer).subscribe();
+    location.reload();
   }
 
 }
