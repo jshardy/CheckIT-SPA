@@ -30,6 +30,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { CustomerService } from './_services/customer.service';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
+import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
@@ -55,6 +56,7 @@ export function tokenGetter() {
       CustomerComponent,
       NewcustomerComponent,
       InventorySearchComponent,
+      InventoryResultsComponent,
       NewItemComponent,
       NewInvoiceComponent,
       TestComponent,
