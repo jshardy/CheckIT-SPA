@@ -19,6 +19,9 @@
             [typeaheadScrollable]="true"
             (typeaheadOnSelect)="onCustomerSelect($event)"
             class="form-control">
+            <div class="">
+              <button id="btnNewCustomer" type="button" *ngIf="newCustomer === true" class="btn btn-outline-danger btn-group mr-3">New Customer</button>
+            </div>
     </div>
 
     <div id="identity">

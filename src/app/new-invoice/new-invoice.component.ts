@@ -22,6 +22,7 @@ export class NewInvoiceComponent implements OnInit {
   selectedCustomerName: String = null;
   customerNotFound: Boolean = false;
   customerAddress: AddressOnly = null;
+  newCustomer: Boolean = false;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
@@ -56,7 +57,10 @@ export class NewInvoiceComponent implements OnInit {
     if (this.selectedCustomer != null) {
       this.addressService.getAddressById(this.selectedCustomer.id).subscribe((address: AddressOnly) => {
         this.customerAddress = address;
+        this.newCustomer = false;
       });
+    } else {
+      this.newCustomer = true;
     }
   }
 
