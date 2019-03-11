@@ -91,4 +91,12 @@
     text-align: left;
   }
 
-  
+  .right-align {
+    text-align: right;
+    float: right;
+  }  
+
+  .left-align {
+    text-align: left;
+    float: left;
+  }  

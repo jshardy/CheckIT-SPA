@@ -57,6 +57,13 @@ export class CustomerService {
     return this.http.post(this.baseURL + 'AddCustomer', cust);
   }
 
+  public modifyCustomer(cust: Customer): Observable<any> {
+    return this.http.patch(this.baseURL + 'ModifyCustomer', cust, {
+      params: new HttpParams()
+      .set('id', cust.id.toString())
+    });
+  }
+
   public deleteCustomer(id: number): Observable<any> {
     return this.http.delete(this.baseURL + 'DeleteCustomer', { params: new HttpParams().set('id', id.toString())});
   }

@@ -49,8 +49,4 @@ export class CustomersComponent implements OnInit {
     this.router.navigate(['/customers/customer', { id: passId }]);
   }
 
-  openModal() {
-    
-  }
-
 }
