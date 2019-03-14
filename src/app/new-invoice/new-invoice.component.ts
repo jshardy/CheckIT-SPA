@@ -23,6 +23,8 @@ export class NewInvoiceComponent implements OnInit {
   customerNotFound: Boolean = false;
   customerAddress: AddressOnly = null;
   newCustomer: Boolean = false;
+  date: Date = new Date();
+  totalDue: Number = 0;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,

@@ -12,20 +12,20 @@
     <!-- Person the invoice is mailed to -->
     <div class="customerName">
       <div class="alert alert-danger" *ngIf="customerNotFound">Customer not found.</div>
-      <input [(ngModel)]="selectedCustomerName"
+      <input *ngIf="customerAddress === null" [(ngModel)]="selectedCustomerName"
             [typeahead]="customerData"
             typeaheadOptionField="firstLastName"
             [typeaheadOptionsInScrollableView]="5"
             [typeaheadScrollable]="true"
             (typeaheadOnSelect)="onCustomerSelect($event)"
             class="form-control">
-            <div class="">
-              <button id="btnNewCustomer" type="button" *ngIf="newCustomer === true" class="btn btn-outline-danger btn-group mr-3">New Customer</button>
+            <div>
+              <button id="btnNewCustomer" type="button" *ngIf="customerAddress === null" class="btn btn-outline-danger btn-group mr-3">New Customer</button>
+              <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button>
             </div>
     </div>
 
     <div id="identity">
-
         <!-- This has autodetect for company first then name -->
       <address id="address" *ngIf="customerAddress != null" enabled="false">
         <strong>{{ selectedCustomerName }}</strong>,<br>
@@ -35,11 +35,8 @@
       </address>
 
       <div id="logo">
-        <div id="logohelp">
-          <!-- Add code to change logo here -->
-         </div>
           <!-- Logo goes here -->
-        <i class="fa fa-check" aria-hidden="true"></i>
+        <i class="fa fa-check"></i>
       </div>
     </div>
 
@@ -49,17 +46,13 @@
     <div id="customer">
       <table id="meta">
         <tr>
-          <td class="meta-head">Invoice #</td>
-          <td><textarea>000123</textarea></td>
-        </tr>
-        <tr>
           <td class="meta-head">Date</td>
-          <td><textarea id="date">December 15, 2019</textarea></td>
+          <td><textarea id="date" [(ngModel)]="date">{{ date | date:'MM-dd-yyyy' }}</textarea></td>
         </tr>
         <tr>
           <td class="meta-head">Amount Due</td>
           <td>
-            <div class="due">$18.00</div>
+            <div class="due"><textarea id="totalDue">${{ totalDue }}</textarea></div>
           </td>
         </tr>
       </table>
@@ -74,6 +67,7 @@
         <th>Price</th>
       </tr>
 
+      <!-- Quantity Rows  -->
       <tr class="item-row">
         <td class="item-name">
           <div class="delete-wpr"><textarea>Crackers</textarea><a class="delete" href="javascript:;"
