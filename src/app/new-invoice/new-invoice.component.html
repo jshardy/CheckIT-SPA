@@ -47,7 +47,7 @@
       <table id="meta">
         <tr>
           <td class="meta-head">Date</td>
-          <td><textarea id="date" [(ngModel)]="currentDate">{{ currentDate | date }}</textarea></td>
+          <td><textarea id="date">{{ currentDate | date:'MM-dd-yyyy' }}</textarea></td>
         </tr>
         <tr>
           <td class="meta-head">Amount Due</td>
@@ -130,7 +130,7 @@
 
     <div id="terms">
       <h5>Terms</h5>
-      <textarea>Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+        Finance Charge of 1.5% will be made on unpaid balances after 30 days.
     </div>
   </div>
 

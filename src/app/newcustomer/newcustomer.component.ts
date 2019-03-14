@@ -24,7 +24,7 @@ export class NewcustomerComponent implements OnInit {
   public street1: '';
   public street2: '';
   public defaultAddress: true;
-
+  public id: number;
 
   constructor(private customerService: CustomerService) {
    }
@@ -34,7 +34,7 @@ export class NewcustomerComponent implements OnInit {
 
   add() {
     this.customer = new CustomerCreateDto(this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
-      new AddressOnly(this.country, this.state, this.zip, this.city, this.street1, this.street2));
+      new AddressOnly(this.id, this.country, this.state, this.zip, this.city, this.street1, this.street2, false));
     this.customerService.addCustomer(this.customer).subscribe();
     location.reload();
   }

@@ -12,12 +12,14 @@ import { Customer } from './customer';
 // for use with api/address/id
 
 export class AddressOnly {
-  constructor (
+  constructor(
+  public id?: number,
   public country?: String,
   public state?: String,
   public zipCode?: String,
   public city?: String,
   public street?: String,
-  public aptNum?: String
+  public aptNum?: String,
+  public defaultAddress?: Boolean
   ) { }
 }
