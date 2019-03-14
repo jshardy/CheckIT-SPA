@@ -27,9 +27,9 @@ export class NewInvoiceComponent implements OnInit {
   customerNotFound: Boolean = false;
   customerAddress: AddressOnly = null;
   newCustomer: Boolean = false;
-  date: Date = new Date();
-  totalDue: number = 0;
-  subTotal: number = 0;
+  currentDate = new Date();
+  totalDue = 0;
+  subTotal = 0;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
@@ -45,11 +45,11 @@ export class NewInvoiceComponent implements OnInit {
 
     const item: Item = {
       id: 0,
-      description: "Enter Description",
-      name: "Enter Name",
+      description: 'Enter Description',
+      name: 'Enter Name',
       price: 0,
       quantity: 0,
-      upc: 0
+      upc: '000'
     };
 
     this.items.push(item);
@@ -58,11 +58,11 @@ export class NewInvoiceComponent implements OnInit {
   addNewRow(): void {
     const item: Item = {
       id: 0,
-      description: "Enter Description",
-      name: "Enter Name",
+      description: 'Enter Description',
+      name: 'Enter Name',
       price: 0,
       quantity: 0,
-      upc: 0
+      upc: '000'
     };
 
     this.items.push(item);
@@ -74,7 +74,7 @@ export class NewInvoiceComponent implements OnInit {
 
   priceChanged(): void {
     for (const item of this.items) {
-      this.totalDue = this.totalDue + item.price * item.quantity;
+      this.subTotal += item.price * item.quantity;
     }
   }
 

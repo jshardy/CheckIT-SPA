@@ -47,7 +47,7 @@
       <table id="meta">
         <tr>
           <td class="meta-head">Date</td>
-          <td><textarea id="date" [(ngModel)]="date">{{ date | date:'MM-dd-yyyy' }}</textarea></td>
+          <td><textarea id="date" [(ngModel)]="currentDate">{{ currentDate | date }}</textarea></td>
         </tr>
         <tr>
           <td class="meta-head">Amount Due</td>
@@ -94,7 +94,7 @@
 
       <!-- <tr id="hiderow"> -->
       <tr>
-        <td colspan="5"><a id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</a></td>
+        <td colspan="6"><a id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</a></td>
       </tr>
 
       <tr>
