@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { Invoice } from './invoice';
+import { AddressOnly } from './AddressOnly';
 
 // "id": 1,
 //   "firstName": "William",
@@ -17,8 +18,9 @@ export class CustomerCreateDto {
     public firstName: string,
     public lastName: string,
     public companyName?: string,
-    // public isCompany?: boolean,
+    public isCompany?: boolean,
     public phoneNumber?: string,
     public email?: string,
+    public custAddress?: AddressOnly
   ) { }
 }

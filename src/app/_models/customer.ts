@@ -1,5 +1,6 @@
 import { Address } from './address';
 import { Invoice } from './invoice';
+import { AddressOnly } from './AddressOnly';
 
 // {
 //   "id": 1,
@@ -23,7 +24,8 @@ export class Customer {
   public isCompany?: boolean,
   public phoneNumber?: string,
   public email?: string,
-  public custAddress?: Address,
+  public custAddressId?: number,
+  public custAddress?: AddressOnly,
   public customerInvoiceList?: Invoice[]
   ) { }
 }

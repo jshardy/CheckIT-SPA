@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Customer } from './../_models/customer';
-import { Address } from './../_models/address';
+import { CustomerCreateDto } from './../_models/CustomerCreateDto';
+import { AddressOnly } from './../_models/AddressOnly';
 import { CustomerService } from '../_services/customer.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { CustomerService } from '../_services/customer.service';
   styleUrls: ['./newcustomer.component.css']
 })
 export class NewcustomerComponent implements OnInit {
-  customer: Customer;
+  customer: CustomerCreateDto;
   public fname: '';
   public lname: '';
   public companyName: '';
@@ -33,8 +33,8 @@ export class NewcustomerComponent implements OnInit {
   }
 
   add() {
-    this.customer = new Customer(null, this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
-      new Address(null, this.country, this.state, this.zip, this.city, this.street1, this.street2, this.defaultAddress));
+    this.customer = new CustomerCreateDto(this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
+      new AddressOnly(this.country, this.state, this.zip, this.city, this.street1, this.street2));
     this.customerService.addCustomer(this.customer).subscribe();
     location.reload();
   }

@@ -4,7 +4,7 @@ export class CustomerSearchDto {
     public firstName?: string,
     public lastName?: string,
     public companyName?: string,
-    // public isCompany?: boolean,
+    public isCompany?: boolean,
     public phoneNumber?: string,
     public email?: string,
   ) { }
