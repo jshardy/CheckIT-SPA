@@ -13,13 +13,11 @@ import { Customer } from './customer';
 
 export class AddressOnly {
   constructor(
-  public id?: number,
   public country?: String,
   public state?: String,
   public zipCode?: String,
   public city?: String,
   public street?: String,
   public aptNum?: String,
-  public defaultAddress?: Boolean
   ) { }
 }
