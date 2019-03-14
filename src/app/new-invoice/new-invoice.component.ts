@@ -8,6 +8,8 @@ import { CustomerSelectionData } from './CustomerSelectionData';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { AddressService } from '../_services/address.service';
 import { AddressOnly } from '../_models/AddressOnly';
+import { Item } from '../_models/item';
+import { ItemService } from '../_services/inventory.service';
 
 @Component({
   selector: 'app-new-invoice',
@@ -17,6 +19,8 @@ import { AddressOnly } from '../_models/AddressOnly';
 
 export class NewInvoiceComponent implements OnInit {
   nInvoice: InvoiceData;
+  items: Item[] = [];
+  currentItem: Item;
   customerData: CustomerSelectionData[] = [];
   selectedCustomer: CustomerSelectionData = null;
   selectedCustomerName: String = null;
@@ -24,7 +28,8 @@ export class NewInvoiceComponent implements OnInit {
   customerAddress: AddressOnly = null;
   newCustomer: Boolean = false;
   date: Date = new Date();
-  totalDue: Number = 0;
+  totalDue: number = 0;
+  subTotal: number = 0;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
@@ -37,6 +42,40 @@ export class NewInvoiceComponent implements OnInit {
       // Setup first and last names
       this.ParseCustomers(customer);
     });
+
+    const item: Item = {
+      id: 0,
+      description: "Enter Description",
+      name: "Enter Name",
+      price: 0,
+      quantity: 0,
+      upc: 0
+    };
+
+    this.items.push(item);
+  }
+
+  addNewRow(): void {
+    const item: Item = {
+      id: 0,
+      description: "Enter Description",
+      name: "Enter Name",
+      price: 0,
+      quantity: 0,
+      upc: 0
+    };
+
+    this.items.push(item);
+  }
+
+  deleteRow(item: Item): void {
+    this.items = this.items.filter(obj => obj !== item);
+  }
+
+  priceChanged(): void {
+    for (const item of this.items) {
+      this.totalDue = this.totalDue + item.price * item.quantity;
+    }
   }
 
   ParseCustomers(customer: Customer[]): void {
