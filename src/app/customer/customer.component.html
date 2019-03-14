@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Customer information</title>
@@ -17,21 +16,55 @@
                 <h3>Customer Information</h3>
                 <h5>{{ currentCustomer.companyName || '' }}</h5>
               </td>
+              <td>
+                <div class='row'>
+                  <div class='col-md-10'>
+                    <button type="button" id='deleteButton' (click)='deleteCustomer()' class='btn btn-primary'>Delete</button>
+                  </div>
+                  <div class='col-ms-1'></div>
+                  <div class='col-md-1'>
+                    <button type="button" id='modifyButton' (click)='modifyCustomer()' class='btn btn-outline-success'>Modify</button>
+                  </div>
+                </div>
+              </td>
             </tr>
 
             <tr>
               <td>
-                Customer ID: {{ currentCustomer.id || 'ERROR' }}<br>
-                {{ currentCustomer.firstName || 'ERROR' }} {{ currentCustomer.lastName || 'ERROR' }} <br>
-                {{ currentCustomer.phoneNumber || '-'}}<br>
-                {{ currentCustomer.email || '-'}}
+                <input class='form-control-plaintext' placeholder='Last Name' readonly value='Customer ID: {{ currentCustomer.id }}' disabled='true'>
+                <div class='form-check form-check-inline'>
+                  <input class='form-control-plaintext' id='fnameElement' placeholder='First Name' [(ngModel)]='currentCustomer.firstName' disabled='true'>
+                  <input class='form-control-plaintext' id='lnameElement' placeholder='Last Name' [(ngModel)]='currentCustomer.lastName' disabled='true'>
+                </div>
+                <input class='form-control-plaintext' id='phoneElement' placeholder='Phone Number' [(ngModel)]='currentCustomer.phoneNumber' disabled='true'>
+                <input class='form-control-plaintext' id='emailElement' placeholder='Email' [(ngModel)]='currentCustomer.email' disabled='true'>
               </td>
-              <td>
-                {{ currentCustomer.custAddress.street || '-' }}<br>
-                {{ currentCustomer.custAddress.city || '-' }},
-                {{ currentCustomer.custAddress.state || '-' }}
-                {{ currentCustomer.custAddress.zipCode || '-' }}<br>
-                {{ currentCustomer.custAddress.country || '-' }}
+              <td class='right-align'>
+                <div class='row'>
+                  <div class='col-md-2'></div>
+                <div class='col-md-10 right-align'>
+                  <input class='form-control-plaintext right-align' id='streetElement' placeholder='Street Address' [(ngModel)]='currentCustomer.custAddress.street' disabled='true'>
+                </div>
+              </div>
+                <div class="form-row">
+                  <div class='col-md-2'></div>
+                  <div class="form-group col-md-6">
+                    <input class='form-control-plaintext right-align' id='cityElement' placeholder='City' [(ngModel)]='currentCustomer.custAddress.city' disabled='true'>
+                  </div>
+                  <div class='col-md-1 left-align'>,</div>
+                  <div class="form-group col-md-1">
+                    <input class='form-control-plaintext right-align' id='stateElement' placeholder='State' [(ngModel)]='currentCustomer.custAddress.state' disabled='true'>
+                  </div>
+                  <div class="form-group col-md-2">
+                    <input class='form-control-plaintext right-align' id='zipElement' placeholder='Zip' [(ngModel)]='currentCustomer.custAddress.zipCode' disabled='true'>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-md-2'></div>
+                  <div class='col-md-10'>
+                    <input class='form-control-plaintext right-align' id='countryElement' placeholder='Country' [(ngModel)]='currentCustomer.custAddress.country' disabled='true'>
+                  </div>
+                </div>
               </td>
             </tr>
           </table>
@@ -56,9 +89,7 @@
           {{ invoice.id || '-' }}
         </td>
       </tr>
-
     </table>
   </div>
 </body>
-
 </html>

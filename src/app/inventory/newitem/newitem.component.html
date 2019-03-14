@@ -4,35 +4,63 @@
       <div class="form-group">
         <!-- UPC portion -->
         <label for="inventoryUPC">UPC</label>
-        <input #UpcBox type="text" name="UPC" id="inventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
+        <input #UpcBox type="text" name="UPC" id="inventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc" required>
         <small id="helpUPC" class="form-text text-muted">Type the UPC number of the product if available.</small>
         <!-- Button for sending info to the UPC database we're connected to -->
         <button type="primary" class="btn btn-outline-success" (click)="databaseSearch(UpcBox.value)">Search UPC</button>
+        <small if="upcSearch" class="form-text text-muted">Press the button above to search a database for information.</small>
       </div>
-      <div class="form-group">
+      <div class="was-validated">
         <!-- Unit price portion -->
         <label for="inventoryPrice">Price per Unit</label>
         <input type="money" name="InventoryPrice" id="inventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price" required>
-        <small id="helpPrice" class="form-text text-muted">Enter the price per unit of this item.</small>
+        <div class="invalid-feedback">Please enter a price per unit.</div>
       </div>
-      <div class="form-group">
+      <div class="was-validated">
         <!-- Item Name portion -->
         <label for="InventoryName">Name</label>
         <input type="text" name="InventoryName" id="inventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name" required>
-        <small id="helpName" class="form-text text-muted">The name of the item to save into the inventory</small>
+        <div class="invalid-feedback">Please enter a name for the item.</div>
       </div>
-      <div class="form-group">
+      <div class="was-validated">
         <!-- Item description -->
         <label for="InventoryDescription">Description</label>
         <input type="text" name="Description" class="form-control" id="inventoryDescription" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description" required>
-        <small id="helpDescription" class="form-text text-muted">Enter a quick description of the item.</small>
+        <div class="invalid-feedback">Please enter a description for the item.</div>
       </div>
-      <div class="form-group">
+      <div class="was-validated">
         <!-- Quantity of Item that will be on hand at first -->
         <label for="InventoryQuantity">Quantity in Stock</label>
         <input type="text" name="Quantity" id="inventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity" required>
-        <small id="helpQuantity" class="form-text text-muted">Enter the starting quantity of stock for this item.</small>
+        <div class="invalid-feedback">Please enter a starting quantity for the item.</div>
       </div>
+      <!-- Submit button that creates a new item -->
       <button type="submit" class="btn btn-outline-success" (click)="addItem()">Add Item</button>
     </form>
+    <div class="testData">
+      <div><span>UPC: </span>{{item.upc}}</div>
+      <div><span>price: </span>{{item.price}}</div>
+      <div><span>name: </span>{{item.name}}</div>
+      <div><span>description: </span>{{item.description}}</div>
+      <div><span>quantity: </span>{{item.quantity}}</div>
+    </div>
   </body>
+  <!-- Modal to clearly display to the user the UPC wasn't found on the database we search, not being used yet -->
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">UPC Error</h5>
+          <button type="button" class="close" data-dismis="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Error, the UPC you have entered has not been found from the database. Please try again.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

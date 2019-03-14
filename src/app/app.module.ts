@@ -9,6 +9,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ModalModule } from 'ngx-bootstrap/modal';
 // import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +35,7 @@ import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
 import { AddressService } from './_services/address.service';
+import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
 
 
 export function tokenGetter() {
@@ -57,7 +59,8 @@ export function tokenGetter() {
       InventoryResultsComponent,
       NewItemComponent,
       NewInvoiceComponent,
-      TestComponent
+      TestComponent,
+      CustomercomponentComponent
    ],
    imports: [
       BrowserModule,
@@ -68,6 +71,7 @@ export function tokenGetter() {
       RouterModule,
       SelectDropDownModule,
       TypeaheadModule.forRoot(),
+      ModalModule.forRoot(),
       // CarouselModule.forRoot(),
       AccordionModule.forRoot(),
       JwtModule.forRoot({

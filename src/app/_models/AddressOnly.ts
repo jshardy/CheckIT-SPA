@@ -1,3 +1,4 @@
+import { Customer } from './customer';
 // {
 //     "country": "Cameroon",
 //     "state": "Alabama",
@@ -10,12 +11,13 @@
 
 // for use with api/address/id
 
-export interface AddressOnly {
-  country: String;
-  state: String;
-  zipCode: String;
-  city: String;
-  street: String;
-  aptNum: String;
-  defaultAddress: Boolean;
+export class AddressOnly {
+  constructor (
+  public country?: String,
+  public state?: String,
+  public zipCode?: String,
+  public city?: String,
+  public street?: String,
+  public aptNum?: String
+  ) { }
 }

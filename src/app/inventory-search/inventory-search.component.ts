@@ -30,6 +30,7 @@ export class InventorySearchComponent implements OnInit {
       this.item = item;
     }, error => {
       this.alertify.error(error);
+      console.log(error);
     });
   }
 }

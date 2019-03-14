@@ -11,7 +11,7 @@ import { Item } from '../../_models/item';
 export class NewItemComponent implements OnInit {
 
   item?: Item;
-  searchUPC?: any;
+  searchUPC?: string;
 
   constructor(private itemService: ItemService, private alertify: AlertifyService) { }
 
@@ -20,8 +20,10 @@ export class NewItemComponent implements OnInit {
 
   // searches the upc database for most of the information of the item
   databaseSearch(upc: string) {
+    this.searchUPC = upc;
     return this.itemService.searchUPC(upc).subscribe((item: Item) => {
       this.item = item;
+      this.item.upc = this.searchUPC;
     }, error => {
       this.alertify.error(error);
     });
@@ -29,5 +31,6 @@ export class NewItemComponent implements OnInit {
 
   // adds the item being entered into the database
   addItem() {
+    return this.itemService.createItem(this.item);
   }
 }
