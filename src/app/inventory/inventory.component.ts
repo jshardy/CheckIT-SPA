@@ -22,9 +22,11 @@ export class InventoryComponent implements OnInit {
 
   getItems() {
     return this.itemService.getItems().subscribe((items: Item[]) => {
-      this.items = items;
+
+      // this.items = items;
     }, error => {
       this.alertify.error(error);
+      console.error(error);
     });
   }
 
