@@ -30,6 +30,8 @@ export class NewInvoiceComponent implements OnInit {
   currentDate = new Date();
   totalDue = 0;
   subTotal = 0;
+  salesTax = .07;
+  totalPaid = 0;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
@@ -73,9 +75,12 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   priceChanged(): void {
+    this.subTotal = 0;
     for (const item of this.items) {
       this.subTotal += item.price * item.quantity;
     }
+    this.totalDue = (this.subTotal + (this.subTotal * this.salesTax)) - this.totalPaid;
+    console.log(this.totalDue);
   }
 
   ParseCustomers(customer: Customer[]): void {
@@ -92,7 +97,7 @@ export class NewInvoiceComponent implements OnInit {
 
   onCustomerSelect(event: TypeaheadMatch): void {
     this.selectedCustomer = event.item;
-    console.log(this.selectedCustomer);
+    // console.log(this.selectedCustomer);
 
     // get the address
     if (this.selectedCustomer != null) {
