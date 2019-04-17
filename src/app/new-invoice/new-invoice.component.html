@@ -61,10 +61,12 @@
     <table id="items">
       <tr>
         <th>Remove</th>
+        <th>Barcode</th>
         <th>Item</th>
         <th>Description</th>
         <th>Unit Cost</th>
         <th>Quantity</th>
+        <th>On Hand</th>
         <th colspan="2">Price</th>
       </tr>
 
@@ -72,6 +74,11 @@
       <tr class="item-row" *ngFor="let item of items;">
         <td>
           <button type="button" class="btn btn-danger" (click)='deleteRow(item)'>Remove</button>
+        </td>
+        <td>
+          <div class="delete-wpr">
+            <textarea autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered($event)">{{ item.upc || "" }}</textarea>
+          </div>
         </td>
         <td class="item-name">
           <div class="delete-wpr">
@@ -88,40 +95,43 @@
           <textarea class="qty" [(ngModel)]="item.quantity" (input)='priceChanged()'>{{ item.quantity }}</textarea>
         </td>
         <td>
+          <span class="price">{{ item.quantityOnHand }}</span>
+        </td>
+        <td>
           <span class="price">{{ item.price * item.quantity | currency }}</span><br>
         </td>
       </tr>
 
       <!-- <tr id="hiderow"> -->
       <tr>
-        <td colspan="7"><button type="button" class="btn btn-info" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button></td>
+        <td colspan="9"><button type="button" class="btn btn-info" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button></td>
       </tr>
 
       <tr>
-        <td colspan="3" class="blank"></td>
-        <td colspan="3" class="total-line">Subtotal</td>
+        <td colspan="4" class="blank"></td>
+        <td colspan="4" class="total-line">Subtotal</td>
         <td class="total-value">
           <span id="subtotal">{{ subTotal | currency }}</span>
         </td>
       </tr>
 
       <tr>
-        <td colspan="3" class="blank"> </td>
-        <td colspan="3" class="total-line">Total</td>
+        <td colspan="4" class="blank"> </td>
+        <td colspan="4" class="total-line">Total</td>
         <td class="total-value">
           <span id="total">{{ totalDue | currency }}</span>
         </td>
       </tr>
 
       <tr>
-        <td colspan="3" class="blank"> </td>
-        <td colspan="3" class="total-line">Amount Paid</td>
+        <td colspan="4" class="blank"> </td>
+        <td colspan="4" class="total-line">Amount Paid</td>
         <td class="total-value"><label>{{ totalPaid | currency }}</label></td>
       </tr>
 
       <tr>
-        <td colspan="3" class="blank"> </td>
-        <td colspan="3" class="total-line balance">Balance Due</td>
+        <td colspan="4" class="blank"> </td>
+        <td colspan="4" class="total-line balance">Balance Due</td>
         <td class="total-value balance">
           <div class="due">{{ totalDue | currency }}</div>
         </td>

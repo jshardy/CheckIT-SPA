@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Item } from '../_models/item';
 import { Observable } from 'rxjs';
@@ -8,6 +8,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
+
+// REALLY??? inventory.service.ts exports ItemService???!@#!
 export class ItemService {
   baseURL = environment.apiURL + 'Inventory/';
 
@@ -44,7 +46,6 @@ export class ItemService {
 
   // fetches an item from the UPC database connection to auto fill in information
   public searchUPC(upc: string): Observable<Item> {
-    const url = `${this.baseURL}UpcInfo/${upc}`;
-    return this.httpClient.get<Item>(url);
+    return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/?UPC=' + upc);
   }
 }

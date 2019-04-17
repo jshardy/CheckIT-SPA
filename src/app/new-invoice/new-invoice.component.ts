@@ -10,6 +10,7 @@ import { AddressService } from '../_services/address.service';
 import { AddressOnly } from '../_models/AddressOnly';
 import { Item } from '../_models/item';
 import { ItemService } from '../_services/inventory.service';
+import { InvoiceItem } from './InvoiceItems';
 
 @Component({
   selector: 'app-new-invoice',
@@ -19,7 +20,7 @@ import { ItemService } from '../_services/inventory.service';
 
 export class NewInvoiceComponent implements OnInit {
   nInvoice: InvoiceData;
-  items: Item[] = [];
+  items: InvoiceItem[] = [];
   currentItem: Item;
   customerData: CustomerSelectionData[] = [];
   selectedCustomer: CustomerSelectionData = null;
@@ -36,7 +37,8 @@ export class NewInvoiceComponent implements OnInit {
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
     private customerService: CustomerService,
-    private addressService: AddressService) {
+    private addressService: AddressService,
+    private itemService: ItemService) {
   }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class NewInvoiceComponent implements OnInit {
       name: 'Enter Name',
       price: 0,
       quantity: 0,
-      upc: '000'
+      upc: ''
     };
 
     this.items.push(item);
@@ -64,7 +66,7 @@ export class NewInvoiceComponent implements OnInit {
       name: 'Enter Name',
       price: 0,
       quantity: 0,
-      upc: '000'
+      upc: ''
     };
 
     this.items.push(item);
@@ -110,5 +112,31 @@ export class NewInvoiceComponent implements OnInit {
     }
   }
 
+  upcEntered(event): void {
+    // Go do lookup of items
+    this.itemService.searchUPC(event).subscribe((item: Item) => {
+      if (item !== null) {
+        for (let i = 0; i < this.items.length; i++) {
+          if (this.items[i].upc === event) {
+            this.items[i].alertId = item.alertId;
+            this.items[i].description = item.description;
+            this.items[i].id = item.id;
+            this.items[i].locationId = item.locationId;
+            this.items[i].name = item.name;
+            this.items[i].price = item.price;
+            this.items[i].quantityOnHand = item.quantity;
 
+            if (item.quantity < 1) {
+              this.items[i].quantity = 0;
+            } else {
+              this.items[i].quantity = 1;
+            }
+            this.items[i].upc = item.upc;
+            break;
+          }
+        }
+        this.addNewRow();
+      }
+    });
+  }
 }
