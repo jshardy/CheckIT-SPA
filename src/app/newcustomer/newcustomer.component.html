@@ -1,92 +1,108 @@
-<div>
-  <!-- first name -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">First Name:</span>
+<div class="wrapper">
+  <form>
+    <div>    
+      <!-- first name -->
+      <div class="was-validated" style="width: 49%; float: left;">
+        <label for="FirstName">First name</label>
+        <input type="text" name="firstname" id="FirstName" class="form-control" placeholder="First name" [(ngModel)]="fname" required>
+        <div class="invalid-feedback">Enter a valid first name</div>
+      </div>
+      <!-- last name -->
+      <div class="was-validated" style="margin-left: 51%;">
+        <label for="LastName">Last name</label>
+        <input type="text" name="lastname" id="LastName" class="form-control" placeholder="Last name" [(ngModel)]="lname" required>
+      <div class="invalid-feedback">Enter a valid last name</div>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="fname">
-  </div>
-  <!-- last name -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Last Name:</span>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="lname">
-  </div>
   <!-- company name -->
-  <div class="input-group mb-3">
+  <div>
+  <div class="form-group" style="width: 25%; float: left;">
+    <label for="CompanyCheck">Company Account</label>
+    <input type="checkbox" name="companycheck" id="CompanyCheck" [(ngModel)]="isCompany">
+  </div>
+  <div class="form-group" style="margin-left: 30%;">
+    <label for="CompanyName">Company name</label>
+    <input type="text" name="companyname" id="CompanyName" class="form-control" placeholder="Company name" [(ngModel)]="companyName" required>
+  </div>
+  <!-- <div class="input-group mb-3">
       <div class="input-group-prepend">
         <div class="input-group-text">
           Are you a company <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="isCompany">
         </div>
       </div>
       <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Company Name">
-    </div>
-  <!-- phone -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Phone Number:</span>
-    </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="phone">
+    </div> -->
   </div>
+  <div>
+    <!-- phone -->
+    <div class="form-group" style="width: 49%; float: left;">
+      <label for="PhoneNumber">Phone</label>
+      <input type="text" name="phonenumber" id="PhoneNumber" class="form-control" placeholder="Phone #" [(ngModel)]="phone" required>
+      <div class="invalid-feedback">Enter a valid phone number</div>
+    </div>
   <!-- email -->
-  <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">E-mail:</span>
-      </div>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" [(ngModel)]="email">
+    <div class="form-group" style="margin-left: 51%;">
+      <label for="Email">Email</label>
+      <input type="text" name="email" id="Email" class="form-control" placeholder="Email" [(ngModel)]="email" required>
+      <div class="invalid-feedback">Enter a valid email</div>
     </div>
+  </div>
+  <div>
   <!-- country -->
-  <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Country:</span>
-      </div>
-      <input type="text" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" [(ngModel)]="country">
-  </div>
+  <div class="form-group" style="width: 49%; float: left;">
+      <label for="Country">Country</label>
+      <input type="text" name="country" id="Country" class="form-control" placeholder="Country" [(ngModel)]="country" required>
+      <div class="invalid-feedback">Enter a valid country</div>
+    </div>
   <!-- state -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">State:</span>
+  <div class="form-group" style="margin-left: 51%;">
+    <label for="State">State</label>
+    <div *ngIf="country ==='USA'; then enabled; else disabled"></div>
+    <ng-template #enabled>
+      <select class="form-control" name="state" id="State" [(ngModel)]="state">
+        <option value="NA">N/A</option>
+        <option *ngFor="let state of stateCodes" [ngValue]="state">{{ state }}</option>
+      </select>
+    </ng-template>
+    <ng-template #disabled>
+        <select class="form-control" name="state" id="State" [(ngModel)]="state">
+          <option value="NA">N/A</option>
+        </select>
+    </ng-template>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="state">
   </div>
+  <div>
   <!-- zip -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Zipcode:</span>
+  <div class="form-group" style="width: 49%; float: left;">
+      <label for="Zipcode">Zip</label>
+      <input type="text" name="zipcode" id="Zipcode" class="form-control" placeholder="Zip code" [(ngModel)]="zip" required>
+      <div class="invalid-feedback">Enter a valid zipcode</div>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="zip">
-  </div>
   <!-- city -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">City:</span>
+  <div class="form-group" style="margin-left: 51%;">
+      <label for="CityField">City</label>
+      <input type="text" name="cityfield" id="CityField" class="form-control" placeholder="City" [(ngModel)]="city" required>
+      <div class="invalid-feedback">Enter a valid city</div>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="city">
   </div>
+  <div>
   <!-- street1 -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Street:</span>
+  <div class="form-group" style="width: 49%; float: left;">
+      <label for="StreetField1">Street Address</label>
+      <input type="text" name="streetfield1" id="StreetField1" class="form-control" placeholder="Stree Address" [(ngModel)]="street1" required>
+      <div class="invalid-feedback">Enter a valid street address</div>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="street1">
-  </div>
   <!-- street2 -->
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Apt:</span>
+  <div class="form-group" style="margin-left: 51%;">
+      <label for="StreetField2">Apartment Number</label>
+      <input type="text" name="streetfield2" id="StreetField2" class="form-control" placeholder="Apartment Number" [(ngModel)]="street2" required>
+      <div class="invalid-feedback">Enter a valid city</div>
     </div>
-    <input type="text" class="form-control" aria-label="Sizing example input"
-      aria-describedby="inputGroup-sizing-default" [(ngModel)]="street2">
   </div>
-  <button (click)="add()">Add</button>
+  <button type="primary" class="btn btn-outline-success" (click)="add()">Add</button>
+</form>
 </div>
+
+{{this.isCompany}}
+{{ customer | json}}
+
