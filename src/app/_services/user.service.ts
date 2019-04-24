@@ -38,4 +38,8 @@ export class UserService {
   public ModifyUser(user: User): Observable<any> {
     return this.http.patch(this.baseURL + 'SetPermissions', user);
   }
+
+  public DeleteUser(id: number): Observable<any> {
+    return this.http.delete(this.baseURL + 'DeleteUser', { params: new HttpParams().set('id', id.toString())});
+  }
 }
