@@ -1,0 +1,44 @@
+<h2>User List</h2>
+
+<div class="wrapper">
+  <div class="row box header">
+    <div class="left" style="width: 32%">User</div>
+    <div class="center" style="width: 32%;">ID</div>
+    <div class="right">Permission Level</div>
+  </div>
+  <div *ngFor="let user of users" class="row box item">
+    <div class="left" style="width: 33%">{{user.username}}</div>
+    <div class="center" style="width: 33%">{{user.id}}</div>
+    <div class="right">{{user.permissionLevel}}</div>
+  </div>
+</div>
+
+<!-- <div class="container customer-box" *ngIf="users.length !== 0">
+  <div class="row justify-content-center title">
+    <h2 class="text-center">Users</h2>
+  </div>
+  <div class="row header">
+    <div class="col-4 center">
+      <h4>User</h4>
+    </div>
+    <div class="col-4 center">
+      <h4>User ID</h4>
+    </div>
+    <div class="col-4 center">
+      <h4>Permission Level</h4>
+    </div>
+  </div>
+  <table width="100%">
+    <tr *ngFor="let user of users" class="item">
+      <td width="33%" class="center">
+          {{ user.username }}
+      </td>
+      <td width="33%" class="center">
+          {{ user.id }}
+      </td>
+      <td width="33%" class="center">
+          {{ user.permissionLevel }}
+      </td>
+    </tr>
+  </table>
+</div> -->

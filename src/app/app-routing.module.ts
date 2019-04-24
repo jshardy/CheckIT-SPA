@@ -13,6 +13,7 @@ import { InventorySearchComponent } from './inventory-search/inventory-search.co
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
+import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -24,6 +25,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'customers/searchcustomers', component: CustomersComponent},
+      { path: 'auth/userpermissions', component: UserpermissionsComponent},
       { path: 'inventory', component: InventoryComponent},
       { path: 'invoices', component: InvoicesComponent},
       { path: 'invoices/invoice', component: InvoiceComponent },
