@@ -18,3 +18,22 @@ export interface Invoice {
   invoiceCustID?: number;
   lineItems?: LineItem[];
 }
+
+export interface InvoiceData {
+  id?: number;
+  invoiceDate?: string;
+  outgoingInv?: boolean;
+  amountPaid?: number;
+  invoiceCustID?: number;
+  lineItems?: number[];
+}
+
+    // public class InvoiceData
+    // {
+    //     public int Id { get; set; }
+    //     public DateTime InvoiceDate { get; set; }
+    //     public bool OutgoingInv { get; set; }
+    //     public decimal AmountPaid { get; set; }
+    //     public int InvoiceCustID { get; set; }
+    //     public ICollection<int> ItemList { get; set; }
+    // }

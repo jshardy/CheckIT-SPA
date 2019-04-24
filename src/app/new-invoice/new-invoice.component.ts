@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InvoiceData } from '../_models/invoiceData';
 import { AlertifyService } from '../_services/alertify.service';
 import { InvoiceService } from '../_services/invoice.service';
 import { Customer } from '../_models/customer';
@@ -11,6 +10,7 @@ import { AddressOnly } from '../_models/AddressOnly';
 import { Item } from '../_models/item';
 import { ItemService } from '../_services/inventory.service';
 import { InvoiceItem } from './InvoiceItems';
+import { InvoiceData } from '../_models/invoice';
 
 @Component({
   selector: 'app-new-invoice',
@@ -19,7 +19,6 @@ import { InvoiceItem } from './InvoiceItems';
 })
 
 export class NewInvoiceComponent implements OnInit {
-  nInvoice: InvoiceData;
   items: InvoiceItem[] = [];
   currentItem: Item;
   customerData: CustomerSelectionData[] = [];
@@ -141,6 +140,27 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitInvoice(): void {
+    if (this.items.length > 0 && this.items[0].name !== 'Enter Description')
+    {
+      let invoice: InvoiceData;
 
+      invoice.amountPaid = this.totalPaid;
+      invoice.invoiceCustID = this.selectedCustomer.id;
+      // invoice.outgoingInv;
+
+      for (let i = 0; i < this.items.length; i++) {
+        invoice.lineItems.push(this.items[i].id);
+      }
+    }
   }
 }
+
+
+// export interface InvoiceData {
+//   id?: number;
+//   invoiceDate?: string;
+//   outgoingInv?: boolean;
+//   amountPaid?: number;
+//   invoiceCustID?: number;
+//   lineItems?: number[];
+// }

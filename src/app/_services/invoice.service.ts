@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Invoice } from '../_models/invoice';
 import { Observable } from 'rxjs';
@@ -40,4 +40,9 @@ export class InvoiceService {
   public getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.baseURL);
   }
+
+  public addInvoice(invoice: InvoiceData) {
+    return this.http.post(this.baseURL + 'AddInvoice/', invoice);
+  }
+
 }
