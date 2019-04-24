@@ -1,52 +1,54 @@
-<h2>Invoice Search</h2>
-<div>
-  <table>
-    <tr>
-      <td colspan="2">
-        <!-- First Name -->
+<h2 style="text-align: center">Invoice Search</h2>
+<div class="container" id="outer">
+  <div id="inner">
+    <table>
+      <tr>
+        <td colspan="2">
+          <!-- First Name -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">First or Last name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+              (change)="search()" (keyup)="search()" [(ngModel)]="firstName">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <!-- Company Name -->
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Company Name:</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+              (change)="search()" (keyup)="search()" [(ngModel)]="company">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <!-- Phone -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <span class="input-group-text">First or Last name</span>
+            <span class="input-group-text">Phone:</span>
           </div>
           <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-            (change)="search()" (keyup)="search()" [(ngModel)]="firstName">
+            (change)="search()" (keyup)="search()" [(ngModel)]="phone">
         </div>
       </td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <!-- Company Name -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Company Name:</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-            (change)="search()" (keyup)="search()" [(ngModel)]="company">
-        </div>
-      </td>
-    </tr>
-    <tr>
       <td>
-      <!-- Phone -->
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">Phone:</span>
+        <!-- Email -->
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">E-Mail:</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+            (change)="search()" (keyup)="search()" [(ngModel)]="email">
         </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-          (change)="search()" (keyup)="search()" [(ngModel)]="phone">
-      </div>
-    </td>
-    <td>
-      <!-- Email -->
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">E-Mail:</span>
-        </div>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-          (change)="search()" (keyup)="search()" [(ngModel)]="email">
-      </div>
-    </td>
-  </table>
+      </td>
+    </table>
+  </div>
 </div>
 
 <div>
