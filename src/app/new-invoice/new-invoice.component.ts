@@ -139,4 +139,8 @@ export class NewInvoiceComponent implements OnInit {
       }
     });
   }
+
+  submitInvoice(): void {
+
+  }
 }

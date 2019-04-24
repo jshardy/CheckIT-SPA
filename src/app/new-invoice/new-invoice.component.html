@@ -20,7 +20,7 @@
             (typeaheadOnSelect)="onCustomerSelect($event)"
             class="form-control">
             <div>
-              <button id="btnNewCustomer" *ngIf="customerAddress === null" class="btn btn-primary mr-3">New Customer</button>
+              <button id="btnNewCustomer" *ngIf="customerAddress === null" class="btn btn-outline-success mr-3">New Customer</button>
               <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null; this.selectedCustomerName = ''" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button>
             </div>
     </div>
@@ -73,7 +73,7 @@
       <!-- Quantity Rows  -->
       <tr class="item-row" *ngFor="let item of items;">
         <td>
-          <button type="button" class="btn btn-danger" (click)='deleteRow(item)'>Remove</button>
+          <button type="button" class="btn btn-outline-success" (click)='deleteRow(item)'>Remove</button>
         </td>
         <td>
           <div class="delete-wpr">
@@ -104,7 +104,7 @@
 
       <!-- <tr id="hiderow"> -->
       <tr>
-        <td colspan="9"><button type="button" class="btn btn-info" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button></td>
+        <td colspan="9"><button type="button" class="btn btn-outline-success" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button></td>
       </tr>
 
       <tr>
@@ -141,6 +141,9 @@
     <div id="terms">
       <h5>Terms</h5>
         Finance Charge of 1.5% will be made on unpaid balances after 30 days.
+    </div>
+    <div id="btnSubmit">
+      <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice" class="btn btn-outline-success mr-3">Submit Invoice</button>
     </div>
   </div>
 
