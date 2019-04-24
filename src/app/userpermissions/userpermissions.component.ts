@@ -20,4 +20,12 @@ export class UserpermissionsComponent implements OnInit {
     });
   }
 
+  ChangeUser(user: User) {
+    this.userService.ModifyUser(user).subscribe();
+  }
+
+  DeleteUser(user: User) {
+    this.userService.DeleteUser(user.id).subscribe();
+  }
+
 }
