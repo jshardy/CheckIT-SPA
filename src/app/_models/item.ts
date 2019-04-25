@@ -6,6 +6,7 @@ export interface Item {
   name?: string;
   description?: string;
   quantity?: number;
+  archived?: boolean;
   locationId?: number;
   alertId?: number;
 }

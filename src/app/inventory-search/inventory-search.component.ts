@@ -13,8 +13,19 @@ import { AlertifyService } from './../_services/alertify.service';
   styleUrls: ['./inventory-search.component.css']
 })
 export class InventorySearchComponent implements OnInit {
-  items$: Observable<Item[]>;
+  items?: Item[];
   item?: Item;
+
+  public id = -1;
+  public upc = '';
+  public price = -1;
+  public name = '';
+  public description = '';
+  public quantity = -1;
+  public archived = false;
+  public locationId = -1;
+  public alertId = -1;
+
   private searchTerm = new Subject<string>();
 
   constructor(private itemService: ItemService, private alertify: AlertifyService, private router: Router) { }
@@ -24,13 +35,39 @@ export class InventorySearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // grabs an item from the database by the InventoryId
   onSubmit(id: number) {
-    return this.itemService.getItemById(id).subscribe((item: Item) => {
+    this.itemService.getItemById(id).subscribe((item: Item) => {
       this.item = item;
-    }, error => {
-      this.alertify.error(error);
-      console.log(error);
     });
+  }
+
+  upcSearch() {
+    if (this.allEmpty()) {
+    this.items = [];
+  } else {
+    this.itemService.searchUPC(this.upc).subscribe((item: Item) => {
+      this.item = item;
+    });
+   }
+  }
+
+  search() {
+    // if (this.allEmpty()) {
+    //   this.items = [];
+    // } else {
+    //   this.itemService.searchItems(this.id, this.upc, this.price).subscribe((item: Item[]) => {
+    //     this.items = item;
+    //   });
+    // }
+  }
+
+  allEmpty() {
+    if (this.item.id !== null) { return false; }
+    if (this.item.upc !== '') { return false; }
+    if (this.item.price !== null) { return false; }
+    if (this.item.name !== '') { return false; }
+    if (this.item.description !== '') { return false; }
+    if (this.item.quantity !== null) {return false; }
+    return true;
   }
 }

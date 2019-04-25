@@ -1,0 +1,14 @@
+<body>
+  <h2>Alerts</h2>
+  <div>
+    <li *ngFor="let inactiveAlerts of inactiveAlerts">
+    </li>
+      <div><span>id: </span>{{alert.id}}</div>
+      <div><span>ItemId: </span>{{alert.alertItemId}}</div>
+      <div><span>Threshold: </span>{{alert.threshold}}</div>
+      <div><span>DateUnder: </span>{{alert.dateUnder}}</div>
+      <div><span>DateOrdered: </span>{{alert.dateOrdered}}</div>
+      <div><span>AlertOn: </span>{{alert.alertOn}}</div>
+      <div><span>AlertStatus: </span>{{alert.alertStatus}}</div>
+  </div>
+</body>

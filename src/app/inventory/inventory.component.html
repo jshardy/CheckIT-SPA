@@ -38,10 +38,20 @@
               <input type="text" name="Description" class="form-control" id="InventoryDescrip" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description">
             </div>
           </td>
-          <td ng-repeat-end>
+          <td>
             <div class="form-group">
               <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
             </div>
+          </td>
+          <!-- alert switch thingy -->
+          <td>
+            <div class="custom-control custom-switch">
+              <input type='checkbox' class="custom-control-input" id="alertSwitch">
+              <label class="custom-control-label" for="alertSwitch" (change)="alertToggle()">Alert Toggle</label>
+            </div>
+          </td>
+          <td ng-repeat-end>
+            <input class="form-control" type="text" id="thresholdInput" placeholder="0">
           </td>
       </tr>    
   </table>

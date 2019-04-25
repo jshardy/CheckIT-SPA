@@ -2,10 +2,16 @@
   <form>
     <div class="form group">
       <label for="exampleId">Inventory Id</label>
-      <input #searchBox type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="input" name="id" placeholder="Id #">
-      <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for</small>
+      <input #searchBox type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="id" name="id" placeholder="Id #" (change)="onSubmit()" (keyup)="onSubmit()">
+      <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for.</small>
+      <input #searchbox type="text" class="form-control" id="InventoryUPC" aria-describedby="upcHelp" [(ngModel)]="upc" name="upc" placeholder="UPC #" (change)="upcSearch()" (keyup)="upcSearch()">
+      <small id="upcHelp" class="form-text text-muted">Enter the UPC of the Item you're looking for.</small>
+      <input #searchbox type="text" class="form-control" id="InventoryPrice" aria-describedby="helpPrice" [(ngModel)]="price" name="price" placeholder="$0.00" (change)="search()" (keyup)="search()">
+      <small id="helpPrice" class="form-text text-muted">Enter the price of the Item you're looking for.</small>
+      <input #searchbox type="text" class="form-control" id="InventoryName" aria-describedby="helpName" [(ngModel)]="name" name="name" placeholder="Name" (change)="search()" (keyup)="search()">
+      <small id="helpName" class="form-text text-muted">Enter the name of the Item you're looking for.</small>
     </div>
-    <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit(searchBox.value)">Submit</button>
+      <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit(searchBox.value)">Submit</button>
   </form>
   <div class="testData">
     <h2>Search Results</h2>
@@ -19,17 +25,17 @@
   <!-- Inline Forms to display and possibly edit the inventory item that is found from the search -->
 <div class="resultWrapper">
   <div class="form-inline">
-    <input type="text" class="form-inline" id="resultId" placeholder="Result Id" [(ngModel)]="item.id" readonly>
+    <input type="text" class="form-inline" id="resultId" placeholder="Result Id" [(ngModel)]="id" readonly>
 
-    <input type="text" class="form-inline" id="resultUPC" placeholder="UPC #" aria-describedby="searchHelpUPC" [(ngModel)]="item.upc">
+    <input type="text" class="form-inline" id="resultUPC" placeholder="UPC #" aria-describedby="searchHelpUPC" [(ngModel)]="upc">
 
-    <input type="money" class="form-inline" id="resultPrice" placeholder="Price Unit" aria-describedby="searchHelpPrice" [(ngModel)]="item.price">
+    <input type="money" class="form-inline" id="resultPrice" placeholder="Price Unit" aria-describedby="searchHelpPrice" [(ngModel)]="price">
 
-    <input type="text" class="form-inline" id="resultName" placeholder="Name" aria-describedby="searchHelpName" [(ngModel)]="item.name">
+    <input type="text" class="form-inline" id="resultName" placeholder="Name" aria-describedby="searchHelpName" [(ngModel)]="name">
 
-    <input type="text" class='form-inline' id="resultDescription" placeholder="Description" aria-describedby="searchHelpDescription" [(ngModel)]="item.description">
+    <input type="text" class='form-inline' id="resultDescription" placeholder="Description" aria-describedby="searchHelpDescription" [(ngModel)]="description">
 
-    <input type="text" class='form-inline' id="resultQuantity" placeholder="Quantity" aria-describedby="searchHelpQuantity" [(ngModel)]="item.quantity">
+    <input type="text" class='form-inline' id="resultQuantity" placeholder="Quantity" aria-describedby="searchHelpQuantity" [(ngModel)]="quantity">
   </div>
 </div>
 </body>

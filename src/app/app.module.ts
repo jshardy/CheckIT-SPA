@@ -36,6 +36,7 @@ import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
 import { AddressService } from './_services/address.service';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
 
 export function tokenGetter() {
@@ -60,7 +61,8 @@ export function tokenGetter() {
       NewItemComponent,
       NewInvoiceComponent,
       TestComponent,
-      CustomercomponentComponent
+      CustomercomponentComponent,
+      AlertsComponent
    ],
    imports: [
       BrowserModule,
