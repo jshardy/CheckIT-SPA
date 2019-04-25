@@ -31,6 +31,6 @@ export class QuickService {
   }
 
   public initialize(): Observable<string> {
-    return this.http.get<string>(this.baseURL + 'InitAuth');
+    return this.http.get(this.baseURL + 'InitAuth', {responseType: 'text'});
   }
 }
