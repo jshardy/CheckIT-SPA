@@ -2,11 +2,11 @@ import { LineItemData } from './LineItemData';
 
 export interface InvoiceData {
   id?: number;
-  invoiceDate?: string;
+  invoiceDate?: Date;
   outgoingInv?: Boolean;
   amountPaid?: number;
   invoiceCustID?: number;
-  itemList?: LineItemData[];
+  lineItemList?: LineItemData[];
 }
 
 

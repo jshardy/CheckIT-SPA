@@ -147,20 +147,24 @@ export class NewInvoiceComponent implements OnInit {
   submitInvoice(): void {
     if (this.items.length > 0 && this.items[0].name.length > 0) {
       let invoice: InvoiceData = {
-        invoiceDate: this.currentDate.toString(),
+        invoiceDate: this.currentDate,
         amountPaid: this.totalPaid,
         invoiceCustID: this.selectedCustomer.id,
         outgoingInv: this.outgoinginv,
-        itemList: []
+        lineItemList: []
       };
 
       let lineItem: LineItemData;
       let lastInvoice: LastInvoice;
-      this.invoiceService.addInvoice(invoice);
 
-    //   this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
-    //     lastInvoice = linvoice;
-    //   });
+      this.invoiceService.addInvoice(invoice).subscribe();
+
+      this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
+         lastInvoice = linvoice;
+      });
+
+      console.log("id "  + lastInvoice.lastInvoiceId);
+      console.log("user " + lastInvoice.username);
 
     //  for (let i = 0; i < this.items.length; i++) {
     //     if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {

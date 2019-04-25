@@ -4,6 +4,7 @@
   // get; set;
 
 export interface LineItemData {
+  id: number,
   quantity: number;
   price: number;
   itemID: number;

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 import { Invoice } from '../_models/invoice';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvoiceData } from '../_models/invoiceData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { LineItemData } from '../_models/LineItemData';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -43,11 +44,11 @@ export class InvoiceService {
     return this.http.get<Invoice[]>(this.baseURL);
   }
 
-  public addInvoice(invoice: InvoiceData) {
+  public addInvoice(invoice: InvoiceData): Observable<any> {
     return this.http.post(this.baseURL + 'AddInvoice', invoice);
   }
 
-  public addInvoiceLineItem(lineItem: LineItemData) {
+  public addInvoiceLineItem(lineItem: LineItemData): Observable<any> {
     return this.http.post(this.baseURL + 'AddLineItem', lineItem);
   }
 
@@ -55,3 +56,11 @@ export class InvoiceService {
     return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
   }
 }
+
+
+//   public addCustomer(cust: Customer): Observable < any > {
+//   return this.http.post<Customer>(this.baseURL + 'AddCustomer', cust)
+//     .pipe(
+//       catchError(this.handleError)
+//     );
+// }
