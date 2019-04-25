@@ -12,6 +12,8 @@ import { ItemService } from '../_services/inventory.service';
 import { InvoiceItem } from './InvoiceItems';
 import { InvoiceData } from '../_models/invoiceData';
 import { Router } from '@angular/router';
+import { LineItemData } from '../_models/LineItemData';
+import { LastInvoice } from '../_models/LastInvoice';
 
 @Component({
   selector: 'app-new-invoice',
@@ -152,13 +154,22 @@ export class NewInvoiceComponent implements OnInit {
         itemList: []
       };
 
-     // for (let i = 0; i < this.items.length; i++) {
-     //   if (this.items[i].quantity > 0) {
-     //     invoice.itemList.push(this.items[i].id);
-     //   }
-     // }
+      let lineItem: LineItemData;
+      let lastInvoice: LastInvoice;
       this.invoiceService.addInvoice(invoice);
-      //location.reload();
+
+      this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
+        lastInvoice = linvoice;
+      });
+
+     for (let i = 0; i < this.items.length; i++) {
+        if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
+          lineItem.InvoiceId = lastInvoice.lastInvoiceId;
+          lineItem.price = this.items[i].price;
+          lineItem.quantity = this.items[i].quantity;
+          this.invoiceService.addInvoiceLineItem(lineItem);
+        }
+      }
     }
   }
 }

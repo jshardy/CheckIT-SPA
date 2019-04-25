@@ -5,6 +5,8 @@ import { Invoice } from '../_models/invoice';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvoiceData } from '../_models/invoiceData';
+import { LastInvoice } from '../_models/LastInvoice';
+import { LineItemData } from '../_models/LineItemData';
 
 @Injectable({
     providedIn: 'root'
@@ -42,9 +44,14 @@ export class InvoiceService {
   }
 
   public addInvoice(invoice: InvoiceData) {
-    console.log("Start Addinvoice");
     return this.http.post(this.baseURL + 'AddInvoice', invoice);
-    console.log("End http request Addinvoice")
   }
 
+  public addInvoiceLineItem(lineItem: LineItemData) {
+    return this.http.post(this.baseURL + 'AddLineItem', lineItem);
+  }
+
+  public getLastInvoiceId(): Observable<LastInvoice> {
+    return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
+  }
 }
