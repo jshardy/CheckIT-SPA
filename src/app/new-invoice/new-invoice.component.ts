@@ -158,18 +158,18 @@ export class NewInvoiceComponent implements OnInit {
       let lastInvoice: LastInvoice;
       this.invoiceService.addInvoice(invoice);
 
-      this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
-        lastInvoice = linvoice;
-      });
+    //   this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
+    //     lastInvoice = linvoice;
+    //   });
 
-     for (let i = 0; i < this.items.length; i++) {
-        if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
-          lineItem.InvoiceId = lastInvoice.lastInvoiceId;
-          lineItem.price = this.items[i].price;
-          lineItem.quantity = this.items[i].quantity;
-          this.invoiceService.addInvoiceLineItem(lineItem);
-        }
-      }
+    //  for (let i = 0; i < this.items.length; i++) {
+    //     if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
+    //       lineItem.InvoiceId = lastInvoice.lastInvoiceId;
+    //       lineItem.price = this.items[i].price;
+    //       lineItem.quantity = this.items[i].quantity;
+    //       this.invoiceService.addInvoiceLineItem(lineItem);
+    //     }
+    //   }
     }
   }
 }
