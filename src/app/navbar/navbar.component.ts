@@ -44,9 +44,10 @@ export class NavbarComponent implements OnInit {
   Quickbooks() {
     let rerout: string;
     this.quickserve.initialize().subscribe((url: string) => {
-      rerout = url;
-    });
-    this.alertify.message(rerout);
+      location.href = url;
+    }, error => {
+      this.alertify.error(error);
+    }, () => {});
   }
 
 }
