@@ -15,6 +15,7 @@ import { TestComponent } from './test/test.component';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
 import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -37,7 +38,8 @@ const routes: Routes = [
       { path: 'inventory-search', component: InventorySearchComponent },
       { path: 'test', component: TestComponent },
       { path: 'customer-modal', component: CustomercomponentComponent },
-      { path: 'invoice/search', component: InvoiceSearchComponent }
+      { path: 'invoice/search', component: InvoiceSearchComponent },
+      { path: 'quickbooks', component: QuickbooksComponent }
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
