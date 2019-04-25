@@ -38,6 +38,7 @@ import { AddressService } from './_services/address.service';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
 import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 
 
 export function tokenGetter() {
@@ -65,6 +66,7 @@ export function tokenGetter() {
       CustomercomponentComponent,
     UserpermissionsComponent,
       InvoiceSearchComponent,
+      QuickbooksComponent,
    ],
    imports: [
       BrowserModule,

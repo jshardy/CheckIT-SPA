@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { catchError, retry } from 'rxjs/operators';
+import { StatePair } from '../_models/statepair';
 
 import { environment } from 'src/environments/environment';
 import { Observable, throwError } from 'rxjs';
@@ -33,4 +34,9 @@ export class QuickService {
   public initialize(): Observable<string> {
     return this.http.get(this.baseURL + 'InitAuth', {responseType: 'text'});
   }
+
+  public return(pair: StatePair): Observable<any> {
+    return this.http.post(this.baseURL + 'ReturnAuth', pair);
+  }
+  
 }
