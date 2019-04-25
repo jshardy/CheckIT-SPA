@@ -152,11 +152,11 @@ export class NewInvoiceComponent implements OnInit {
         itemList: []
       };
 
-      for (let i = 0; i < this.items.length; i++) {
-        if (this.items[i].quantity > 0) {
-          invoice.itemList.push(this.items[i].id);
-        }
-      }
+     // for (let i = 0; i < this.items.length; i++) {
+     //   if (this.items[i].quantity > 0) {
+     //     invoice.itemList.push(this.items[i].id);
+     //   }
+     // }
       this.invoiceService.addInvoice(invoice);
       //location.reload();
     }
