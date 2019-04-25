@@ -52,7 +52,7 @@
         <tr>
           <td class="meta-head">Amount Due</td>
           <td>
-            <div class="due"><textarea id="totalDue">${{ totalDue }}</textarea></div>
+            <div class="due"><textarea id="totalDue">{{ totalDue | currency }}</textarea></div>
           </td>
         </tr>
         <tr>
@@ -84,7 +84,7 @@
         <td>
           <div class="delete-wpr">
             <!--  -->
-            <textarea autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered(i)">{{ item.upc || "" }}</textarea>
+            <textarea autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered(i)" id="txtUPC">{{ item.upc || "" }}</textarea>
           </div>
         </td>
         <td class="item-name">
@@ -96,7 +96,7 @@
           <textarea [(ngModel)]="item.description">{{ item.description }}</textarea>
         </td>
         <td>
-          <textarea class="cost" [(ngModel)]="item.price" (input)='priceChanged()'>{{ item.price }}</textarea>
+          <textarea class="cost" [(ngModel)]="item.price" (input)='priceChanged()'>{{ item.price | currency }}</textarea>
         </td>
         <td>
           <textarea class="qty" [(ngModel)]="item.quantity" (input)='priceChanged()'>{{ item.quantity }}</textarea>
@@ -150,6 +150,7 @@
         Finance Charge of 1.5% will be made on unpaid balances after 30 days.
     </div>
     <div id="btnSubmit">
+      <button class="fa-align-right" class="btn btn-outline-success mr-3" *ngIf="customerAddress !== null || items.length !== 1" (click)="clearPage()">Clear Invoice</button>
       <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice()" class="btn btn-outline-success mr-3">Submit Invoice</button>
     </div>
   </div>

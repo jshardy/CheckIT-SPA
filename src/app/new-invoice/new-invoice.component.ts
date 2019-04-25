@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList } from '@angular/core';
 import { AlertifyService } from '../_services/alertify.service';
 import { InvoiceService } from '../_services/invoice.service';
 import { Customer } from '../_models/customer';
@@ -11,10 +11,8 @@ import { Item } from '../_models/item';
 import { ItemService } from '../_services/inventory.service';
 import { InvoiceItem } from './InvoiceItems';
 import { InvoiceData } from '../_models/invoiceData';
-import { Router } from '@angular/router';
 import { LineItemData } from '../_models/LineItemData';
 import { LastInvoice } from '../_models/LastInvoice';
-
 @Component({
   selector: 'app-new-invoice',
   templateUrl: './new-invoice.component.html',
@@ -41,8 +39,33 @@ export class NewInvoiceComponent implements OnInit {
     private alertify: AlertifyService,
     private customerService: CustomerService,
     private addressService: AddressService,
-    private itemService: ItemService,
-    private router: Router) {
+    private itemService: ItemService) {
+  }
+
+  clearPage(): void {
+    this.items = [];
+    this.currentItem = null;
+    this.selectedCustomer = null;
+    this.selectedCustomerName = null;
+    this.customerNotFound = false;
+    this.customerAddress = null;
+    this.newCustomer = false;
+    this.currentDate = new Date();
+    this.totalDue = this.subTotal = this.totalPaid = 0;
+    this.outgoinginv = true;
+
+
+
+    const item: Item = {
+      id: 0,
+      description: 'Enter Description',
+      name: 'Enter Name',
+      price: 0,
+      quantity: 0,
+      upc: ''
+    };
+
+    this.items.push(item);
   }
 
   ngOnInit() {
@@ -75,6 +98,7 @@ export class NewInvoiceComponent implements OnInit {
 
     this.items.push(item);
     this.priceChanged();
+    document.getElementById(this.items.length.toString()).focus();
   }
 
   deleteRow(item: Item): void {
@@ -166,6 +190,8 @@ export class NewInvoiceComponent implements OnInit {
 
             console.log(lineItem);
             this.invoiceService.addInvoiceLineItem(lineItem).subscribe();
+
+            this.clearPage();
           }
         }
       });
