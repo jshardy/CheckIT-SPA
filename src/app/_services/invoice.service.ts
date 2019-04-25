@@ -42,7 +42,9 @@ export class InvoiceService {
   }
 
   public addInvoice(invoice: InvoiceData) {
-    return this.http.post(this.baseURL + 'AddInvoice/', invoice);
+    console.log("Start Addinvoice");
+    return this.http.post(this.baseURL + 'AddInvoice', invoice);
+    console.log("End http request Addinvoice")
   }
 
 }

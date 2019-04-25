@@ -55,6 +55,12 @@
             <div class="due"><textarea id="totalDue">${{ totalDue }}</textarea></div>
           </td>
         </tr>
+        <tr>
+          <td class="meta-head"><div *ngIf="outgoinginv === true">Outgoing</div><div *ngIf="outgoinginv === false">Incoming</div></td>
+          <td>
+            <div class="due"><input type="checkbox" checked [(ngModel)]="outgoinginv"/></div>
+          </td>
+        </tr>
       </table>
     </div>
 
@@ -143,7 +149,7 @@
         Finance Charge of 1.5% will be made on unpaid balances after 30 days.
     </div>
     <div id="btnSubmit">
-      <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice" class="btn btn-outline-success mr-3">Submit Invoice</button>
+      <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice()" class="btn btn-outline-success mr-3">Submit Invoice</button>
     </div>
   </div>
 

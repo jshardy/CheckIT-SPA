@@ -10,7 +10,8 @@ import { AddressOnly } from '../_models/AddressOnly';
 import { Item } from '../_models/item';
 import { ItemService } from '../_services/inventory.service';
 import { InvoiceItem } from './InvoiceItems';
-import { InvoiceData } from '../_models/invoice';
+import { InvoiceData } from '../_models/invoiceData';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-invoice',
@@ -32,12 +33,14 @@ export class NewInvoiceComponent implements OnInit {
   subTotal = 0;
   salesTax = .07;
   totalPaid = 0;
+  outgoinginv: Boolean = true;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
     private customerService: CustomerService,
     private addressService: AddressService,
-    private itemService: ItemService) {
+    private itemService: ItemService,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -140,17 +143,22 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitInvoice(): void {
-    if (this.items.length > 0 && this.items[0].name !== 'Enter Description')
-    {
-      let invoice: InvoiceData;
-
-      invoice.amountPaid = this.totalPaid;
-      invoice.invoiceCustID = this.selectedCustomer.id;
-      // invoice.outgoingInv;
+    if (this.items.length > 0 && this.items[0].name !== 'Enter Description') {
+      let invoice: InvoiceData = {
+        invoiceDate: this.currentDate.toString(),
+        amountPaid: this.totalPaid,
+        invoiceCustID: this.selectedCustomer.id,
+        outgoingInv: this.outgoinginv,
+        itemList: []
+      };
 
       for (let i = 0; i < this.items.length; i++) {
-        invoice.lineItems.push(this.items[i].id);
+        if (this.items[i].quantity > 0) {
+          invoice.itemList.push(this.items[i].id);
+        }
       }
+      this.invoiceService.addInvoice(invoice);
+      //location.reload();
     }
   }
 }

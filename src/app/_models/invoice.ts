@@ -19,14 +19,7 @@ export interface Invoice {
   lineItems?: LineItem[];
 }
 
-export interface InvoiceData {
-  id?: number;
-  invoiceDate?: string;
-  outgoingInv?: boolean;
-  amountPaid?: number;
-  invoiceCustID?: number;
-  lineItems?: number[];
-}
+
 
     // public class InvoiceData
     // {
