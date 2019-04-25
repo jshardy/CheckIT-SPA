@@ -74,10 +74,12 @@ export class NewInvoiceComponent implements OnInit {
     };
 
     this.items.push(item);
+    this.priceChanged();
   }
 
   deleteRow(item: Item): void {
     this.items = this.items.filter(obj => obj !== item);
+    this.priceChanged();
   }
 
   priceChanged(): void {
@@ -116,29 +118,25 @@ export class NewInvoiceComponent implements OnInit {
     }
   }
 
-  upcEntered(event): void {
+  upcEntered(index): void {
     // Go do lookup of items
-    this.itemService.searchUPC(event).subscribe((item: Item) => {
+    this.itemService.searchUPC(this.items[index].upc).subscribe((item: Item) => {
       if (item !== null) {
-        for (let i = 0; i < this.items.length; i++) {
-          if (this.items[i].upc === event) {
-            this.items[i].alertId = item.alertId;
-            this.items[i].description = item.description;
-            this.items[i].id = item.id;
-            this.items[i].locationId = item.locationId;
-            this.items[i].name = item.name;
-            this.items[i].price = item.price;
-            this.items[i].quantityOnHand = item.quantity;
+        this.items[index].alertId = item.alertId;
+        this.items[index].description = item.description;
+        this.items[index].id = item.id;
+        this.items[index].locationId = item.locationId;
+        this.items[index].name = item.name;
+        this.items[index].price = item.price;
+        this.items[index].quantityOnHand = item.quantity;
 
-            if (item.quantity < 1) {
-              this.items[i].quantity = 0;
-            } else {
-              this.items[i].quantity = 1;
-            }
-            this.items[i].upc = item.upc;
-            break;
-          }
+        if (item.quantity < 1) {
+          this.items[index].quantity = 0;
+        } else {
+          this.items[index].quantity = 1;
         }
+        this.items[index].upc = item.upc;
+
         this.addNewRow();
       }
     });
@@ -155,6 +153,7 @@ export class NewInvoiceComponent implements OnInit {
       };
 
       this.invoiceService.addInvoice(invoice).subscribe();
+
       this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
         for (let i = 0; i < this.items.length; i++) {
           if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {

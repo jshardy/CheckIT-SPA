@@ -47,7 +47,7 @@ table td, table th { border: 1px solid black; padding: 5px; }
 #items th { background: #eee; }
 
 /* Font for rows of items */
-#items textarea { width: 80px; height: 30px; font-size: 15px }
+#items textarea { width: 80px; width: 120px; font-size: 15px }
 #items tr.item-row td { border: 0; vertical-align: top; }
 #items td.description { width: 300px; }
 #items td.item-name { width: 175px; }
