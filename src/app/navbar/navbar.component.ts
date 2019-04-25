@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { QuickService } from '../_services/quick.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router, 
+    private quickserve: QuickService) { }
 
   ngOnInit() {
   }
@@ -38,4 +40,10 @@ export class NavbarComponent implements OnInit {
     // this is the logout page.
     this.router.navigate(['/home']);
   }
+
+  Quickbooks() {
+    this.quickserve.initialize().subscribe();
+    this.alertify.message('Quickbooks initialized');
+  }
+
 }

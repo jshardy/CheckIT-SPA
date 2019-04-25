@@ -22,10 +22,12 @@ export class UserpermissionsComponent implements OnInit {
 
   ChangeUser(user: User) {
     this.userService.ModifyUser(user).subscribe();
+    location.reload();
   }
 
   DeleteUser(user: User) {
     this.userService.DeleteUser(user.id).subscribe();
+    location.reload();
   }
 
 }

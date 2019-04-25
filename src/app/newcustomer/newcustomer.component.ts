@@ -39,7 +39,7 @@ export class NewcustomerComponent implements OnInit {
     this.customer = new CustomerCreateDto(this.fname, this.lname, this.companyName, this.isCompany, this.phone, this.email,
       new AddressOnly(this.country, this.state, this.zip, this.city, this.street1, this.street2));
     this.customerService.addCustomer(this.customer).subscribe();
-    //location.reload();
+    location.reload();
   }
 
 }
