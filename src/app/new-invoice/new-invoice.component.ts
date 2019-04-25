@@ -145,7 +145,7 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitInvoice(): void {
-    if (this.items.length > 0 && this.items[0].name !== 'Enter Description') {
+    if (this.items.length > 0 && this.items[0].name.length > 0) {
       let invoice: InvoiceData = {
         invoiceDate: this.currentDate.toString(),
         amountPaid: this.totalPaid,
