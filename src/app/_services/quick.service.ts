@@ -30,7 +30,7 @@ export class QuickService {
       'Something bad happened; please try again later.');
   }
 
-  public initialize(): Observable<any[]> {
-    return this.http.get<string[]>(this.baseURL + 'InitAuth');
+  public initialize(): Observable<string> {
+    return this.http.get<string>(this.baseURL + 'InitAuth');
   }
 }
