@@ -31,6 +31,6 @@ export class QuickService {
   }
 
   public initialize(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseURL + 'InitAuth');
+    return this.http.get<string[]>(this.baseURL + 'InitAuth');
   }
 }
