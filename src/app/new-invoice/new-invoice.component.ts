@@ -3,7 +3,7 @@ import { AlertifyService } from '../_services/alertify.service';
 import { InvoiceService } from '../_services/invoice.service';
 import { Customer } from '../_models/customer';
 import { CustomerService } from '../_services/customer.service';
-import { CustomerSelectionData } from './CustomerSelectionData';
+import { CustomerSelectionData } from '../_models/CustomerSelectionData';
 import { TypeaheadMatch } from 'ngx-bootstrap';
 import { AddressService } from '../_services/address.service';
 import { AddressOnly } from '../_models/AddressOnly';

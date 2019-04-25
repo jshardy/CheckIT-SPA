@@ -55,12 +55,23 @@ export class InvoiceService {
   public getLastInvoiceId(): Observable<LastInvoice> {
     return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
   }
+
+  public searchInvoices(invoiceDate: Date, OutgoingInv: Boolean, AmountPaid: Number, CustID: Number): Observable<Invoice[]> {
+    console.log("searchInvoices()");
+    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices', {
+      params: new HttpParams()
+        .set('invoiceDate', invoiceDate != null ? invoiceDate.toISOString() : null)
+        .set('outgoingInv', OutgoingInv != null ? OutgoingInv.toString() : 'true')
+        .set('ammountPaid', AmountPaid != null ? AmountPaid.toString() : null)
+        .set('custID', CustID != null ? CustID.toString() : null)
+    });
+  }
+
+// back end does not work.
+// ReturnInvoices(DateTime InvoiceDate = default(DateTime),
+//                                               bool OutgoingInv = false,
+//                                               decimal AmmountPaid = -1,
+//                                               int CustID = -1)
+
+
 }
-
-
-//   public addCustomer(cust: Customer): Observable < any > {
-//   return this.http.post<Customer>(this.baseURL + 'AddCustomer', cust)
-//     .pipe(
-//       catchError(this.handleError)
-//     );
-// }

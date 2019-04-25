@@ -2,7 +2,7 @@
     width: 100%;
 
     /* Firefox */
-    display: -moz-box;
+    display: flex;
     -moz-box-pack: center;
     -moz-box-align: center;
 
