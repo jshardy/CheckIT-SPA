@@ -112,7 +112,7 @@ export class NewInvoiceComponent implements OnInit {
       this.subTotal += item.price * item.quantity;
     }
     this.totalDue = (this.subTotal + (this.subTotal * this.salesTax)) - this.totalPaid;
-    console.log(this.totalDue);
+    // console.log(this.totalDue);
   }
 
   ParseCustomers(customer: Customer[]): void {
@@ -144,26 +144,26 @@ export class NewInvoiceComponent implements OnInit {
 
   upcEntered(index): void {
     // Go do lookup of items
-    this.itemService.searchUPC(this.items[index].upc).subscribe((item: Item) => {
-      if (item !== null) {
-        this.items[index].alertId = item.alertId;
-        this.items[index].description = item.description;
-        this.items[index].id = item.id;
-        this.items[index].locationId = item.locationId;
-        this.items[index].name = item.name;
-        this.items[index].price = item.price;
-        this.items[index].quantityOnHand = item.quantity;
+//    console.log(event.upc);
+      this.itemService.searchUPC(this.items[index].upc).subscribe((item: Item) => {
+        if (item !== null && item.description !== null) {
+          this.items[index].alertId = item.alertId;
+          this.items[index].description = item.description;
+          this.items[index].id = item.id;
+          this.items[index].locationId = item.locationId;
+          this.items[index].name = item.name;
+          this.items[index].price = item.price;
+          this.items[index].quantityOnHand = item.quantity;
 
-        if (item.quantity < 1) {
-          this.items[index].quantity = 0;
-        } else {
-          this.items[index].quantity = 1;
+          if (item.quantity < 1) {
+            this.items[index].quantity = 0;
+          } else {
+            this.items[index].quantity = 1;
+          }
+          this.items[index].upc = item.upc;
+            this.addNewRow();
         }
-        this.items[index].upc = item.upc;
-
-        this.addNewRow();
-      }
-    });
+      });
   }
 
   submitInvoice(): void {
