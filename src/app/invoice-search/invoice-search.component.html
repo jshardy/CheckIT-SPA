@@ -18,7 +18,7 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td colspan="7">
         <!-- Phone -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -92,17 +92,17 @@
       <div class="col-2">
         <h4>Amount Paid</h4>
       </div>
-      <div class="col-1 right">
+      <div class="col-3 right">
         <h4>Outgoing</h4>
       </div>
     </div>
-      <table width="35%">
+      <table width="40%">
         <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
           <td colspan="1" class="col-1">
             {{ invoice.id }}
           </td>
-          <td >
-            <span>    </span>{{ invoice.invoiceDate }}
+          <td>
+            {{ invoice.invoiceDate | date:'shortTime' }}
           </td>
           <td >
             ${{ invoice.amountPaid }}
