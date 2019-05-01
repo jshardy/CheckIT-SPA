@@ -87,7 +87,7 @@
             <textarea autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered(i)" id="txtUPC">{{ item.upc || "" }}</textarea>
           </div>
         </td>
-        <td class="item-name">
+        <td class="item-name" width="15%">
           <div class="delete-wpr">
             <textarea [(ngModel)]="item.name">{{ item.name }}</textarea>
           </div>
@@ -98,7 +98,7 @@
         <td>
           <textarea class="cost" [(ngModel)]="item.price" (input)='priceChanged()'>{{ item.price | currency }}</textarea>
         </td>
-        <td>
+        <td width="15%">
           <textarea class="qty" [(ngModel)]="item.quantity" (input)='priceChanged()'>{{ item.quantity }}</textarea>
         </td>
         <td>

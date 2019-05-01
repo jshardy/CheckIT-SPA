@@ -18,7 +18,7 @@
         </td>
       </tr>
       <tr>
-        <td colspan="7">
+        <td>
         <!-- Phone -->
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -41,77 +41,33 @@
     </table>
   </div>
 </div>
-
-<!-- <div>
-  <table class="table table-striped">
+<div>
+  <table class="table table-striped customer-box" *ngIf="invoices.length !== 0">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Id#</th>
+        <th scope="col">In/Out</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount Paid</th>
+
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
+      <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
+        <td>
+          {{ invoice.id }}
+        </td>
+        <td>
+          <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true">-OUT</i>
+          <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false">-IN</i>
+        </td>
+        <td>
+          {{ invoice.invoiceDate | date:'short' }}
+        </td>
+        <td>
+          {{ invoice.amountPaid | currency }}
+        </td>
       </tr>
     </tbody>
   </table>
-</div> -->
-
-<div>
-  <div class="container customer-box" *ngIf="invoices.length !== 0">
-
-    <div class="row justify-content-center title">
-      <h2 class="text-center">Returned results</h2>
-    </div>
-
-    <div class="row header">
-      <div class="col-sm-2">
-        <h4>Invoice ID</h4>
-      </div>
-      <div class="col-2">
-        <h4>Date</h4>
-      </div>
-      <div class="col-2">
-        <h4>Amount Paid</h4>
-      </div>
-      <div class="col-3 right">
-        <h4>Outgoing</h4>
-      </div>
-    </div>
-      <table width="40%">
-        <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
-          <td colspan="1" class="col-1">
-            {{ invoice.id }}
-          </td>
-          <td>
-            {{ invoice.invoiceDate | date:'shortTime' }}
-          </td>
-          <td >
-            ${{ invoice.amountPaid }}
-          </td>
-          <td >
-            <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true"></i>
-            <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false"></i>
-          </td>
-        </tr>
-      </table>
-  </div>
 </div>

@@ -59,22 +59,14 @@ export class InvoiceSearchComponent implements OnInit {
 
   searchByName(event): void {
     this.invoiceService.getInvoices().subscribe((invoice: Invoice[]) => {
-      this.invoices = invoice;
+    this.invoices = invoice;
     });
-    // public searchInvoices(invoiceDate: Date, OutgoingInv: Boolean, AmountPaid: Number, CustID: Number): Observable<Invoice[]>
+
     this.selectedCustomer = event.item;
-        this.invoices = this.invoices.filter(
-          obj => obj.invoiceCustID === this.selectedCustomer.id
-        );
 
-    // for (let i = 0; i < this.invoices.length; i++) {
-    //   if (this.invoices[i].invoiceCustID !== this.selectedCustomer.id) {
-    //     this.items.filter(obj => obj !== item);
-    //   }
-    // }
-
-      // this.invoiceService.searchInvoices(null, null, null, txtCustomerName.item.id)
-      //   .subscribe((inv: Invoice[]) => { this.invoices = inv; console.log(inv); });
+    this.invoices = this.invoices.filter(
+      obj => obj.invoiceCustID === this.selectedCustomer.id
+    );
   }
 
   onSubmit(): void {}
