@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 import { Invoice } from '../_models/invoice';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvoiceData } from '../_models/invoiceData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { LineItemData } from '../_models/LineItemData';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -43,15 +44,34 @@ export class InvoiceService {
     return this.http.get<Invoice[]>(this.baseURL);
   }
 
-  public addInvoice(invoice: InvoiceData) {
+  public addInvoice(invoice: InvoiceData): Observable<any> {
     return this.http.post(this.baseURL + 'AddInvoice', invoice);
   }
 
-  public addInvoiceLineItem(lineItem: LineItemData) {
+  public addInvoiceLineItem(lineItem: LineItemData): Observable<any> {
     return this.http.post(this.baseURL + 'AddLineItem', lineItem);
   }
 
   public getLastInvoiceId(): Observable<LastInvoice> {
     return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
   }
+
+  public searchInvoices(invoiceDate: Date, OutgoingInv: Boolean, AmountPaid: Number, CustID: Number): Observable<Invoice[]> {
+    console.log("searchInvoices()");
+    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices', {
+      params: new HttpParams()
+        .set('invoiceDate', invoiceDate != null ? invoiceDate.toISOString() : null)
+        .set('outgoingInv', OutgoingInv != null ? OutgoingInv.toString() : 'true')
+        .set('ammountPaid', AmountPaid != null ? AmountPaid.toString() : null)
+        .set('custID', CustID != null ? CustID.toString() : null)
+    });
+  }
+
+// back end does not work.
+// ReturnInvoices(DateTime InvoiceDate = default(DateTime),
+//                                               bool OutgoingInv = false,
+//                                               decimal AmmountPaid = -1,
+//                                               int CustID = -1)
+
+
 }

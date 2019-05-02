@@ -1,4 +1,4 @@
 export interface LastInvoice {
   username: String;
-  lastInvoiceId: number;
+  lastInvoiceId: Number;
 }

@@ -2,7 +2,7 @@
     width: 100%;
 
     /* Firefox */
-    display: -moz-box;
+    display: flex;
     -moz-box-pack: center;
     -moz-box-align: center;
 
@@ -26,7 +26,7 @@
   }
 
   .customer-box {
-    max-width: 1200px;
+    max-width: 90%;
     margin: auto;
     padding: 30px;
     border: 1px solid #eee;

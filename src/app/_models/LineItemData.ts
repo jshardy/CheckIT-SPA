@@ -3,11 +3,14 @@
   //       public int ItemId {
   // get; set;
 
-export interface LineItemData {
-  quantity: number;
-  price: number;
-  itemID: number;
-  InvoiceId: number;
+export class LineItemData {
+  constructor(
+    id?: number,
+    quantity?: number,
+    price?: number,
+    itemID?: number,
+    InvoiceId?: number
+  ) { }
 }
 
 

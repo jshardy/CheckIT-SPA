@@ -7,22 +7,13 @@
           <!-- First Name -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text">First or Last name</span>
+              <span class="input-group-text">Name/Company:</span>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-              (change)="search()" (keyup)="search()" [(ngModel)]="firstName">
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <!-- Company Name -->
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Company Name:</span>
-            </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-              (change)="search()" (keyup)="search()" [(ngModel)]="company">
+                <input [(ngModel)]="selectedCustomerName" [typeahead]="customerData"
+                  typeaheadOptionField="firstLastName" [typeaheadOptionsInScrollableView]="5" [typeaheadScrollable]="true"
+                  (typeaheadOnSelect)="searchByName($event)" class="form-control">
+            <!-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
+              (change)="search()" (keyup)="search()" [(ngModel)]="firstName"> -->
           </div>
         </td>
       </tr>
@@ -50,44 +41,33 @@
     </table>
   </div>
 </div>
-
 <div>
-  <div class="container customer-box" *ngIf="invoices.length !== 0">
+  <table class="table table-striped customer-box" *ngIf="invoices.length !== 0">
+    <thead>
+      <tr>
+        <th scope="col">Id#</th>
+        <th scope="col">In/Out</th>
+        <th scope="col">Date</th>
+        <th scope="col">Amount Paid</th>
 
-    <div class="row justify-content-center title">
-      <h2 class="text-center">Returned results</h2>
-    </div>
-
-    <div class="row header">
-      <div class="col-sm-2">
-        <h4>Invoice ID</h4>
-      </div>
-      <div class="col-2">
-        <h4>Date</h4>
-      </div>
-      <div class="col-2">
-        <h4>Amount Paid</h4>
-      </div>
-      <div class="col-1 right">
-        <h4>Outgoing</h4>
-      </div>
-    </div>
-      <table width="35%">
-        <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
-          <td colspan="1" class="col-1">
-            {{ invoice.id }}
-          </td>
-          <td >
-            <span>    </span>{{ invoice.invoiceDate }}
-          </td>
-          <td >
-            ${{ invoice.amountPaid }}
-          </td>
-          <td >
-            <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true"></i>
-            <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false"></i>
-          </td>
-        </tr>
-      </table>
-  </div>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
+        <td>
+          {{ invoice.id }}
+        </td>
+        <td>
+          <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true">-OUT</i>
+          <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false">-IN</i>
+        </td>
+        <td>
+          {{ invoice.invoiceDate | date:'short' }}
+        </td>
+        <td>
+          {{ invoice.amountPaid | currency }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
