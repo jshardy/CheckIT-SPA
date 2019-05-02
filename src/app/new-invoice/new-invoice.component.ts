@@ -13,6 +13,7 @@ import { InvoiceItem } from './InvoiceItems';
 import { InvoiceData } from '../_models/invoiceData';
 import { LineItemData } from '../_models/LineItemData';
 import { LastInvoice } from '../_models/LastInvoice';
+import { InvoicesComponent } from '../invoices/invoices.component';
 @Component({
   selector: 'app-new-invoice',
   templateUrl: './new-invoice.component.html',
@@ -39,7 +40,8 @@ export class NewInvoiceComponent implements OnInit {
     private alertify: AlertifyService,
     private customerService: CustomerService,
     private addressService: AddressService,
-    private itemService: ItemService) {
+    private itemService: ItemService,
+    private alertifyService: AlertifyService) {
   }
 
   clearPage(): void {
@@ -167,6 +169,15 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitInvoice(): void {
+    if (items !== null) {
+      this.items.forEach(function (invoice) {
+        if (invoice.name.length === 0 || invoice.name === 'Enter Name') {
+          this.alertifyService.warning('Missing Name/Description for items.');
+          return;
+        }
+      });
+    }
+
     if (this.items.length > 0 && this.items[0].name.length > 0) {
       let invoice: InvoiceData = {
         invoiceDate: this.currentDate,
