@@ -156,7 +156,7 @@ export class NewInvoiceComponent implements OnInit {
 
       let lineItem: LineItemData;
       let lastInvoice: LastInvoice;
-      this.invoiceService.addInvoice(invoice);
+      this.invoiceService.addInvoice(invoice).subscribe();
 
     //   this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
     //     lastInvoice = linvoice;
