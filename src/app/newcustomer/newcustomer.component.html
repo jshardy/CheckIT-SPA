@@ -1,4 +1,3 @@
-<div class="wrapper">
   <form>
     <div>
       <!-- first name -->
@@ -16,14 +15,23 @@
     </div>
   <!-- company name -->
   <div>
-  <div class="form-group" style="width: 25%; float: left;">
-    <label for="CompanyCheck">Company</label>
-    <input type="checkbox" name="companycheck" id="CompanyCheck" [(ngModel)]="isCompany">
-  </div>
-  <div class="form-group" style="margin-left: 30%;">
-    <label for="CompanyName">Company name</label>
-    <input type="text" name="companyname" id="CompanyName" class="form-control" placeholder="Company name" [(ngModel)]="companyName" required>
-  </div>
+    <div class="form-group">
+      <label for="CompanyName">Company name</label>
+      <div class="input-group" id="CompanyName">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="checkbox" name="companycheck" id="CompanyCheck" [(ngModel)]="isCompany">
+          </div>
+        </div> 
+        <div *ngIf="isCompany === true; then isACompany; else isNotACompany"></div>
+        <ng-template #isACompany>
+          <input type="text" name="companyname" class="form-control" placeholder="Company name" [(ngModel)]="companyName" required>
+        </ng-template>
+        <ng-template #isNotACompany>
+          <input type="text" name="companyname" class="form-control" placeholder="Company name" [(ngModel)]="companyName" disabled="true">
+        </ng-template>
+      </div>
+    </div>
   </div>
   <div>
     <!-- phone -->
@@ -93,4 +101,3 @@
   </div>
   <button type="primary" class="btn btn-outline-success" (click)="add()">Add</button>
 </form>
-</div>
