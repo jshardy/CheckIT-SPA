@@ -7,6 +7,8 @@ import { CustomerService } from '../_services/customer.service';
 import { $ } from 'protractor';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { Invoice } from '../_models/invoice';
+import { InvoiceService } from '../_services/invoice.service';
 
 @Component({
   selector: 'app-customer',
@@ -16,25 +18,29 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 export class CustomerComponent implements OnInit {
   sub?: any;
   currentCustomer?: Customer;
+  invoices?: Invoice[];
   @Input() id: number;
   modify: boolean;
-  public stateNames = 
+  public stateNames =
   ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia',
   'Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana',
   'Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada',
   'New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma',
   'Oregon','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont',
   'Virgin Islands','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
-  public stateCodes = 
+  public stateCodes =
   ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO',
   'MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','RI','SC','SD','TN','TX','UT','VT','VI','VA','WA','WV','WI','WY'];
 
-  constructor(private customerService: CustomerService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private customerService: CustomerService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private invoiceService: InvoiceService) { }
 
   ngOnInit() {
     if (this.id === undefined) {
       this.sub = this.route.params.subscribe(params => {
-         this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
+        this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
            this.currentCustomer = customer;
            let i = 0;
            this.stateNames.forEach(state => {
@@ -44,6 +50,10 @@ export class CustomerComponent implements OnInit {
              i++;
            });
         });
+        this.invoiceService.searchInvoiceByCustId(+params['id']).subscribe((invoice: Invoice[]) => {
+          this.invoices = invoice;
+        });
+        console.log(this.invoices);
       });
     } else {
       this.customerService.getCustomer(this.id).subscribe((customer: Customer) => {
