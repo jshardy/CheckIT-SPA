@@ -169,7 +169,7 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitInvoice(): void {
-    if (items !== null) {
+    if (this.items !== null) {
       this.items.forEach(function (invoice) {
         if (invoice.name.length === 0 || invoice.name === 'Enter Name') {
           this.alertifyService.warning('Missing Name/Description for items.');
