@@ -114,7 +114,6 @@ export class NewInvoiceComponent implements OnInit {
       this.subTotal += item.price * item.quantity;
     }
     this.totalDue = (this.subTotal + (this.subTotal * this.salesTax)) - this.totalPaid;
-    // console.log(this.totalDue);
   }
 
   ParseCustomers(customer: Customer[]): void {
@@ -131,7 +130,6 @@ export class NewInvoiceComponent implements OnInit {
 
   onCustomerSelect(event: TypeaheadMatch): void {
     this.selectedCustomer = event.item;
-    // console.log(this.selectedCustomer);
 
     // get the address
     if (this.selectedCustomer != null) {
@@ -146,7 +144,6 @@ export class NewInvoiceComponent implements OnInit {
 
   upcEntered(index): void {
     // Go do lookup of items
-//    console.log(event.upc);
       this.itemService.searchUPC(this.items[index].upc).subscribe((item: Item) => {
         if (item !== null && item.description !== null) {
           this.items[index].alertId = item.alertId;
@@ -199,26 +196,12 @@ export class NewInvoiceComponent implements OnInit {
               itemId: this.items[i].id
             };
 
-            console.log(lineItem);
             this.invoiceService.addInvoiceLineItem(lineItem).subscribe();
 
             this.clearPage();
           }
         }
       });
-
-
-
     }
   }
 }
-
-
-// export interface InvoiceData {
-//   id?: number;
-//   invoiceDate?: string;
-//   outgoingInv?: boolean;
-//   amountPaid?: number;
-//   invoiceCustID?: number;
-//   lineItems?: number[];
-// }
