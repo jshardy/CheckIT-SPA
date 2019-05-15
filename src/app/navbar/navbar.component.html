@@ -50,7 +50,7 @@
             Auth <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-            <li role="menuitem"><a class="dropdown-item" href="#"[routerLink]="['/auth/userpermissions']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>Permissions</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/auth/userpermissions']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>Permissions</a></li>
             <li role="menuitem"><a class="dropdown-item" (click)="Quickbooks()" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>QuickBooks</a></li>
           </ul>
         </div>
@@ -75,7 +75,8 @@
       </a>
 
       <div class="dropdown-menu mt-3" *dropdownMenu>
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Settings</a>
+        <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/user/profile']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>Settings</a></li>
+        <!-- <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Settings</a> -->
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()"><i class=fa fa-sign-out></i>Logout</a>
       </div>

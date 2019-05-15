@@ -17,6 +17,7 @@ import { UserpermissionsComponent } from './userpermissions/userpermissions.comp
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
 import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -42,6 +43,7 @@ const routes: Routes = [
       { path: 'invoice/search', component: InvoiceSearchComponent },
       { path: 'quickbooks', component: QuickbooksComponent },
       { path: 'password/reset', component: ResetPasswordComponent },
+      { path: 'user/profile', component: UserProfileComponent },
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
