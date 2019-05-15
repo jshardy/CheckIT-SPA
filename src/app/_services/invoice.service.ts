@@ -8,6 +8,7 @@ import { InvoiceData } from '../_models/invoiceData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { LineItemData } from '../_models/LineItemData';
 import { catchError } from 'rxjs/operators';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 @Injectable({
     providedIn: 'root'
@@ -56,22 +57,21 @@ export class InvoiceService {
     return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
   }
 
-  public searchInvoices(invoiceDate: Date, OutgoingInv: Boolean, AmountPaid: Number, CustID: Number): Observable<Invoice[]> {
-    console.log("searchInvoices()");
+  public searchInvoices(CustID: Number = -1, invoiceDate: Date = null,
+    OutgoingInv: Boolean = null, AmountPaid: Number = -1): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices', {
       params: new HttpParams()
         .set('invoiceDate', invoiceDate != null ? invoiceDate.toISOString() : null)
-        .set('outgoingInv', OutgoingInv != null ? OutgoingInv.toString() : 'true')
-        .set('ammountPaid', AmountPaid != null ? AmountPaid.toString() : null)
+        .set('outgoingInv', OutgoingInv != null ? OutgoingInv.toString() : null)
+        .set('ammountPaid', AmountPaid != null ? AmountPaid.toString() : (-1).toString())
         .set('custID', CustID != null ? CustID.toString() : null)
     });
   }
 
-// back end does not work.
-// ReturnInvoices(DateTime InvoiceDate = default(DateTime),
-//                                               bool OutgoingInv = false,
-//                                               decimal AmmountPaid = -1,
-//                                               int CustID = -1)
-
+  public searchInvoiceByCustId(CustID: Number): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseURL + 'GetInvoicesForCustomerId', {
+      params: new HttpParams().set('customerId', CustID.toString())
+    });
+  }
 
 }

@@ -29,7 +29,10 @@ export class InvoiceSearchComponent implements OnInit {
     private customerService: CustomerService) {}
 
   ngOnInit() {
-    this.invoiceService.getInvoices().subscribe((invoice: Invoice[]) => { this.invoices = invoice; });
+    this.invoiceService.getInvoices()
+      .subscribe((invoice: Invoice[]) => {
+        this.invoices = invoice;
+      });
 
     // Get customer names and parse them into first and last name
     this.customerService
@@ -58,15 +61,9 @@ export class InvoiceSearchComponent implements OnInit {
   search(): void {}
 
   searchByName(event): void {
-    this.invoiceService.getInvoices().subscribe((invoice: Invoice[]) => {
-    this.invoices = invoice;
+    this.invoiceService.searchInvoiceByCustId(event.item.id).subscribe((invoice: Invoice[]) => {
+      this.invoices = invoice;
     });
-
-    this.selectedCustomer = event.item;
-
-    this.invoices = this.invoices.filter(
-      obj => obj.invoiceCustID === this.selectedCustomer.id
-    );
   }
 
   onSubmit(): void {}
