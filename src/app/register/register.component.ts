@@ -20,6 +20,8 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.model).subscribe((result) => {
       this.alertify.success('Registration Successful');
+      // Add code to change navigation
+      // auto enter username and password?
     }, error => {
         if (error === "Username already exists")
           console.log(error);

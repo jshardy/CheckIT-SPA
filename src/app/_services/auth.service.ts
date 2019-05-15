@@ -26,6 +26,10 @@ export class AuthService {
     );
   }
 
+  resetpassword(model: any) {
+    return this.http.post(this.baseUrl + 'reset', model);
+  }
+
   register(model: any) {
     return this.http.post(this.baseUrl + 'register', model);
   }
