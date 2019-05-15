@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 
 import { Customer } from '../_models/customer';
 import { CustomerService } from '../_services/customer.service';
-import { $ } from 'protractor';
-import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { AddressService } from '../_services/address.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-customer',
@@ -29,7 +28,8 @@ export class CustomerComponent implements OnInit {
   ['AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO',
   'MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','PR','RI','SC','SD','TN','TX','UT','VT','VI','VA','WA','WV','WI','WY'];
 
-  constructor(private customerService: CustomerService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private customerService: CustomerService, private route: ActivatedRoute, private router: Router,
+      private alertify: AlertifyService, private addressService: AddressService) { }
 
   ngOnInit() {
     if (this.id === undefined) {
@@ -74,7 +74,15 @@ export class CustomerComponent implements OnInit {
 
   modifyCustomer() {
     if (this.modify) {
-      this.customerService.modifyCustomer(this.currentCustomer).subscribe();
+      this.customerService.modifyCustomer(this.currentCustomer).subscribe(() => {
+        this.addressService.modifyAddress(this.currentCustomer.custAddress, this.currentCustomer.custAddressId).subscribe(() => {
+          this.alertify.success('Success');
+        }, error => {
+          this.alertify.error('Failed to modify address of customer');
+        });
+      }, error => {
+        this.alertify.error('Failed to modify customer');
+      });
     }
     this.toggleModify();
   }

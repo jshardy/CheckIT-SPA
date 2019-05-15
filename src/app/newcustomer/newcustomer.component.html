@@ -56,7 +56,7 @@
     </div>
   <!-- state -->
   <div class="form-group" style="margin-left: 51%;">
-    <label for="State">State</label>
+    <label for="State">Region</label>
     <div *ngIf="country ==='USA'; then enabled; else disabled"></div>
     <ng-template #enabled>
       <select class="form-control" name="state" id="State" [(ngModel)]="state">
@@ -74,9 +74,9 @@
   <div>
   <!-- zip -->
   <div class="form-group" style="width: 49%; float: left;">
-      <label for="Zipcode">Zip</label>
-      <input type="text" name="zipcode" id="Zipcode" class="form-control" placeholder="Zip code" [(ngModel)]="zip" required>
-      <div class="invalid-feedback">Enter a valid zipcode</div>
+      <label for="Zipcode">Postal Code</label>
+      <input type="text" name="zipcode" id="Zipcode" class="form-control" placeholder="Postal code" [(ngModel)]="zip" required>
+      <div class="invalid-feedback">Enter a valid postal code</div>
     </div>
   <!-- city -->
   <div class="form-group" style="margin-left: 51%;">

@@ -1,10 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Customer } from '../_models/customer';
-import { Address } from '../_models/address'
-import { RouterInitializer } from '@angular/router/src/router_module';
 import { CustomerService } from '../_services/customer.service';
 
 
