@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   model: any = {};
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router, 
+  constructor(private authService: AuthService, private alertify: AlertifyService, private router: Router,
     private quickserve: QuickService) { }
 
   ngOnInit() {
@@ -23,10 +23,10 @@ export class NavbarComponent implements OnInit {
     this.authService.login(this.model).subscribe(next => {
       this.alertify.success('Logged in successfully');
     }, error => {
-        this.alertify.error(error);
+        this.alertify.error("Incorrect username or password!");
       }, () => {
         // This is the page they go to directly after login
-        this.router.navigate(['/customers']);
+        this.router.navigate(['/invoice/search']);
     });
   }
 
