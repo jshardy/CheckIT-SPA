@@ -39,6 +39,7 @@ import { CustomercomponentComponent } from './customercomponent/customercomponen
 import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
 import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 export function tokenGetter() {
@@ -64,9 +65,10 @@ export function tokenGetter() {
       NewInvoiceComponent,
       TestComponent,
       CustomercomponentComponent,
-    UserpermissionsComponent,
+      UserpermissionsComponent,
       InvoiceSearchComponent,
       QuickbooksComponent,
+      ResetPasswordComponent
    ],
    imports: [
       BrowserModule,
