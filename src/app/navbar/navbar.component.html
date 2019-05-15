@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="#" [routerLink]="['/home']">CheckIT <i class="fa fa-check" aria-hidden="true"></i></a>
-
+    <div (click)="home_click();">
+      <a class="navbar-brand" routerLinkActive="Active">CheckIT <i class="fa fa-check" aria-hidden="true"></i></a>
+    </div>
     <!-- This is an example of Angular routing for links -->
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">

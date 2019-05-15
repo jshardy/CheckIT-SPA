@@ -18,6 +18,19 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  home_click() {
+    // We need to come up with a default page
+    if (this.loggedIn() === true) {
+      console.log('Logged in\n');
+      this.router.navigate(['/invoice/search']);
+      //this.router.navigateByUrl('/invoice/search');
+    }
+    else {
+      console.log('Not logged in\n');
+      this.router.navigate(['/home']);
+    }
+  }
+
   login() {
     // console.log(this.model);
     this.authService.login(this.model).subscribe(next => {
