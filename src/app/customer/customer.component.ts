@@ -38,8 +38,10 @@ export class CustomerComponent implements OnInit {
       private alertify: AlertifyService, private addressService: AddressService, private invoiceService: InvoiceService) { }
 
   ngOnInit() {
+    let id: Number = -1;
     if (this.id === undefined) {
       this.sub = this.route.params.subscribe(params => {
+        id = +params['id'];
         this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
            this.currentCustomer = customer;
            let i = 0;
@@ -50,10 +52,12 @@ export class CustomerComponent implements OnInit {
              i++;
            });
         });
+
         this.invoiceService.searchInvoiceByCustId(+params['id']).subscribe((invoice: Invoice[]) => {
-          this.invoices = invoice;
+          this.invoices = invoice; // this has issues. this.invoices isn't visible....?
+          console.log(invoice);
+          console.log(this.invoices);
         });
-        console.log(this.invoices);
       });
     } else {
       this.customerService.getCustomer(this.id).subscribe((customer: Customer) => {

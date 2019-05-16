@@ -74,4 +74,10 @@ export class InvoiceService {
     });
   }
 
+  getInvoiceByCustID(CustID: Number): Promise<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseURL + 'GetInvoicesForCustomerId', {
+      params: new HttpParams().set('customerId', CustID.toString())
+    }).toPromise().then((response) => response);
+  }
+
 }
