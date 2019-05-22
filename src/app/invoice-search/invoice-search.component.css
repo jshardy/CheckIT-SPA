@@ -1,7 +1,23 @@
-.wrapper { 
-  justify-content: center;
-  margin: 0 auto; 
-  width: 35%;
+#outer{
+    width: 100%;
+
+    /* Firefox */
+    display: flex;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+
+    /* Safari and Chrome */
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    /* W3C */
+    display: box;
+    box-pack: center;
+    box-align: center;
+}
+#inner{
+    width: 50%;
 }
 
 .input-label {
@@ -10,7 +26,7 @@
   }
 
   .customer-box {
-    max-width: 800px;
+    max-width: 90%;
     margin: auto;
     padding: 30px;
     border: 1px solid #eee;
@@ -21,7 +37,7 @@
     color: #555;
   }
 
-  .item {
+.item {
     border-bottom: 1px solid #eee;
     width: 100%;
   }

@@ -43,15 +43,11 @@
               <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
             </div>
           </td>
-          <!-- alert switch thingy -->
           <td>
-            <div class="custom-control custom-switch">
-              <input type='checkbox' class="custom-control-input" id="alertSwitch">
-              <label class="custom-control-label" for="alertSwitch" (change)="alertToggle()">Alert Toggle</label>
-            </div>
+            <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
           </td>
-          <td ng-repeat-end>
-            <input class="form-control" type="text" id="thresholdInput" placeholder="0">
+          <td ng-repeat-end>            
+            <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">
           </td>
       </tr>    
   </table>

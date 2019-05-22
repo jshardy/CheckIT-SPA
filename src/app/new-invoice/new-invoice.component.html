@@ -19,9 +19,9 @@
             [typeaheadScrollable]="true"
             (typeaheadOnSelect)="onCustomerSelect($event)"
             class="form-control">
-            <div>
-              <button id="btnNewCustomer" *ngIf="customerAddress === null" class="btn btn-primary mr-3">New Customer</button>
-              <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null; this.selectedCustomerName = ''" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button>
+            <div class="" style="padding-top: 3px;">
+              <button id="btnNewCustomer" *ngIf="customerAddress === null" class="btn btn-outline-success mr-3">New Customer</button>
+              <!-- <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null; this.selectedCustomerName = ''" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button> -->
             </div>
     </div>
 
@@ -33,11 +33,7 @@
         {{ customerAddress?.street }},<br>
         {{ customerAddress?.city }}, {{ customerAddress?.state }}, {{ customerAddress?.zipCode }}<br>
       </address>
-    </div>
-
-    <div id="logo">
-      <!-- Logo goes here -->
-      <i class="fa fa-check" aria-hidden="true"></i>
+      <div id="logo">✓</div>
     </div>
 
     <!-- Empty space between title and items list -->
@@ -47,12 +43,20 @@
       <table id="meta">
         <tr>
           <td class="meta-head">Date</td>
-          <td><textarea id="date">{{ currentDate | date:'MM-dd-yyyy' }}</textarea></td>
+          <td>
+            <textarea id="date">{{ currentDate | date:'MM-dd-yyyy' }}</textarea>
+          </td>
         </tr>
         <tr>
           <td class="meta-head">Amount Due</td>
           <td>
-            <div class="due"><textarea id="totalDue">${{ totalDue }}</textarea></div>
+            <div class="due"><textarea id="totalDue">{{ totalDue | currency }}</textarea></div>
+          </td>
+        </tr>
+        <tr>
+          <td class="meta-head"><div *ngIf="outgoinginv === true">Outgoing</div><div *ngIf="outgoinginv === false">Incoming</div></td>
+          <td>
+            <div class="due"><input type="checkbox" checked [(ngModel)]="outgoinginv"/></div>
           </td>
         </tr>
       </table>
@@ -60,51 +64,52 @@
 
     <table id="items">
       <tr>
-        <th>Remove</th>
+        <th>X</th>
         <th>Barcode</th>
+        <th>On Hand</th>
         <th>Item</th>
         <th>Description</th>
         <th>Unit Cost</th>
-        <th>Quantity</th>
-        <th>On Hand</th>
+        <th>Count</th>
         <th colspan="2">Price</th>
       </tr>
 
       <!-- Quantity Rows  -->
-      <tr class="item-row" *ngFor="let item of items;">
+      <tr class="item-row" *ngFor="let item of items; index as i">
         <td>
-          <button type="button" class="btn btn-danger" (click)='deleteRow(item)'>Remove</button>
+          <button style="margin: 0; padding: 3px; vertical-align: top;" type="button" id="delete" class="rp btn-sm btn-outline-success" (click)='deleteRow(item)'>X</button>
         </td>
-        <td>
-          <div class="delete-wpr">
-            <textarea autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered($event)">{{ item.upc || "" }}</textarea>
-          </div>
+        <td class="barcode">
+            <textarea class="barcode" autofocus="true" [(ngModel)]="item.upc" (ngModelChange)="upcEntered(i)" id="txtUPC">{{ item.upc || "" }}</textarea>
+        </td>
+        <td class="quantity-on-hand">
+          {{ item.quantityOnHand }}
         </td>
         <td class="item-name">
-          <div class="delete-wpr">
             <textarea [(ngModel)]="item.name">{{ item.name }}</textarea>
-          </div>
         </td>
         <td class="description">
           <textarea [(ngModel)]="item.description">{{ item.description }}</textarea>
         </td>
-        <td>
-          <textarea class="cost" [(ngModel)]="item.price" (input)='priceChanged()'>{{ item.price }}</textarea>
+        <td class="unit-cost">
+          <textarea [(ngModel)]="item.price" (input)='priceChanged()'>{{ item.price | currency }}</textarea>
         </td>
-        <td>
-          <textarea class="qty" [(ngModel)]="item.quantity" (input)='priceChanged()'>{{ item.quantity }}</textarea>
+        <td class="quantity">
+          <textarea [(ngModel)]="item.quantity" (input)='priceChanged()'>{{ item.quantity }}</textarea>
         </td>
-        <td>
-          <span class="price">{{ item.quantityOnHand }}</span>
+        <td class="price">
+          {{ item.price * item.quantity | currency }}
         </td>
-        <td>
-          <span class="price">{{ item.price * item.quantity | currency }}</span><br>
+        <td class="end">
+
         </td>
       </tr>
 
       <!-- <tr id="hiderow"> -->
       <tr>
-        <td colspan="9"><button type="button" class="btn btn-info" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button></td>
+        <td class="blank" colspan="9">
+          <button type="button" class="btn btn-outline-success" id="addrow" title="Add a row" (click)='addNewRow();'>Add a row</button>
+        </td>
       </tr>
 
       <tr>
@@ -126,14 +131,14 @@
       <tr>
         <td colspan="4" class="blank"> </td>
         <td colspan="4" class="total-line">Amount Paid</td>
-        <td class="total-value"><label>{{ totalPaid | currency }}</label></td>
+        <td class="total-value">{{ totalPaid | currency }}</td>
       </tr>
 
       <tr>
         <td colspan="4" class="blank"> </td>
         <td colspan="4" class="total-line balance">Balance Due</td>
         <td class="total-value balance">
-          <div class="due">{{ totalDue | currency }}</div>
+          <div class="balance">{{ totalDue | currency }}</div>
         </td>
       </tr>
     </table>
@@ -141,6 +146,10 @@
     <div id="terms">
       <h5>Terms</h5>
         Finance Charge of 1.5% will be made on unpaid balances after 30 days.
+    </div>
+    <div id="btnSubmit">
+      <button class="fa-align-right" class="btn btn-outline-success mr-3" *ngIf="customerAddress !== null || items.length !== 1" (click)="clearPage()">Clear Invoice</button>
+      <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice()" class="btn btn-outline-success mr-3">Submit Invoice</button>
     </div>
   </div>
 

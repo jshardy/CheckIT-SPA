@@ -49,19 +49,19 @@ export class ItemService {
     return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/?UPC=' + upc);
   }
 
-  //  public searchItems(id?: number, upc?: string, price?: number, name?: string, description?: string, quantity?:
-  //  number, archived?: boolean, locationId?: number, alertId?: number ): Observable<Item[]> {
-  //   return this.httpClient.get<Item[]>(this.baseURL, {
-  //     params: new HttpParams()
-  //     .set('Id', id != null)
-  //     .set('Upc', upc != null ? upc.trim() : '')
-  //     .set('Price', price != null)
-  //     .set('Name', name != null ? name.trim() : '')
-  //     .set('Description', description != null ? description.trim() : '')
-  //     .set('Quantity', quantity != null)
-  //     .set('Archived', archived != null)
-  //     .set('LocationId', locationId != null)
-  //     .set('AlertId', alertId != null)
-  //     });
-  // }
+   public searchItems(upc?: string, price?: number, name?: string, description?: string, quantity?: number,
+    archived?: boolean, locationId?: number, alertId?: number): Observable<Item[]> {
+    return this.httpClient.get<Item[]>(this.baseURL, {
+      params: new HttpParams()
+      // .set('Id', id != null)
+      .set('Upc', upc != null ? upc.trim() : '')
+      // .set('Price', price)
+      .set('Name', name != null ? name.trim() : '')
+      .set('Description', description != null ? description.trim() : '')
+      // .set('Quantity', quantity != null)
+      // .set('Archived', archived != null)
+      // .set('LocationId', locationId != null)
+      // .set('AlertId', alertId != null)
+      });
+  }
 }

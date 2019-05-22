@@ -1,15 +1,14 @@
 .wrapper { 
-  justify-content: center;
   margin: 0 auto; 
-  width: 35%;
+  width: 50%;
 }
 
 .input-label {
     border: none;
     background-color: #FFFFFF;
   }
-
-  .customer-box {
+  
+  .box {
     max-width: 800px;
     margin: auto;
     padding: 30px;

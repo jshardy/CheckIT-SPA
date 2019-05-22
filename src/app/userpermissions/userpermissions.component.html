@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div style="margin-left: 45%">
+      <h2>User List</h2>
+  </div>
+  <div class="row box header">
+    <div class="left" style="width: 28%">User</div>
+    <div class="center" style="width: 22%;">ID</div>
+    <div class="right">Permission Level</div>
+  </div>
+  <div *ngFor="let user of users" class="row box item">
+    <div style="width: 28%">{{user.username}}</div>
+    <div style="width: 28%">{{user.id}}</div>
+    <div style="width: 22%">
+      <select name="permissions" id="Permissions" [(ngModel)]="user.permissionLevel">
+        <option value="0">Admin</option>
+        <option value="1">Manager</option>
+        <option value="2">Employee</option>
+        <option value="3">View Only</option>
+        <option value="4">Null</option>
+      </select>
+    </div>
+    <div style="width: 13%">
+      <button type="button" (click)='ChangeUser(user)' class='btn btn-outline-success'>Change</button>
+    </div>
+    <div>
+      <button type="button" (click)='DeleteUser(user)' class='btn btn-primary'>Delete</button>
+    </div>
+  </div>
+</div>

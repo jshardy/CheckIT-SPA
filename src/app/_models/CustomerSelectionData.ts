@@ -1,6 +1,4 @@
-import { Customer } from '../_models/customer';
-// I need a first and last name from web api in one field.
-
+// For internal use
 export interface CustomerSelectionData {
   id: number;
   firstLastName: String;

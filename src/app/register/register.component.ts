@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -17,16 +18,21 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.model).subscribe(() => {
-      this.alertify.success('registration successful');
+    this.authService.register(this.model).subscribe((result) => {
+      this.alertify.success('Registration Successful');
+      // Add code to change navigation
+      // auto enter username and password?
     }, error => {
+        if (error === "Username already exists")
+          console.log(error);
+        else
+          error = "Password must be 8 characters long";
+
       this.alertify.error(error);
     });
   }
 
   cancel() {
     this.cancelRegister.emit(false);
-
   }
-
 }

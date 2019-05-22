@@ -1,4 +1,4 @@
-export interface Alert {
+export interface ItemAlert {
     id?: number;
     alertItemId?: number;
     threshold?: number;

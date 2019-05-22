@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
 
 import { Invoice } from '../_models/invoice';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { InvoiceData } from '../_models/invoiceData';
+import { LastInvoice } from '../_models/LastInvoice';
+import { LineItemData } from '../_models/LineItemData';
+import { catchError } from 'rxjs/operators';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 @Injectable({
     providedIn: 'root'
@@ -40,4 +44,34 @@ export class InvoiceService {
   public getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.baseURL);
   }
+
+  public addInvoice(invoice: InvoiceData): Observable<any> {
+    return this.http.post(this.baseURL + 'AddInvoice', invoice);
+  }
+
+  public addInvoiceLineItem(lineItem: LineItemData): Observable<any> {
+    return this.http.post(this.baseURL + 'AddLineItem', lineItem);
+  }
+
+  public getLastInvoiceId(): Observable<LastInvoice> {
+    return this.http.get<LastInvoice>(this.baseURL + 'GetLastInvoiceID');
+  }
+
+  public searchInvoices(CustID: Number = -1, invoiceDate: Date = null,
+    OutgoingInv: Boolean = null, AmountPaid: Number = -1): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseURL + 'ReturnInvoices', {
+      params: new HttpParams()
+        .set('invoiceDate', invoiceDate != null ? invoiceDate.toISOString() : null)
+        .set('outgoingInv', OutgoingInv != null ? OutgoingInv.toString() : null)
+        .set('ammountPaid', AmountPaid != null ? AmountPaid.toString() : (-1).toString())
+        .set('custID', CustID != null ? CustID.toString() : null)
+    });
+  }
+
+  public searchInvoiceByCustId(CustID: Number): Observable<Invoice[]> {
+    return this.http.get<Invoice[]>(this.baseURL + 'GetInvoicesForCustomerId', {
+      params: new HttpParams().set('customerId', CustID.toString())
+    });
+  }
+
 }

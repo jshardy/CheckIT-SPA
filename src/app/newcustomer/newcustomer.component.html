@@ -1,6 +1,5 @@
-<div class="wrapper">
   <form>
-    <div>    
+    <div>
       <!-- first name -->
       <div class="was-validated" style="width: 49%; float: left;">
         <label for="FirstName">First name</label>
@@ -16,22 +15,23 @@
     </div>
   <!-- company name -->
   <div>
-  <div class="form-group" style="width: 25%; float: left;">
-    <label for="CompanyCheck">Company Account</label>
-    <input type="checkbox" name="companycheck" id="CompanyCheck" [(ngModel)]="isCompany">
-  </div>
-  <div class="form-group" style="margin-left: 30%;">
-    <label for="CompanyName">Company name</label>
-    <input type="text" name="companyname" id="CompanyName" class="form-control" placeholder="Company name" [(ngModel)]="companyName" required>
-  </div>
-  <!-- <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <div class="input-group-text">
-          Are you a company <input type="checkbox" aria-label="Checkbox for following text input" [(ngModel)]="isCompany">
-        </div>
+    <div class="form-group">
+      <label for="CompanyName">Company name</label>
+      <div class="input-group" id="CompanyName">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <input type="checkbox" name="companycheck" id="CompanyCheck" [(ngModel)]="isCompany">
+          </div>
+        </div> 
+        <div *ngIf="isCompany === true; then isACompany; else isNotACompany"></div>
+        <ng-template #isACompany>
+          <input type="text" name="companyname" class="form-control" placeholder="Company name" [(ngModel)]="companyName" required>
+        </ng-template>
+        <ng-template #isNotACompany>
+          <input type="text" name="companyname" class="form-control" placeholder="Company name" [(ngModel)]="companyName" disabled="true">
+        </ng-template>
       </div>
-      <input type="text" class="form-control" aria-label="Text input with checkbox" placeholder="Company Name">
-    </div> -->
+    </div>
   </div>
   <div>
     <!-- phone -->
@@ -56,7 +56,7 @@
     </div>
   <!-- state -->
   <div class="form-group" style="margin-left: 51%;">
-    <label for="State">State</label>
+    <label for="State">Region</label>
     <div *ngIf="country ==='USA'; then enabled; else disabled"></div>
     <ng-template #enabled>
       <select class="form-control" name="state" id="State" [(ngModel)]="state">
@@ -74,9 +74,9 @@
   <div>
   <!-- zip -->
   <div class="form-group" style="width: 49%; float: left;">
-      <label for="Zipcode">Zip</label>
-      <input type="text" name="zipcode" id="Zipcode" class="form-control" placeholder="Zip code" [(ngModel)]="zip" required>
-      <div class="invalid-feedback">Enter a valid zipcode</div>
+      <label for="Zipcode">Postal Code</label>
+      <input type="text" name="zipcode" id="Zipcode" class="form-control" placeholder="Postal code" [(ngModel)]="zip" required>
+      <div class="invalid-feedback">Enter a valid postal code</div>
     </div>
   <!-- city -->
   <div class="form-group" style="margin-left: 51%;">
@@ -101,8 +101,3 @@
   </div>
   <button type="primary" class="btn btn-outline-success" (click)="add()">Add</button>
 </form>
-</div>
-
-{{this.isCompany}}
-{{ customer | json}}
-

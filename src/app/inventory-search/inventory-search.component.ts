@@ -13,61 +13,62 @@ import { AlertifyService } from './../_services/alertify.service';
   styleUrls: ['./inventory-search.component.css']
 })
 export class InventorySearchComponent implements OnInit {
-  items?: Item[];
+  items: Item[];
   item?: Item;
 
-  public id = -1;
+  public id = 0;
   public upc = '';
-  public price = -1;
+  public price = 0;
   public name = '';
   public description = '';
-  public quantity = -1;
+  public quantity = 0;
   public archived = false;
-  public locationId = -1;
-  public alertId = -1;
+  public locationId = 0;
+  public alertId = 0;
 
   private searchTerm = new Subject<string>();
 
   constructor(private itemService: ItemService, private alertify: AlertifyService, private router: Router) { }
-  public dropdown = 'none';
-  public input = '';
+  // public dropdown = 'none';
+  // public input = '';
 
   ngOnInit(): void {
   }
 
-  onSubmit(id: number) {
+  idSearch(id: number) {
     this.itemService.getItemById(id).subscribe((item: Item) => {
       this.item = item;
     });
   }
 
-  upcSearch() {
+  upcSearch(upc: string) {
     if (this.allEmpty()) {
     this.items = [];
   } else {
-    this.itemService.searchUPC(this.upc).subscribe((item: Item) => {
+    this.itemService.searchUPC(upc).subscribe((item: Item) => {
       this.item = item;
     });
    }
   }
 
   search() {
-    // if (this.allEmpty()) {
-    //   this.items = [];
-    // } else {
-    //   this.itemService.searchItems(this.id, this.upc, this.price).subscribe((item: Item[]) => {
-    //     this.items = item;
-    //   });
-    // }
+    if (this.allEmpty()) {
+      this.items = [];
+    } else {
+      this.itemService.searchItems(this.upc, this.price, this.name, this.description,
+          this.quantity).subscribe((item: Item[]) => {
+          this.items = item;
+        });
+    }
   }
 
   allEmpty() {
     if (this.item.id !== null) { return false; }
-    if (this.item.upc !== '') { return false; }
-    if (this.item.price !== null) { return false; }
-    if (this.item.name !== '') { return false; }
-    if (this.item.description !== '') { return false; }
-    if (this.item.quantity !== null) {return false; }
+    if (this.upc !== '') { return false; }
+    if (this.price !== null) { return false; }
+    if (this.name !== '') { return false; }
+    if (this.description !== '') { return false; }
+    if (this.quantity !== null) {return false; }
     return true;
   }
 }

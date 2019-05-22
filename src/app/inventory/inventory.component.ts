@@ -4,7 +4,8 @@ import { Item } from '../_models/item';
 import { ItemService } from './../_services/inventory.service';
 import { AlertifyService } from './../_services/alertify.service';
 import { ItemAlertService } from './../_services/item-alert.service';
-import { Alert } from 'selenium-webdriver';
+// import { Alert } from 'selenium-webdriver';
+import { ItemAlert } from '../_models/alert';
 
 @Component({
   selector: 'app-inventory',
@@ -15,7 +16,7 @@ export class InventoryComponent implements OnInit {
 
   items?: Item[];
   item?: Item;
-  alert: Alert;
+  alert: ItemAlert;
   selectedItem?: Item;
   constructor(private itemService: ItemService, private alertify: AlertifyService, private itemAlert: ItemAlertService) { }
 
@@ -32,10 +33,14 @@ export class InventoryComponent implements OnInit {
     });
   }
 
-  alertToggle() {
-    // return this.itemAlert.addAlert(alert).subscribe((alert: Alert) => {
-    //   this.alert = alert;
-    // });
+  alertToggle(id: number, trigger: number) {
+    this.alert.id = id;
+    this.alert.threshold = trigger;
+    return this.itemAlert.addAlert(this.alert).subscribe(() => {
+    }, error => {
+      this.alertify.error(error);
+      console.error(error);
+    });
   }
 
   onSelect(item) {

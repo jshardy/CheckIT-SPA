@@ -13,6 +13,11 @@ import { InventorySearchComponent } from './inventory-search/inventory-search.co
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
+import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
+import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
+import { QuickbooksComponent } from './quickbooks/quickbooks.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AlertsComponent } from './alerts/alerts.component';
 
 const routes: Routes = [
@@ -25,6 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'customers/searchcustomers', component: CustomersComponent},
+      { path: 'auth/userpermissions', component: UserpermissionsComponent},
       { path: 'inventory', component: InventoryComponent},
       { path: 'invoices', component: InvoicesComponent},
       { path: 'invoices/invoice', component: InvoiceComponent },
@@ -34,7 +40,11 @@ const routes: Routes = [
       { path: 'inventory/newitem', component: NewItemComponent},
       { path: 'inventory-search', component: InventorySearchComponent },
       { path: 'test', component: TestComponent },
-      { path: 'customer-modal', component: CustomercomponentComponent},
+      { path: 'customer-modal', component: CustomercomponentComponent },
+      { path: 'invoice/search', component: InvoiceSearchComponent },
+      { path: 'quickbooks', component: QuickbooksComponent },
+      { path: 'password/reset', component: ResetPasswordComponent },
+      { path: 'user/profile', component: UserProfileComponent },
       { path: 'alerts', component: AlertsComponent}
     ]
   },

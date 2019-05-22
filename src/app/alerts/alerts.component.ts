@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../_models/item';
-import { Alert } from '../_models/alert';
+import { ItemAlert } from '../_models/alert';
+import { ItemAlertService } from '../_services/item-alert.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-alerts',
@@ -8,12 +9,23 @@ import { Alert } from '../_models/alert';
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
-  alerts?: Alert[];
-  alert?: Alert;
+  alerts?: ItemAlert[];
+  alert?: ItemAlert;
 
-  constructor() { }
+  constructor(private alertify: AlertifyService, private itemAlert: ItemAlertService) {
+   }
 
   ngOnInit() {
+    this.getAlerts();
+  }
+
+  getAlerts() {
+    return this.itemAlert.getAlerts().subscribe((alerts: ItemAlert[]) => {
+      this.alerts = alerts;
+    }, error => {
+      this.alertify.error(error);
+      console.error(error);
+    });
   }
 
 }
