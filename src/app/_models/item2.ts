@@ -8,7 +8,5 @@ export class Item2 {
     public description?: string,
     public quantity?: number,
     public archived?: boolean,
-    public locationId?: number,
-    public alertId?: number
   ) { }
 }

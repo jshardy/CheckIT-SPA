@@ -35,6 +35,7 @@ export class NewInvoiceComponent implements OnInit {
   salesTax = .07;
   totalPaid = 0;
   outgoinginv: Boolean = true;
+  sendToQuickBooks: Boolean = false;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
@@ -55,7 +56,6 @@ export class NewInvoiceComponent implements OnInit {
     this.currentDate = new Date();
     this.totalDue = this.subTotal = this.totalPaid = 0;
     this.outgoinginv = true;
-
 
 
     const item: Item = {
