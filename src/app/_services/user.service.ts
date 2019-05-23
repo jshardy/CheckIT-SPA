@@ -42,4 +42,13 @@ export class UserService {
   public DeleteUser(id: number): Observable<any> {
     return this.http.delete(this.baseURL + 'DeleteUser', { params: new HttpParams().set('id', id.toString())});
   }
+
+  public GetCurrentUser(): Observable<User> {
+    return this.http.get<User>(this.baseURL + 'GetCurrentUser');
+  }
+
+  public SetAdmin(id: number): Observable<any> {
+    return this.http.patch(this.baseURL + 'SetMainAdmin', {'id': id.toString()}, { params: new HttpParams().set('id', id.toString())});
+  }
+
 }

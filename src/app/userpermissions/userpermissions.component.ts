@@ -11,12 +11,16 @@ import { UserService } from '../_services/user.service'
 
 export class UserpermissionsComponent implements OnInit {
   users: User[];
+  current_user: User;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.GetUsers().subscribe((user: User[]) => {
       this.users = user;
+    });
+    this.userService.GetCurrentUser().subscribe((user: User) => {
+      this.current_user = user;
     });
   }
 
@@ -28,6 +32,15 @@ export class UserpermissionsComponent implements OnInit {
   DeleteUser(user: User) {
     this.userService.DeleteUser(user.id).subscribe();
     location.reload();
+  }
+
+  SetMainAdmin(user: User) {
+    this.userService.SetAdmin(user.id).subscribe();
+    location.reload();
+  }
+
+  IsMainAdmin() {
+    return this.current_user.mainAdmin;
   }
 
 }
