@@ -38,10 +38,16 @@
               <input type="text" name="Description" class="form-control" id="InventoryDescrip" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description">
             </div>
           </td>
-          <td ng-repeat-end>
+          <td>
             <div class="form-group">
               <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
             </div>
+          </td>
+          <td>
+            <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
+          </td>
+          <td ng-repeat-end>            
+            <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">
           </td>
       </tr>    
   </table>

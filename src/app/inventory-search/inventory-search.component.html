@@ -1,11 +1,20 @@
 <body>
   <form>
     <div class="form group">
-      <label for="exampleId">Inventory Id</label>
-      <input #searchBox type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="input" name="id" placeholder="Id #">
-      <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for</small>
+      <!-- <label for="exampleId">Inventory Id</label> -->
+      <input #idBox type="text" class="form-control" id="InventoryId" aria-describedby="helpId" [(ngModel)]="item.id" name="id" placeholder="Id #" (keyup)="idSearch(idBox.value)">
+      <!-- <small id="helpId" class="form-text text-muted">Enter the Id of the Item you're looking for.</small> -->
+
+      <input #upcBox type="text" class="form-control" aria-describedby="upcHelp" placeholder="UPC #" (keyup)="upcSearch(upcBox.value)" [(ngModel)]="item.upc">
+      <small id="upcHelp" class="form-text text-muted">Enter the UPC of the Item you're looking for.</small>
+
+      <input #priceBox type="text" class="form-control" id="InventoryPrice" aria-describedby="helpPrice" [(ngModel)]="price" placeholder="$0.00" (keyup)="search(priceBox.value)">
+      <small id="helpPrice" class="form-text text-muted">Enter the price of the Item you're looking for.</small>
+
+      <input #nameBox type="text" class="form-control" id="InventoryName" aria-describedby="helpName" [(ngModel)]="name" placeholder="Name" (keyup)="search(nameBox.value)">
+      <small id="helpName" class="form-text text-muted">Enter the name of the Item you're looking for.</small>
     </div>
-    <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit(searchBox.value)">Submit</button>
+      <!-- <button type="submit" class="btn btn-outline-success mr-3" (click)="onSubmit(searchBox.value)">Submit</button> -->
   </form>
   <div class="testData">
     <h2>Search Results</h2>
