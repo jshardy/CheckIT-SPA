@@ -38,5 +38,14 @@ export class QuickService {
   public return(pair: StatePair): Observable<any> {
     return this.http.post(this.baseURL + 'ReturnAuth', pair);
   }
-  
+
+  public quickAPICall(invoiceId: Number): Observable<any> {
+    console.log('QuickService - Recieved invoiceId: ' + invoiceId);
+    // return this.http.post(this.baseURL + 'QuickAPICall', {
+    //   params: new HttpParams()
+    //     .set('InvoiceId', invoiceId.toString())
+    // });
+    return this.http.post(this.baseURL + 'QuickAPICall?InvoiceId=' + invoiceId.toString(), {invoiceId});
+  }
+
 }

@@ -19,8 +19,8 @@
               </td>
 
               <td>
-                Invoice #: {{ currentInvoice.id || 'ERROR' }}<br>
-                Created: {{ currentInvoice.invoiceDate || '-OOO' }}<br>
+                Invoice #: {{ currentInvoice?.id || 'ERROR' }}<br>
+                Created: {{ currentInvoice?.invoiceDate || '-OOO' }}<br>
                 Payment Due: February 1, 1970
               </td>
             </tr>
@@ -34,12 +34,12 @@
             <tr>
               <td>
                 {{ companyNameStr || 'Error Company, Inc' }}<br>
-                {{ addr.street || 'Error Street' }}<br>
-                {{ addr.city || 'ErrorCity' }}, {{addr.state || 'ER'}}, {{ addr.zipCode || '00000' }}
+                {{ addr?.street || 'Error Street' }}<br>
+                {{ addr?.city || 'ErrorCity' }}, {{addr?.state || 'ER'}}, {{ addr?.zipCode || '00000' }}
               </td>
 
               <td>
-                {{ payeeAddr.street || 'Acme Corp.'}}<br>
+                {{ payeeAddr?.street || 'Acme Corp.'}}<br>
                 {{ 'Customer Name' }}<br>
                 {{'CustomerEmail@email.com '}}</td>
             </tr>
