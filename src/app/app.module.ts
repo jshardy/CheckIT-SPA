@@ -72,7 +72,7 @@ export function tokenGetter() {
       QuickbooksComponent,
       ResetPasswordComponent,
       UserProfileComponent,
-      AlertComponent
+      AlertsComponent
    ],
    imports: [
       BrowserModule,
