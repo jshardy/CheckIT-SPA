@@ -42,6 +42,7 @@ export class CustomerComponent implements OnInit {
     if (this.id === undefined) {
       this.sub = this.route.params.subscribe(params => {
         id = +params['id'];
+        console.log('Customer ID:' + id);
         this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
            this.currentCustomer = customer;
            let i = 0;
@@ -52,7 +53,7 @@ export class CustomerComponent implements OnInit {
              i++;
            });
         });
-
+        console.log('Current customer:' + this.currentCustomer);
         this.invoiceService.searchInvoiceByCustId(+params['id']).subscribe((invoice: Invoice[]) => {
           this.invoices = invoice; // this has issues. this.invoices isn't visible....?
           console.log(invoice);

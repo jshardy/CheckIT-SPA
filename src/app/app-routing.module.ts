@@ -28,22 +28,28 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'customers/searchcustomers', component: CustomersComponent},
-      { path: 'auth/userpermissions', component: UserpermissionsComponent},
-      { path: 'inventory', component: InventoryComponent},
-      { path: 'invoices', component: InvoicesComponent},
-      { path: 'invoices/invoice', component: InvoiceComponent },
-      { path: 'invoice/new', component: NewInvoiceComponent },
-      { path: 'customers/customer', component: CustomerComponent},
-      { path: 'customers/new', component: NewcustomerComponent},
-      { path: 'inventory/newitem', component: NewItemComponent},
-      { path: 'inventory-search', component: InventorySearchComponent },
-      { path: 'test', component: TestComponent },
+      { path: 'customers/searchcustomers', component: CustomersComponent}, // Customer->Search
+      { path: 'customers/customer', component: CustomerComponent}, // Customer->Search-> then type a persons name. Selecting an invoice gets you here
+      { path: 'customers/new', component: NewcustomerComponent}, // Customer->New
+
+      { path: 'invoice/new', component: NewInvoiceComponent }, // Invoice-> New Invoice
+      { path: 'invoice/search', component: InvoiceSearchComponent }, // Invoice->Search
+
+      { path: 'inventory/newitem', component: NewItemComponent}, // Inventory->New Items
+      { path: 'inventory-search', component: InventorySearchComponent }, // Inventory->Search
+      { path: 'inventory', component: InventoryComponent}, // Inventory->All items
+
+      { path: 'auth/userpermissions', component: UserpermissionsComponent}, // Auth->Permissions
+
+      { path: 'invoices', component: InvoicesComponent}, // Not connected.
+      { path: 'invoices/invoice', component: InvoiceComponent }, // Not connected.
+
+      { path: 'test', component: TestComponent }, // Hidden
       { path: 'customer-modal', component: CustomercomponentComponent },
-      { path: 'invoice/search', component: InvoiceSearchComponent },
-      { path: 'quickbooks', component: QuickbooksComponent },
-      { path: 'password/reset', component: ResetPasswordComponent },
-      { path: 'user/profile', component: UserProfileComponent },
+
+      { path: 'quickbooks', component: QuickbooksComponent }, // Auth->Quickbooks
+      { path: 'password/reset', component: ResetPasswordComponent }, // Access via login screen.
+      { path: 'user/profile', component: UserProfileComponent }, // Username menu->Settings
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
