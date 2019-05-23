@@ -47,18 +47,15 @@ const routes: Routes = [
 
       { path: 'test', component: TestComponent }, // Hidden
       { path: 'customer-modal', component: CustomercomponentComponent },
-<<<<<<< HEAD
 
       { path: 'quickbooks', component: QuickbooksComponent }, // Auth->Quickbooks
       { path: 'password/reset', component: ResetPasswordComponent }, // Access via login screen.
       { path: 'user/profile', component: UserProfileComponent }, // Username menu->Settings
-=======
       { path: 'invoice/search', component: InvoiceSearchComponent },
       { path: 'quickbooks', component: QuickbooksComponent },
       { path: 'password/reset', component: ResetPasswordComponent },
       { path: 'user/profile', component: UserProfileComponent },
       { path: 'alerts', component: AlertsComponent}
->>>>>>> 6d1918935cd5c6e062d0966385eba021fbd663f0
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }
