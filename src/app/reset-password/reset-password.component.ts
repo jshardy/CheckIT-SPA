@@ -11,6 +11,7 @@ import { AlertifyService } from '../_services/alertify.service';
 export class ResetPasswordComponent implements OnInit {
   @Output() cancelPasswordReset = new EventEmitter();
   model: any = {};
+  email: String;
 
   constructor(private router: Router, private auth: AuthService, private alertify: AlertifyService) { }
 

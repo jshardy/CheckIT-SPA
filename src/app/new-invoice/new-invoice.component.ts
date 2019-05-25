@@ -171,9 +171,9 @@ export class NewInvoiceComponent implements OnInit {
   submitQuickBooks(): void {
     this.quickService.quickAPICall(this.lastInvoiceId).subscribe(() => {
       console.log('Invoice sent to Quickbooks: ' + this.lastInvoiceId);
-      this.lastInvoiceId = null;
-      this.clearPage();
     });
+    this.lastInvoiceId = null;
+    this.clearPage();
   }
 
   submitInvoice(): void {
