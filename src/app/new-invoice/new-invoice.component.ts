@@ -105,7 +105,6 @@ export class NewInvoiceComponent implements OnInit {
 
     this.items.push(item);
     this.priceChanged();
-    //document.getElementById(this.items.length.toString()).focus();
   }
 
   deleteRow(item: Item): void {
@@ -191,7 +190,7 @@ export class NewInvoiceComponent implements OnInit {
     }
 
     if (this.items.length > 0 && this.items[0].name.length > 0) {
-      let invoice: InvoiceData = {
+      const invoice: InvoiceData = {
         invoiceDate: this.currentDate,
         amountPaid: this.totalPaid,
         invoiceCustID: this.selectedCustomer.id,
@@ -206,7 +205,7 @@ export class NewInvoiceComponent implements OnInit {
         console.log('Getting Last Invoice');
         for (let i = 0; i < this.items.length; i++) {
           if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
-            let lineItem: LineItemData = {
+            const lineItem: LineItemData = {
               InvoiceId: linvoice.lastInvoiceId,
               price: this.items[i].price,
               quantity: this.items[i].quantity,
@@ -226,7 +225,7 @@ export class NewInvoiceComponent implements OnInit {
             if (this.sendToQuickBooks === true) {
               this.submitQuickBooks();
             }
-            
+
             this.clearPage();
           }
         }
