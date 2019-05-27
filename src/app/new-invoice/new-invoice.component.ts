@@ -15,6 +15,7 @@ import { LineItemData } from '../_models/LineItemData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { InvoicesComponent } from '../invoices/invoices.component';
 import { QuickService } from '../_services/quick.service';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-new-invoice',
@@ -112,7 +113,14 @@ export class NewInvoiceComponent implements OnInit {
     this.priceChanged();
   }
 
+  isNumber(value: Number): Boolean {
+    return ((value != null) && !isNaN(Number(value)));
+  }
+
   priceChanged(): void {
+    console.log('TotalPaid: ' + this.totalPaid);
+    console.log('IsNumber: ' + isNumber(this.totalPaid));
+
     this.subTotal = 0;
     for (const item of this.items) {
       this.subTotal += item.price * item.quantity;

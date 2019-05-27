@@ -12,6 +12,7 @@
     <!-- Person the invoice is mailed to -->
     <div class="customerName">
       <div class="alert alert-danger" *ngIf="customerNotFound">Customer not found.</div>
+      <label>Invoice to:</label>
       <input *ngIf="customerAddress === null" [(ngModel)]="selectedCustomerName"
             [typeahead]="customerData"
             typeaheadOptionField="firstLastName"
@@ -19,10 +20,10 @@
             [typeaheadScrollable]="true"
             (typeaheadOnSelect)="onCustomerSelect($event)"
             class="form-control">
-            <div class="" style="padding-top: 3px;">
+            <!-- <div class="" style="padding-top: 3px;">
               <button id="btnNewCustomer" *ngIf="customerAddress === null" class="btn btn-outline-success mr-3">New Customer</button>
-              <!-- <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null; this.selectedCustomerName = ''" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button> -->
-            </div>
+              <button id="btnCancelCustomerSelection" type="button" *ngIf="customerAddress != null" (click)="this.customerAddress = null; this.selectedCustomerName = ''" class="btn btn-outline-danger btn-group mr-3">Cancel Customer</button>
+            </div> -->
     </div>
 
     <div id="identity">
@@ -137,7 +138,7 @@
       <tr>
         <td colspan="4" class="blank"> </td>
         <td colspan="4" class="total-line">Amount Paid</td>
-        <td class="total-value">{{ totalPaid | currency }}</td>
+        <td class="total-value"><textarea id="totalPaid" [(ngModel)]="totalPaid" (input)='priceChanged()'></textarea></td>
       </tr>
 
       <tr>
