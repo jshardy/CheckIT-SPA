@@ -12,6 +12,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
 // import { CarouselModule } from 'ngx-bootstrap/carousel';
 
+// IF YOU HAVE A COMPONENT IT MUST BE LISTED HERE.
+// SCROLL DOWN TO DECLARATIONS AND PUT IT IN THERE!!
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,7 +22,6 @@ import { RegisterComponent } from './register/register.component';
 import { CustomersComponent } from './customers/customers.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
-import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
@@ -39,12 +40,14 @@ import { AlertsComponent } from './alerts/alerts.component';
 
 import { AuthGuard } from './_guard/auth.guard';
 
+// IF YOU CREATED A SERVICE IT SHOULD BE HERE!
+// SCROLL DOWN TO PROVIDERS AND ADD IT TO PROVIDERS!
 import { AddressService } from './_services/address.service';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthService } from './_services/auth.service';
 import { CustomerService } from './_services/customer.service';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { InventoryService } from './_services/inventory.service';
+import { ItemService } from './_services/inventory.service';
 import { InvoiceService } from './_services/invoice.service';
 import { ItemAlertService } from './_services/item-alert.service';
 import { QuickService } from './_services/quick.service';
@@ -107,7 +110,7 @@ export function tokenGetter() {
       AuthService,
       CustomerService,
       ErrorInterceptorProvider,
-      InventoryService,
+      ItemService,
       InvoiceService,
       ItemAlertService,
       QuickService,
