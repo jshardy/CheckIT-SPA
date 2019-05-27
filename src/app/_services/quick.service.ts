@@ -12,7 +12,8 @@ import { Observable, throwError } from 'rxjs';
 export class QuickService {
   params?: HttpParams;
   baseURL = environment.apiURL + 'QuickBook/';
-
+  static IsConnected: Boolean = false;
+  
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
