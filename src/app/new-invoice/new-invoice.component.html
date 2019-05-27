@@ -62,7 +62,7 @@
         <tr>
           <td class="meta-head">Send to QB</td>
           <td>
-            <div class="due"><input [disabled]="!quickService.IsConnected() == true" type="checkbox" [(ngModel)]="sendToQuickBooks" /></div>
+            <div class="due"><input type="checkbox" [(ngModel)]="sendToQuickBooks"/></div>
           </td>
         </tr>
       </table>
@@ -154,13 +154,8 @@
         Finance Charge of 1.5% will be made on unpaid balances after 30 days.
     </div>
     <div id="btnSubmit">
-      <button class="fa-align-right" *ngIf="lastInvoiceId" (click)="clearPage()"
-        class="btn btn-outline-success mr-3">Cancel</button>
-      <button class="fa-align-right" *ngIf="lastInvoiceId" (click)="submitQuickBooks()"
-        class="btn btn-outline-success mr-3">Submit Last Invoice Quickbooks</button>
       <button class="fa-align-right" class="btn btn-outline-success mr-3" *ngIf="customerAddress !== null || items.length !== 1" (click)="clearPage()">Clear Invoice</button>
       <button class="fa-align-right" *ngIf="customerAddress !== null" (click)="submitInvoice()" class="btn btn-outline-success mr-3">Submit Invoice</button>
-
     </div>
   </div>
 

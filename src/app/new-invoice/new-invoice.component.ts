@@ -171,13 +171,14 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitQuickBooks(): void {
-    this.quickService.quickAPICall(this.lastInvoiceId).subscribe(() => {
-      console.log('Invoice sent to Quickbooks: ' + this.lastInvoiceId);
-    });
-    this.lastInvoiceId = null;
-    this.clearPage();
+    if (this.lastInvoiceId > 0) {
+      this.quickService.quickAPICall(this.lastInvoiceId).subscribe(() => {
+        console.log('Invoice sent to Quickbooks: ' + this.lastInvoiceId);
+      });
+      this.lastInvoiceId = null;
+      this.clearPage();
+    }
   }
-
   submitInvoice(): void {
     if (this.items !== null) {
       this.items.forEach(function (invoice) {
@@ -220,7 +221,12 @@ export class NewInvoiceComponent implements OnInit {
               //   });
               // }
               console.log('Added line item: ' + lineItem);
-             });
+            });
+
+            if (this.sendToQuickBooks === true) {
+              this.submitQuickBooks();
+            }
+            
             this.clearPage();
           }
         }
