@@ -15,6 +15,7 @@ import { LineItemData } from '../_models/LineItemData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { InvoicesComponent } from '../invoices/invoices.component';
 import { QuickService } from '../_services/quick.service';
+
 @Component({
   selector: 'app-new-invoice',
   templateUrl: './new-invoice.component.html',
@@ -77,6 +78,7 @@ export class NewInvoiceComponent implements OnInit {
     this.customerService.getCustomersAll().subscribe((customer: Customer[]) => {
       // Setup first and last names
       this.ParseCustomers(customer);
+      console.log('Is Quickbooks connected? ' + this.quickService.IsConnected());
     });
 
     const item: Item = {

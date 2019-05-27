@@ -12,8 +12,8 @@ import { Observable, throwError } from 'rxjs';
 export class QuickService {
   params?: HttpParams;
   baseURL = environment.apiURL + 'QuickBook/';
-  static IsConnected: Boolean = false;
-  
+  _IsConnected: Boolean = false;
+
   constructor(private http: HttpClient) { }
 
   private handleError(error: HttpErrorResponse) {
@@ -37,7 +37,12 @@ export class QuickService {
   }
 
   public return(pair: StatePair): Observable<any> {
+    this._IsConnected = true;
     return this.http.post(this.baseURL + 'ReturnAuth', pair);
+  }
+
+  public IsConnected() {
+    return this._IsConnected;
   }
 
   public quickAPICall(invoiceId: Number): Observable<any> {

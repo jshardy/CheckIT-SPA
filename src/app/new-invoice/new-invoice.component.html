@@ -62,7 +62,7 @@
         <tr>
           <td class="meta-head">Send to QB</td>
           <td>
-            <div class="due"><input type="checkbox" [(ngModel)]="sendToQuickBooks" /></div>
+            <div class="due"><input [disabled]="!quickService.IsConnected() == true" type="checkbox" [(ngModel)]="sendToQuickBooks" /></div>
           </td>
         </tr>
       </table>

@@ -15,26 +15,20 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { CustomersComponent } from './customers/customers.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { InvoicesComponent } from './invoices/invoices.component';
-import { AlertifyService } from './_services/alertify.service';
-import { AuthGuard } from './_guard/auth.guard';
 import { InvoiceService } from './_services/invoice.service';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { CustomerComponent } from './customer/customer.component';
-import { CustomerService } from './_services/customer.service';
 import { NewcustomerComponent } from './newcustomer/newcustomer.component';
 import { InventorySearchComponent } from './inventory-search/inventory-search.component';
 import { InventoryResultsComponent } from './inventory-results/inventory-results.component';
 import { NewItemComponent } from './inventory/newitem/newitem.component';
 import { NewInvoiceComponent } from './new-invoice/new-invoice.component';
 import { TestComponent } from './test/test.component';
-import { AddressService } from './_services/address.service';
 import { CustomercomponentComponent } from './customercomponent/customercomponent.component';
 import { UserpermissionsComponent } from './userpermissions/userpermissions.component';
 import { InvoiceSearchComponent } from './invoice-search/invoice-search.component';
@@ -43,6 +37,18 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AlertsComponent } from './alerts/alerts.component';
 
+import { AuthGuard } from './_guard/auth.guard';
+
+import { AddressService } from './_services/address.service';
+import { AlertifyService } from './_services/alertify.service';
+import { AuthService } from './_services/auth.service';
+import { CustomerService } from './_services/customer.service';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { InventoryService } from './_services/inventory.service';
+import { InvoiceService } from './_services/invoice.service';
+import { ItemAlertService } from './_services/item-alert.service';
+import { QuickService } from './_services/quick.service';
+import { UserService } from './_services/user.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -95,13 +101,17 @@ export function tokenGetter() {
       })
    ],
    providers: [
-      AuthService,
-      ErrorInterceptorProvider,
-      AlertifyService,
       AuthGuard,
-      InvoiceService,
+      AddressService,
+      AlertifyService,
+      AuthService,
       CustomerService,
-      AddressService
+      ErrorInterceptorProvider,
+      InventoryService,
+      InvoiceService,
+      ItemAlertService,
+      QuickService,
+      UserService,
    ],
    bootstrap: [
       AppComponent
