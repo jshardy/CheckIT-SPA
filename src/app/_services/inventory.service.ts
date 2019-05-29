@@ -19,13 +19,14 @@ export class ItemService {
   // Post Statements
   // used to create and add a Item to the database
   public createItem(item: Item2): Observable<any> {
-    console.log("ItemService: Sending item\n");
+    console.log('ItemService: Sending item\n');
     return this.httpClient.post(this.baseURL + 'AddInventory', item);
   }
 
   // used to edit an existing Item's information
-  public updateItem(item: Item) {
-    return this.httpClient.post<Item>(this.baseURL + 'UpdateInventory', item);
+  public updateItem(item: Item): Observable<any> {
+    console.log('Updating Inventory\n');
+    return this.httpClient.post(this.baseURL + 'UpdateInventory', item);
   }
 
   // Delete statements
@@ -48,22 +49,6 @@ export class ItemService {
 
   // fetches an item from the UPC database connection to auto fill in information
   public searchUPC(upc: string): Observable<Item> {
-    return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/?UPC=' + upc);
-  }
-
-   public searchItems(id?: number, upc?: string, price?: number, name?: string, description?: string, quantity?: number,
-    archived?: boolean, locationId?: number, alertId?: number): Observable<Item[]> {
-    return this.httpClient.get<Item[]>(this.baseURL, {
-      params: new HttpParams()
-      // .set('Id', id != null)
-      .set('Upc', upc != null ? upc.trim() : '')
-      // .set('Price', price)
-      .set('Name', name != null ? name.trim() : '')
-      .set('Description', description != null ? description.trim() : '')
-      // .set('Quantity', quantity != null)
-      // .set('Archived', archived != null)
-      // .set('LocationId', locationId != null)
-      // .set('AlertId', alertId != null)
-      });
+    return this.httpClient.get<Item>(this.baseURL + 'UpcInfo/' + upc);
   }
 }

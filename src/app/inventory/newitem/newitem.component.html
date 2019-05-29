@@ -39,29 +39,10 @@
       <button type="submit" class="btn btn-outline-success" (click)="addItem()">Add Item</button>
     </form>
     <div class="testData">
-      <div><span>UPC: </span>{{item.upc || 'UPC Not in database.'}}</div>
-      <div><span>price: </span>{{item.price | currency }}</div>
+      <div><span>UPC: </span>{{item.upc}}</div>
+      <div><span>price: </span>{{item.price}}</div>
       <div><span>name: </span>{{item.name}}</div>
       <div><span>description: </span>{{item.description}}</div>
       <div><span>quantity: </span>{{item.quantity}}</div>
     </div>
   </body>
-  <!-- Modal to clearly display to the user the UPC wasn't found on the database we search, not being used yet -->
-  <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">UPC Error</h5>
-          <button type="button" class="close" data-dismis="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Error, the UPC you have entered has not been found from the database. Please try again.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>

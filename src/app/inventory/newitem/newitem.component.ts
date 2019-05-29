@@ -26,7 +26,7 @@ import { Item2 } from 'src/app/_models/item2';
 
 export class NewItemComponent implements OnInit {
 
-  item?: Item2 = new Item2();
+  item?: Item;
   upc?: string;
   searchUPC?: string;
   item_found: Boolean = false;
@@ -34,18 +34,22 @@ export class NewItemComponent implements OnInit {
   constructor(private itemService: ItemService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.item = new Item2();
   }
 
   // searches the upc database for most of the information of the item
   databaseSearch(upc: string) {
+    console.log('searching upc database\n');
     this.searchUPC = upc;
     return this.itemService.searchUPC(upc).subscribe((item: Item2) => {
-      if (this.item.id > 0) {
-        this.item = item;
-        this.item_found = true;
-      } else {
-        this.item_found = false;
-      }
+      this.item = item;
+      this.searchUPC = upc;
+      // if (this.item.id > 0) {
+      //   this.item = item;
+      //   this.item_found = true;
+      // } else {
+      //   this.item_found = false;
+      // }
     }, error => {
       this.alertify.error(error);
     });
