@@ -43,6 +43,15 @@ export class InventoryComponent implements OnInit {
     });
   }
 
+  updateItem(item: Item) {
+    return this.itemService.updateItem(item).subscribe(() => {
+      this.item = item;
+    }, error => {
+      this.alertify.error(error);
+      console.error(error);
+    });
+  }
+
   onSelect(item) {
     this.selectedItem = item;
   }
