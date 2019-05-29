@@ -27,5 +27,4 @@ export class AlertsComponent implements OnInit {
       console.error(error);
     });
   }
-
 }
