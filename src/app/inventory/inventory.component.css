@@ -28,3 +28,64 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: whitesmoke;
 }
+
+#outer{
+    width: 100%;
+
+    /* Firefox */
+    display: flex;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+
+    /* Safari and Chrome */
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    /* W3C */
+    display: box;
+    box-pack: center;
+    box-align: center;
+}
+#inner{
+    width: 50%;
+}
+
+.input-label {
+    border: none;
+    background-color: #FFFFFF;
+  }
+
+  .customer-box {
+    max-width: 90%;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+  }
+
+.item {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+  }
+
+.header {
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.title {
+  font-size: 45px;
+  line-height: 45px;
+  color: #333;
+}
+
+.right {
+  text-align: right;
+  display: block;
+}

@@ -5,6 +5,8 @@ import { CustomerSelectionData } from '../_models/CustomerSelectionData';
 import { CustomerService } from '../_services/customer.service';
 import { Customer } from '../_models/customer';
 import { variable } from '@angular/compiler/src/output/output_ast';
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
+import { initServicesIfNeeded } from '@angular/core/src/view';
 
 @Component({
   selector: "app-invoice-search",
@@ -58,6 +60,17 @@ export class InvoiceSearchComponent implements OnInit {
     }
   }
 
+  totalCost(invoice: Invoice): Number {
+    if (invoice.lineItems === undefined) {
+      return 0;
+    }
+    
+    let sum = 0;
+    for (let i = 0; i < invoice.lineItems.length; i++) {
+      sum += invoice.lineItems[i].price * invoice.lineItems[i].quantitySold;
+    }
+    return sum;
+  }
   search(): void {}
 
   searchByName(event): void {
