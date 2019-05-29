@@ -10,6 +10,7 @@ import { SelectDropDownModule } from 'ngx-select-dropdown';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
 // import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -84,6 +85,7 @@ export function tokenGetter() {
       SelectDropDownModule,
       TypeaheadModule.forRoot(),
       ModalModule.forRoot(),
+      Ng2SearchPipeModule,
       // CarouselModule.forRoot(),
       AccordionModule.forRoot(),
       JwtModule.forRoot({
