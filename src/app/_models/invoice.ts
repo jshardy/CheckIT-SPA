@@ -17,6 +17,7 @@ export interface Invoice {
   amountPaid?: number;
   invoiceCustID?: number;
   lineItems?: LineItem[];
+  total?: Number;
 }
 
 

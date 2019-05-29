@@ -19,8 +19,8 @@ import { InvoiceService } from '../_services/invoice.service';
 })
 export class CustomerComponent implements OnInit {
   sub?: any;
-  currentCustomer?: Customer;
-  invoices?: Invoice[];
+  currentCustomer?: Customer = new Customer();
+  invoices?: Invoice[] = [];
   @Input() id: number;
   modify: boolean;
   public stateNames =

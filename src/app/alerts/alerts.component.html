@@ -1,14 +1,39 @@
 <body>
   <h2>Alerts</h2>
   <div>
-    <li *ngFor="let inactiveAlerts of inactiveAlerts">
-    </li>
-      <div><span>id: </span>{{alert.id}}</div>
-      <div><span>ItemId: </span>{{alert.alertItemId}}</div>
-      <div><span>Threshold: </span>{{alert.threshold}}</div>
-      <div><span>DateUnder: </span>{{alert.dateUnder}}</div>
-      <div><span>DateOrdered: </span>{{alert.dateOrdered}}</div>
-      <div><span>AlertOn: </span>{{alert.alertOn}}</div>
-      <div><span>AlertStatus: </span>{{alert.alertStatus}}</div>
+    <tr *ngFor="let alert of alerts">
+      <td ng-repeat-start="alert in alerts">
+        <div class="form-group">
+          <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.id">
+      </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <input type="text" name=ItemId id="ItemId" class="form-control" placeholder="Alert Item Id" readonly [(ngModel)]="alert.alertItemId">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.threshold">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.dateUnder">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.dateOrdered">
+        </div>
+    </td>
+    <td>
+        <div class="form-group">
+            <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.alertOn">
+        </div>
+    </td>
+    <div class="form-group" ng-repeat-end>
+        <input type="text" name=AlertId id="AlertId" class="form-control" placeholder="Alert Id" readonly [(ngModel)]="alert.alertStatus">
+    </div>
   </div>
 </body>

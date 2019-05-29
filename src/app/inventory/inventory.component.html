@@ -1,54 +1,58 @@
-<body>
-  <div class="invWrapper">
-    <h2>Inventory List</h2>
-    <table style="width:80%">
-      <tr>
-        <!-- table headers -->
-        <th>Inventory Id</th>
-        <th>UPC</th>
-        <th>Unit Price</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Quantity in Stock</th>
-      </tr>   
-         <!-- list of inventory items -->
-      <tr *ngFor="let item of items">
-          <td ng-repeat-start="item in items">
-            <div class="form-group">
-                <input type="text" name=InventoryId id="InventoryId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId" readonly [(ngModel)]="item.id">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" name="UPC" id="InventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="money" name="InventoryPrice" id="InventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" name="InventoryName" id="InventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" name="Description" class="form-control" id="InventoryDescrip" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description">
-            </div>
-          </td>
-          <td>
-            <div class="form-group">
-              <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
-            </div>
-          </td>
-          <td>
-            <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
-          </td>
-          <td ng-repeat-end>            
-            <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">
-          </td>
-      </tr>    
-  </table>
-<body>
+<div class="invWrapper">
+  <h2 style="text-align: center">Inventory List</h2>
+  <table class="table table-striped customer-box" style="width:100%">
+    <thead>
+      <!-- table headers -->
+      <th>Inventory Id</th>
+      <th>UPC</th>
+      <th>Unit Price</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Quantity in Stock</th>
+      <th>Update</th>
+      <th>Alert Creation</th>
+      <th>Alert Threshold</th>
+    </thead>
+        <!-- list of inventory items -->
+    <tr *ngFor="let item of items">
+        <td ng-repeat-start="item in items">
+          <div class="form-group">
+              <input type="text" name=InventoryId id="InventoryId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId" readonly [(ngModel)]="item.id">
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="text" name="UPC" id="InventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="money" name="InventoryPrice" id="InventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price">
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="text" name="InventoryName" id="InventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name">
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="text" name="Description" class="form-control" id="InventoryDescrip" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description">
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <input type="text" name="Quantity" id="InventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity">
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-outline-success mr-3" type="post" id="modifyButton" (click)="updateItem(item)">Modify Item</button>
+        </td>
+        <td>
+          <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
+        </td>
+        <td ng-repeat-end>
+          <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">
+        </td>
+    </tr>
+</table>

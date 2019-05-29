@@ -9,6 +9,7 @@
         <!-- Button for sending info to the UPC database we're connected to -->
         <button type="primary" class="btn btn-outline-success" (click)="databaseSearch(UpcBox.value)">Search UPC</button>
         <small if="upcSearch" class="form-text text-muted">Press the button above to search a database for information.</small>
+        <small if="item_found === false" class="form-text text-muted">Item not found in database.</small>
       </div>
       <div class="was-validated">
         <!-- Unit price portion -->
@@ -45,22 +46,3 @@
       <div><span>quantity: </span>{{item.quantity}}</div>
     </div>
   </body>
-  <!-- Modal to clearly display to the user the UPC wasn't found on the database we search, not being used yet -->
-  <div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">UPC Error</h5>
-          <button type="button" class="close" data-dismis="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Error, the UPC you have entered has not been found from the database. Please try again.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
