@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Item } from '../_models/item';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Item2 } from '../_models/item2';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,9 @@ export class ItemService {
 
   // Post Statements
   // used to create and add a Item to the database
-  public createItem(item: Item) {
-    return this.httpClient.post<Item>(this.baseURL + 'AddInventory', item);
+  public createItem(item: Item2): Observable<any> {
+    console.log("ItemService: Sending item\n");
+    return this.httpClient.post(this.baseURL + 'AddInventory', item);
   }
 
   // used to edit an existing Item's information

@@ -12,6 +12,7 @@ import { Observable, throwError } from 'rxjs';
 export class QuickService {
   params?: HttpParams;
   baseURL = environment.apiURL + 'QuickBook/';
+  _IsConnected: Boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -36,7 +37,21 @@ export class QuickService {
   }
 
   public return(pair: StatePair): Observable<any> {
+    this._IsConnected = true;
     return this.http.post(this.baseURL + 'ReturnAuth', pair);
   }
-  
+
+  public IsConnected() {
+    return this._IsConnected;
+  }
+
+  public quickAPICall(invoiceId: Number): Observable<any> {
+    console.log('QuickService - Recieved invoiceId: ' + invoiceId);
+    // return this.http.post(this.baseURL + 'QuickAPICall', {
+    //   params: new HttpParams()
+    //     .set('InvoiceId', invoiceId.toString())
+    // });
+    return this.http.post(this.baseURL + 'QuickAPICall?InvoiceId=' + invoiceId.toString(), {invoiceId});
+  }
+
 }

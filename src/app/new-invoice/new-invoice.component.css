@@ -14,6 +14,8 @@ body { font: 14px/1.4 Open Sans; }
 button { margin: 20; padding: 20; }
 
 textarea { border: 0; font: 12.5px Open Sans; overflow: hidden; resize: none; }
+#totalPaid { border: 0; font: 13.5px Open Sans; overflow: hidden; resize: none; }
+
 table { border-collapse: collapse; }
 table td, table th { border: 1px solid black; padding: 5px; }
 

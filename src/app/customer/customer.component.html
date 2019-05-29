@@ -90,12 +90,12 @@
         </td>
       </tr>
 
-      <tr class="item" *ngFor="let invoice of currentCustomer?.customerInvoiceList" onclick="window.location='../invoices/invoice'">
+      <tr class="item" *ngFor="let invoice of invoices" onclick="window.location='../invoices/invoice'">
         <td>
-          {{ invoice?.invoiceDate || '-' }}
+          {{ invoice?.invoiceDate | date:'short' || '-'}}
         </td>
         <td>
-          {{ invoice?.id || '-' }}
+          {{ invoice.id || '-' }}
         </td>
       </tr>
     </table>

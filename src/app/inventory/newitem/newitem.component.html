@@ -9,6 +9,7 @@
         <!-- Button for sending info to the UPC database we're connected to -->
         <button type="primary" class="btn btn-outline-success" (click)="databaseSearch(UpcBox.value)">Search UPC</button>
         <small if="upcSearch" class="form-text text-muted">Press the button above to search a database for information.</small>
+        <small if="item_found === false" class="form-text text-muted">Item not found in database.</small>
       </div>
       <div class="was-validated">
         <!-- Unit price portion -->
@@ -38,8 +39,8 @@
       <button type="submit" class="btn btn-outline-success" (click)="addItem()">Add Item</button>
     </form>
     <div class="testData">
-      <div><span>UPC: </span>{{item.upc}}</div>
-      <div><span>price: </span>{{item.price}}</div>
+      <div><span>UPC: </span>{{item.upc || 'UPC Not in database.'}}</div>
+      <div><span>price: </span>{{item.price | currency }}</div>
       <div><span>name: </span>{{item.name}}</div>
       <div><span>description: </span>{{item.description}}</div>
       <div><span>quantity: </span>{{item.quantity}}</div>

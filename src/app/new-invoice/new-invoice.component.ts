@@ -14,6 +14,9 @@ import { InvoiceData } from '../_models/invoiceData';
 import { LineItemData } from '../_models/LineItemData';
 import { LastInvoice } from '../_models/LastInvoice';
 import { InvoicesComponent } from '../invoices/invoices.component';
+import { QuickService } from '../_services/quick.service';
+import { isNumber } from 'util';
+
 @Component({
   selector: 'app-new-invoice',
   templateUrl: './new-invoice.component.html',
@@ -35,13 +38,16 @@ export class NewInvoiceComponent implements OnInit {
   salesTax = .07;
   totalPaid = 0;
   outgoinginv: Boolean = true;
+  sendToQuickBooks: Boolean = false;
+  lastInvoiceId: Number;
 
   constructor(private invoiceService: InvoiceService,
     private alertify: AlertifyService,
     private customerService: CustomerService,
     private addressService: AddressService,
     private itemService: ItemService,
-    private alertifyService: AlertifyService) {
+    private alertifyService: AlertifyService,
+    private quickService: QuickService) {
   }
 
   clearPage(): void {
@@ -55,7 +61,6 @@ export class NewInvoiceComponent implements OnInit {
     this.currentDate = new Date();
     this.totalDue = this.subTotal = this.totalPaid = 0;
     this.outgoinginv = true;
-
 
 
     const item: Item = {
@@ -74,6 +79,7 @@ export class NewInvoiceComponent implements OnInit {
     this.customerService.getCustomersAll().subscribe((customer: Customer[]) => {
       // Setup first and last names
       this.ParseCustomers(customer);
+      console.log('Is Quickbooks connected? ' + this.quickService.IsConnected());
     });
 
     const item: Item = {
@@ -100,7 +106,6 @@ export class NewInvoiceComponent implements OnInit {
 
     this.items.push(item);
     this.priceChanged();
-    document.getElementById(this.items.length.toString()).focus();
   }
 
   deleteRow(item: Item): void {
@@ -108,7 +113,14 @@ export class NewInvoiceComponent implements OnInit {
     this.priceChanged();
   }
 
+  isNumber(value: Number): Boolean {
+    return ((value != null) && !isNaN(Number(value)));
+  }
+
   priceChanged(): void {
+    console.log('TotalPaid: ' + this.totalPaid);
+    console.log('IsNumber: ' + isNumber(this.totalPaid));
+
     this.subTotal = 0;
     for (const item of this.items) {
       this.subTotal += item.price * item.quantity;
@@ -165,18 +177,28 @@ export class NewInvoiceComponent implements OnInit {
       });
   }
 
+  submitQuickBooks(): void {
+    if (this.lastInvoiceId > 0) {
+      this.quickService.quickAPICall(this.lastInvoiceId).subscribe(() => {
+        console.log('Invoice sent to Quickbooks: ' + this.lastInvoiceId);
+      });
+      this.lastInvoiceId = null;
+      this.clearPage();
+    }
+  }
   submitInvoice(): void {
     if (this.items !== null) {
       this.items.forEach(function (invoice) {
         if (invoice.name.length === 0 || invoice.name === 'Enter Name') {
-          this.alertifyService.warning('Missing Name/Description for items.');
+          console.log('Alert Invoice Submitted');
+          // this.alertifyService.warning('Missing Name/Description for items.');
           return;
         }
       });
     }
 
     if (this.items.length > 0 && this.items[0].name.length > 0) {
-      let invoice: InvoiceData = {
+      const invoice: InvoiceData = {
         invoiceDate: this.currentDate,
         amountPaid: this.totalPaid,
         invoiceCustID: this.selectedCustomer.id,
@@ -187,16 +209,30 @@ export class NewInvoiceComponent implements OnInit {
       this.invoiceService.addInvoice(invoice).subscribe();
 
       this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
+        this.lastInvoiceId = linvoice.lastInvoiceId;
+        console.log('Getting Last Invoice');
         for (let i = 0; i < this.items.length; i++) {
           if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
-            let lineItem: LineItemData = {
+            const lineItem: LineItemData = {
               InvoiceId: linvoice.lastInvoiceId,
               price: this.items[i].price,
               quantity: this.items[i].quantity,
               itemId: this.items[i].id
             };
 
-            this.invoiceService.addInvoiceLineItem(lineItem).subscribe();
+            this.invoiceService.addInvoiceLineItem(lineItem).subscribe(() => {
+              // Call Quickbooks and let them know we got an invoice for them
+              // if (this.sendToQuickBooks === true) {
+              //   this.quickService.quickAPICall(linvoice.lastInvoiceId).subscribe(() => {
+              //     console.log('Invoice sent to Quickbooks');
+              //   });
+              // }
+              console.log('Added line item: ' + lineItem);
+            });
+
+            if (this.sendToQuickBooks === true) {
+              this.submitQuickBooks();
+            }
 
             this.clearPage();
           }

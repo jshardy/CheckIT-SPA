@@ -11,7 +11,8 @@ import { HttpResponse } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
-
+  email: String;
+  
   constructor(private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {

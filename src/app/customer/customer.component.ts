@@ -19,8 +19,8 @@ import { InvoiceService } from '../_services/invoice.service';
 })
 export class CustomerComponent implements OnInit {
   sub?: any;
-  currentCustomer?: Customer;
-  invoices?: Invoice[];
+  currentCustomer?: Customer = new Customer();
+  invoices?: Invoice[] = [];
   @Input() id: number;
   modify: boolean;
   public stateNames =
@@ -55,7 +55,10 @@ export class CustomerComponent implements OnInit {
         });
         console.log('Current customer:' + this.currentCustomer);
         this.invoiceService.searchInvoiceByCustId(+params['id']).subscribe((invoice: Invoice[]) => {
-          this.invoices = invoice; // this has issues. this.invoices isn't visible....?
+          for (const i of invoice) {
+            this.invoices.push(i);
+          }
+          // this.invoices = invoice; // this has issues. this.invoices isn't visible....?
           console.log(invoice);
           console.log(this.invoices);
         });
