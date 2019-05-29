@@ -92,7 +92,7 @@
 
       <tr class="item" *ngFor="let invoice of currentCustomer?.customerInvoiceList" onclick="window.location='../invoices/invoice'">
         <td>
-          {{ invoice?.invoiceDate || '-' }}
+          {{ invoice?.invoiceDate || '-' }} {{ invoice | json }}
         </td>
         <td>
           {{ invoice?.id || '-' }}
