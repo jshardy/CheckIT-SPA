@@ -17,9 +17,9 @@ td, th {
   text-align: left;
 }
 
-th {
+/* th {
   background-color: cornflowerblue;
-}
+} */
 
 tr:nth-child(even) {
   background-color: lightgrey;

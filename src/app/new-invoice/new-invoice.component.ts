@@ -156,7 +156,7 @@ export class NewInvoiceComponent implements OnInit {
 
   upcEntered(index): void {
     // Go do lookup of items
-      this.itemService.searchUPC(this.items[index].upc).subscribe((item: Item) => {
+    this.itemService.searchUPCInternalDatabase(this.items[index].upc).subscribe((item: Item) => {
         if (item !== null && item.description !== null) {
           this.items[index].alertId = item.alertId;
           this.items[index].description = item.description;

@@ -1,8 +1,8 @@
 <body>
   <div class="invWrapper">
-    <h2>Inventory List</h2>
-    <table style="width:80%">
-      <tr>
+    <h2 style="text-align: center">Inventory List</h2>
+    <table class="table table-striped" style="width:100%">
+      <thead>
         <!-- table headers -->
         <th>Inventory Id</th>
         <th>UPC</th>
@@ -13,7 +13,7 @@
         <th>Update</th>
         <th>Alert Creation</th>
         <th>Alert Threshold</th>
-      </tr>   
+      </thead>
          <!-- list of inventory items -->
       <tr *ngFor="let item of items">
           <td ng-repeat-start="item in items">
@@ -52,9 +52,9 @@
           <td>
             <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
           </td>
-          <td ng-repeat-end>            
+          <td ng-repeat-end>
             <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">
           </td>
-      </tr>    
+      </tr>
   </table>
 <body>

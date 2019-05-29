@@ -47,6 +47,9 @@ export class ItemService {
     return this.httpClient.get<Item[]>(this.baseURL + 'GetAllInventories');
   }
 
+  public searchUPCInternalDatabase(upc: string): Observable<Item> {
+    return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/?UPC=' + upc);
+  }
   // fetches an item from the UPC database connection to auto fill in information
   public searchUPC(upc: string): Observable<Item> {
     return this.httpClient.get<Item>(this.baseURL + 'UpcInfo/' + upc);
