@@ -40,6 +40,10 @@ export class InvoiceService {
     return this.http.get<Invoice>(this.baseURL + id);
   }
 
+  public getInvoiceById2(id): Observable<Invoice> {
+    return this.http.get<Invoice>(this.baseURL + 'ReturnOneInvoice2/' + id);
+  }
+
   // fetches all the Invoice to show off a list of them
   public getInvoices(): Observable<Invoice[]> {
     return this.http.get<Invoice[]>(this.baseURL);

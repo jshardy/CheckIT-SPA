@@ -60,18 +60,26 @@ export class InvoiceSearchComponent implements OnInit {
     }
   }
 
-  totalCost(invoice: Invoice): Number {
-    if (invoice.lineItems === undefined) {
-      return 0;
-    }
-    
+  totalCost(id: Number): Number {
     let sum = 0;
-    for (let i = 0; i < invoice.lineItems.length; i++) {
-      sum += invoice.lineItems[i].price * invoice.lineItems[i].quantitySold;
-    }
+
+    this.invoiceService.getInvoiceById2(id).subscribe((invoice: Invoice) => {
+      console.log(invoice.lineItems);
+      if(invoice === undefined || invoice.lineItems === undefined) {
+        return -1;
+      }
+
+      for (let i = 0; i < invoice.lineItems.length; i++) {
+        sum += invoice.lineItems[i].price * invoice.lineItems[i].quantitySold;
+      }
+    });
     return sum;
   }
   search(): void {}
+
+  transfer(id: Number): void {
+
+  }
 
   searchByName(event): void {
     this.invoiceService.searchInvoiceByCustId(event.item.id).subscribe((invoice: Invoice[]) => {
