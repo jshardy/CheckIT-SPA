@@ -1,76 +1,42 @@
 <h2 style="text-align: center">Invoice Search</h2>
-<div class="container" id="outer">
-  <div id="inner">
-    <table>
-      <tr>
-        <td colspan="2">
-          <!-- First Name -->
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Name/Company:</span>
-            </div>
-                <input [(ngModel)]="selectedCustomerName" [typeahead]="customerData"
-                  typeaheadOptionField="firstLastName" [typeaheadOptionsInScrollableView]="5" [typeaheadScrollable]="true"
-                  (typeaheadOnSelect)="searchByName($event)" class="form-control">
-            <!-- <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-              (change)="search()" (keyup)="search()" [(ngModel)]="firstName"> -->
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        <!-- Phone -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Phone:</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-            (change)="search()" (keyup)="search()" [(ngModel)]="phone">
-        </div>
-      </td>
-      <td>
-        <!-- Email -->
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">E-Mail:</span>
-          </div>
-          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-            (change)="search()" (keyup)="search()" [(ngModel)]="email">
-        </div>
-      </td>
-    </table>
+<div class="searchWrapper">
+  <div class="searchBar customer-box">
+    <!-- First Name -->
+    <input [(ngModel)]="selectedCustomerName" [typeahead]="customerData" typeaheadOptionField="firstLastName"
+      [typeaheadOptionsInScrollableView]="5" [typeaheadScrollable]="true" (typeaheadOnSelect)="searchByName($event)"
+      class="form-control" placeholder="Enter company or individual name">
   </div>
 </div>
-<div>
-  <table class="table table-striped customer-box" *ngIf="invoices.length !== 0">
-    <thead>
-      <tr>
-        <th scope="col">Id#</th>
-        <th scope="col">In/Out</th>
-        <th scope="col">Date</th>
-        <th scope="col">Paid $</th>
-        <th scope="col">Due $</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
-        <td>
-          {{ invoice.id }}
-        </td>
-        <td>
-          <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true">-OUT</i>
-          <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false">-IN</i>
-        </td>
-        <td>
-          {{ invoice.invoiceDate | date:'short' }}
-        </td>
-        <td>
-          {{ invoice.amountPaid | currency }}
-        </td>
-        <td>
-          <!-- {{ totalCost(invoice.id) | currency }} -->
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <div>
+    <table class="table table-striped customer-box" *ngIf="invoices.length !== 0">
+      <thead>
+        <tr>
+          <th scope="col">Id#</th>
+          <th scope="col">In/Out</th>
+          <th scope="col">Date</th>
+          <th scope="col">Paid $</th>
+          <th scope="col">Due $</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of invoices" (click)="transfer(invoice.id)" class="item">
+          <td>
+            {{ invoice.id }}
+          </td>
+          <td>
+            <i class="fa fa-paper-plane" *ngIf="invoice.outgoingInv === true">-OUT</i>
+            <i class="fa fa-usd" *ngIf="invoice.outgoingInv === false">-IN</i>
+          </td>
+          <td>
+            {{ invoice.invoiceDate | date:'short' }}
+          </td>
+          <td>
+            {{ invoice.amountPaid | currency }}
+          </td>
+          <td>
+            <!-- {{ totalCost(invoice.id) | currency }} -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
