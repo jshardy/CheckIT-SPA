@@ -27,16 +27,16 @@ export class LocationService {
     return this.http.post<Location>(this.baseURL + 'AddLocation', loc);
   }
 
-  public addItemToLocation(id: number, itemId: number): Observable<any> {
-    return this.http.patch(this.baseURL + 'AddItemToLocation', {params: new HttpParams()
-      .set('LocId', id.toString())
+  public addItemToLocation(loc: Location, itemId: number): Observable<any> {
+    return this.http.patch(this.baseURL + 'AddItemToLocation', loc, {params: new HttpParams()
+      .set('LocId', loc.id.toString())
       .set('ItemId', itemId.toString())
     });
   }
 
-  public removeItemFromLocation(id: number, itemId: number): Observable<any> {
-    return this.http.patch(this.baseURL + 'RemoveItemFromLocation', {params: new HttpParams()
-      .set('LocId', id.toString())
+  public removeItemFromLocation(loc: Location, itemId: number): Observable<any> {
+    return this.http.patch(this.baseURL + 'RemoveItemFromLocation', loc, {params: new HttpParams()
+      .set('LocId', loc.id.toString())
       .set('ItemId', itemId.toString())
     });
   }

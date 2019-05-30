@@ -7,6 +7,7 @@ import { Item } from '../_models/item';
 import { AlertifyService } from '../_services/alertify.service';
 import { LocationService } from '../_services/location.service';
 import { ItemService } from '../_services/inventory.service';
+import { LocationDTO } from '../_models/locationDTO';
 
 @Component({
   selector: 'app-location',
@@ -75,14 +76,24 @@ export class LocationComponent implements OnInit {
   }
 
   addItem() {
-    this.itemService.searchUPC(this.upc).subscribe((item: Item) => {
-      this.locationService.addItemToLocation(this.currentLocation.id, item.id).subscribe(() => {
+    this.itemService.GetItemByUPC(this.upc).subscribe((item: Item) => {
+      this.locationService.addItemToLocation(this.currentLocation, item.id).subscribe(() => {
         this.alertify.success('Success');
+        this.ngOnInit();
       }, error => {
         this.alertify.error('Could not add item to location');
       });
     }, error => {
       this.alertify.error('Invalid UPC');
+    });
+  }
+
+  deleteItem(item: Item) {
+    this.locationService.removeItemFromLocation(this.currentLocation, item.id).subscribe(() => {
+      this.alertify.success('Success');
+      this.ngOnInit();
+    }, error => {
+      this.alertify.error('Could not remove item from location');
     });
   }
 

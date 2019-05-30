@@ -83,16 +83,21 @@
       <tr class="heading">
         <td>
           Date
+          <span class="right-align">
+            Amount
+          </span>
         </td>
-
-        <td>
+        <td style="text-align: right; padding: 0px">
           Invoice ID
         </td>
       </tr>
 
-      <tr class="item" *ngFor="let invoice of invoices" onclick="window.location='../invoices/invoice'">
-        <td>
+      <tr class="item" *ngFor="let invoice of invoices">
+        <td style="all: initial">
           {{ invoice?.invoiceDate | date:'short' || '-'}}
+          <span class="right-align">
+              {{ invoice?.amountPaid | currency }}
+          </span>
         </td>
         <td>
           {{ invoice.id || '-' }}
