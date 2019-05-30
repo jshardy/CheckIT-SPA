@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div style="margin-left: 45%">
+      <h2>Location List</h2>
+  </div>
+  <div *ngFor="let location of locations" class="row box item" (click)="transfer(location.id)">
+    <div style="width: 75%">
+      <div>{{location.name}}</div>
+      <div>{{location.description}}</div>
+    </div>
+    <div style="width: 13%">
+      {{location.id}}
+    </div>
+  </div>
+</div>

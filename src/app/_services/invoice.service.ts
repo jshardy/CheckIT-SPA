@@ -35,6 +35,10 @@ export class InvoiceService {
     return this.http.delete(this.baseURL + 'DeleteInvoice/' + id);
   }
 
+  public getTotalInvoice(id: Number): Observable<Number> {
+    return this.http.get<Number>(this.baseURL + 'GetTotalInvoice/' + id);
+  }
+
   // fetches a Invoice's info by searching for their ID
   public getInvoiceById(id): Observable<Invoice> {
     return this.http.get<Invoice>(this.baseURL + id);

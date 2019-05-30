@@ -38,33 +38,29 @@ export class CustomerComponent implements OnInit {
       private alertify: AlertifyService, private addressService: AddressService, private invoiceService: InvoiceService) { }
 
   ngOnInit() {
-    let id: Number = -1;
     if (this.id === undefined) {
       this.sub = this.route.params.subscribe(params => {
-        id = +params['id'];
-        console.log('Customer ID:' + id);
         this.customerService.getCustomer(+params['id']).subscribe((customer: Customer) => {
            this.currentCustomer = customer;
-           let i = 0;
-           this.stateNames.forEach(state => {
-             if (this.currentCustomer.custAddress.state === state) {
-               this.currentCustomer.custAddress.state = this.stateCodes[i];
-             }
-             i++;
-           });
+           if (this.currentCustomer.custAddress) {
+            let i = 0;
+            this.stateNames.forEach(state => {
+              if (this.currentCustomer.custAddress.state === state) {
+                this.currentCustomer.custAddress.state = this.stateCodes[i];
+              }
+              i++;
+            });
+           }
         });
-        console.log('Current customer:' + this.currentCustomer);
         this.invoiceService.searchInvoiceByCustId(+params['id']).subscribe((invoice: Invoice[]) => {
-          for (const i of invoice) {
-            this.invoices.push(i);
-          }
-          // this.invoices = invoice; // this has issues. this.invoices isn't visible....?
+          this.invoices = invoice.map(x => Object.assign({}, x));
           console.log(invoice);
           console.log(this.invoices);
         });
       });
     } else {
       this.customerService.getCustomer(this.id).subscribe((customer: Customer) => {
+        console.log(customer.id);
         this.currentCustomer = customer;
         let i = 0;
         this.stateNames.forEach(state => {
