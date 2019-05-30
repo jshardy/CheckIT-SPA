@@ -186,17 +186,8 @@ export class NewInvoiceComponent implements OnInit {
       this.clearPage();
     }
   }
-  submitInvoice(): void {
-    if (this.items !== null) {
-      this.items.forEach(function (invoice) {
-        if (invoice.name.length === 0 || invoice.name === 'Enter Name') {
-          console.log('Alert Invoice Submitted');
-          // this.alertifyService.warning('Missing Name/Description for items.');
-          return;
-        }
-      });
-    }
 
+  submitInvoice(): void {
     if (this.items.length > 0 && this.items[0].name.length > 0) {
       const invoice: InvoiceData = {
         invoiceDate: this.currentDate,
@@ -211,7 +202,10 @@ export class NewInvoiceComponent implements OnInit {
       this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
         this.lastInvoiceId = linvoice.lastInvoiceId;
         console.log('Getting Last Invoice');
+        console.log('this.items.length = ' + this.items.length);
         for (let i = 0; i < this.items.length; i++) {
+          console.log('Quanitity wanted ' + this.items[i].quantity);
+          console.log('Quantity on hand ' + this.items[i].quantityOnHand);
           if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
             const lineItem: LineItemData = {
               InvoiceId: linvoice.lastInvoiceId,
@@ -219,24 +213,17 @@ export class NewInvoiceComponent implements OnInit {
               quantity: this.items[i].quantity,
               itemId: this.items[i].id
             };
-
+            console.log('Calling Item #: ' + i + ' added.');
             this.invoiceService.addInvoiceLineItem(lineItem).subscribe(() => {
-              // Call Quickbooks and let them know we got an invoice for them
-              // if (this.sendToQuickBooks === true) {
-              //   this.quickService.quickAPICall(linvoice.lastInvoiceId).subscribe(() => {
-              //     console.log('Invoice sent to Quickbooks');
-              //   });
-              // }
               console.log('Added line item: ' + lineItem);
             });
-
-            if (this.sendToQuickBooks === true) {
-              this.submitQuickBooks();
-            }
-
-            this.clearPage();
           }
         }
+
+        if (this.sendToQuickBooks === true) {
+          this.submitQuickBooks();
+        }
+        this.clearPage();
       });
     }
   }
