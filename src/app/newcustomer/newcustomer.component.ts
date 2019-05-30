@@ -71,4 +71,15 @@ export class NewcustomerComponent implements OnInit {
       return false;
     }
 
+    USA() {
+      if (this.country === undefined) {
+        return false;
+      }
+      const test = this.country.toLowerCase();
+      if (test === 'usa' || test === 'us' || test === 'united states' || test === 'united states of america') {
+        return true;
+      }
+      return false;
+    }
+
 }

@@ -46,13 +46,25 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <div class="btn-group" dropdown>
-          <button id="buttonInventory" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3"
+          <button id="buttonAuth" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3"
             aria-controls="dropdown-basic">
             Auth <span class="caret"></span>
           </button>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
             <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/auth/userpermissions']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>Permissions</a></li>
             <li role="menuitem"><a class="dropdown-item" (click)="Quickbooks()" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>QuickBooks</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <div class="btn-group" dropdown>
+          <button id="buttonLocations" dropdownToggle type="button" class="btn btn-outline-success dropdown-toggle mr-3"
+            aria-controls="dropdown-basic">
+            Locations <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/locations/locations']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>All Locations</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="#" [routerLink]="['/locations/newlocation']" routerLinkActive="active"><i class="fa fa-sticky-note" aria-hidden="true"></i>New Location</a></li>
           </ul>
         </div>
       </li>

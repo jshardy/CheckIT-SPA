@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Location information</title>
+</head>
+
+<body>
+  <div class="customer-box">
+    <table cellpadding="0" cellspacing="0">
+      <tr class="top">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td class="title">
+                <h3>Location Information</h3>
+              </td>
+              <td>
+                <div class='row'>
+                  <div class='col-md-10'>
+                    <button type="button" id='deleteButton' (click)='deleteLocation()' class='btn btn-primary'>Delete</button>
+                  </div>
+                  <div class='col-ms-1'></div>
+                  <div class='col-md-1'>
+                    <button type="button" id='modifyButton' (click)='modifyLocation()' class='btn btn-outline-success'>Modify</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input class='form-control-plaintext' placeholder='ID' readonly value='Location ID: {{ currentLocation?.id }}' disabled='true'>
+                <div class='form-check form-check-inline'>
+                </div>
+                <input class='form-control-plaintext' id='descriptionElement' placeholder='Description' [ngModel]='currentLocation?.description' disabled='true'
+                  (ngModelChange)='currentLocation.description = $event'>
+              </td>
+              <td class='right-align'>
+                <div class='row'>
+                  <div class='col-md-2'></div>
+                <div class='col-md-10 right-align'>
+                  <input class='form-control-plaintext' id='nameElement' placeholder='Name' [ngModel]='currentLocation?.name' disabled='true'
+                    (ngModelChange)='currentLocation.name = $event'>
+                </div>
+              </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr class="heading">
+        <td>
+          Name
+        </td>
+
+        <td>
+          Item ID
+        </td>
+      </tr>
+
+      <tr class="item" *ngFor="let item of items">
+        <td>
+          {{ item?.name || '-'}}
+        </td>
+        <td>
+          {{ item?.id || '-' }}
+        </td>
+      </tr>
+    </table>
+    <input placeholder='UPC' [(ngModel)]='upc'>
+    <button type="button" id='addButton' (click)='addItem()' class='btn btn-outline-success'>Add item</button>
+  </div>
+</body>
+</html>

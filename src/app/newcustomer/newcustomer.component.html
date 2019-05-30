@@ -57,7 +57,7 @@
   <!-- state -->
   <div class="form-group" style="margin-left: 51%;">
     <label for="State">Region</label>
-    <div *ngIf="country ==='USA'; then enabled; else disabled"></div>
+    <div *ngIf="USA(); then enabled; else disabled"></div>
     <ng-template #enabled>
       <select class="form-control" name="state" id="State" [(ngModel)]="state">
         <option value="NA">N/A</option>
@@ -89,7 +89,7 @@
   <!-- street1 -->
   <div class="form-group" style="width: 49%; float: left;">
       <label for="StreetField1">Street Address</label>
-      <input type="text" name="streetfield1" id="StreetField1" class="form-control" placeholder="Stree Address" [(ngModel)]="street1" required>
+      <input type="text" name="streetfield1" id="StreetField1" class="form-control" placeholder="Street Address" [(ngModel)]="street1" required>
       <div class="invalid-feedback">Enter a valid street address</div>
     </div>
   <!-- street2 -->
