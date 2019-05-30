@@ -201,7 +201,7 @@ export class NewInvoiceComponent implements OnInit {
 
       this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
         this.lastInvoiceId = linvoice.lastInvoiceId;
-        console.log('Getting Last Invoice');
+        console.log('Last Invoice ID = ' + this.lastInvoiceId);
         console.log('this.items.length = ' + this.items.length);
         for (let i = 0; i < this.items.length; i++) {
           console.log('Quanitity wanted ' + this.items[i].quantity);
@@ -223,7 +223,8 @@ export class NewInvoiceComponent implements OnInit {
         if (this.sendToQuickBooks === true) {
           this.submitQuickBooks();
         }
-        this.clearPage();
+
+        setTimeout(() => { this.clearPage(); }, 5000);
       });
     }
   }
