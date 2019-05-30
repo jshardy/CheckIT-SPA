@@ -38,6 +38,8 @@ import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { LocationsComponent } from './locations/locations.component';
+import { NewlocationComponent } from './newlocation/newlocation.component';
 
 import { AuthGuard } from './_guard/auth.guard';
 
@@ -53,6 +55,8 @@ import { InvoiceService } from './_services/invoice.service';
 import { ItemAlertService } from './_services/item-alert.service';
 import { QuickService } from './_services/quick.service';
 import { UserService } from './_services/user.service';
+import { LocationService } from './_services/location.service';
+import { LocationComponent } from './location/location.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -82,7 +86,10 @@ export function tokenGetter() {
       QuickbooksComponent,
       ResetPasswordComponent,
       UserProfileComponent,
-      AlertsComponent
+      AlertsComponent,
+      LocationsComponent,
+      NewlocationComponent,
+      LocationComponent
    ],
    imports: [
       BrowserModule,
@@ -117,6 +124,7 @@ export function tokenGetter() {
       ItemAlertService,
       QuickService,
       UserService,
+      LocationService,
    ],
    bootstrap: [
       AppComponent

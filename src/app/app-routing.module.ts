@@ -19,6 +19,9 @@ import { QuickbooksComponent } from './quickbooks/quickbooks.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { LocationsComponent } from './locations/locations.component';
+import { NewlocationComponent } from './newlocation/newlocation.component';
+import { LocationComponent } from './location/location.component';
 
 const routes: Routes = [
   // this is literally nothing
@@ -55,7 +58,10 @@ const routes: Routes = [
       { path: 'quickbooks', component: QuickbooksComponent },
       { path: 'password/reset', component: ResetPasswordComponent },
       { path: 'user/profile', component: UserProfileComponent },
-      { path: 'alerts', component: AlertsComponent}
+      { path: 'alerts', component: AlertsComponent},
+      { path: 'locations/newlocation', component: NewlocationComponent},
+      { path: 'locations/locations', component: LocationsComponent},
+      { path: 'locations/location', component: LocationComponent}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' }

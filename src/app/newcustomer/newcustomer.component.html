@@ -57,7 +57,7 @@
   <!-- state -->
   <div class="form-group" style="margin-left: 51%;">
     <label for="State">Region</label>
-    <div *ngIf="country ==='USA'; then enabled; else disabled"></div>
+    <div *ngIf="USA(); then enabled; else disabled"></div>
     <ng-template #enabled>
       <select class="form-control" name="state" id="State" [(ngModel)]="state">
         <option value="NA">N/A</option>
