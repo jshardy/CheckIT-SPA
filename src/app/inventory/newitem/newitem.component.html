@@ -2,47 +2,44 @@
   <!-- form for entering in new items to the inventory -->
     <form>
       <div class="form-group">
+      <div class="upc" >
         <!-- UPC portion -->
         <label for="inventoryUPC">UPC</label>
-        <input #UpcBox type="text" name="UPC" id="inventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc" required>
-        <small id="helpUPC" class="form-text text-muted">Type the UPC number of the product if available.</small>
+        <input #UpcBox type="text" name="upcInput" id="inventoryUPC" class="form-control" placeholder="UPC" aria-describedby="helpUPC" [(ngModel)]="item.upc">
+        <Label id="helpUPC" class="form-text text-muted">Type the UPC number of the product if available.</Label>
         <!-- Button for sending info to the UPC database we're connected to -->
         <button type="primary" class="btn btn-outline-success" (click)="databaseSearch(UpcBox.value)">Search UPC</button>
-        <small if="upcSearch" class="form-text text-muted">Press the button above to search a database for information.</small>
-        <small if="item_found === false" class="form-text text-muted">Item not found in database.</small>
+        <label if="upcSearch" class="form-text text-muted">Press the "Search UPC" button above to search an outside database for information.**</label>
+        
+        <!-- <small if="item_found === false" class="form-text text-muted">Item not found in database.</small> -->
       </div>
-      <div class="was-validated">
+      <div class="price">
         <!-- Unit price portion -->
         <label for="inventoryPrice">Price per Unit</label>
-        <input type="money" name="InventoryPrice" id="inventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price" required>
-        <div class="invalid-feedback">Please enter a price per unit.</div>
+        <input type="money" name="Price" ng-model="priceInput" id="inventoryPrice" class="form-control" placeholder="Unit Price" aria-describedby="helpPrice" [(ngModel)]="item.price" required>
       </div>
-      <div class="was-validated">
+      <div class="name">
         <!-- Item Name portion -->
         <label for="InventoryName">Name</label>
-        <input type="text" name="InventoryName" id="inventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name" required>
-        <div class="invalid-feedback">Please enter a name for the item.</div>
+        <input type="text" name="Name" ng-model="nameInput" id="inventoryName" class="form-control" placeholder="Name" aria-describedby="helpName" [(ngModel)]="item.name" required>
+
       </div>
-      <div class="was-validated">
+      <div class="description">
         <!-- Item description -->
         <label for="InventoryDescription">Description</label>
-        <input type="text" name="Description" class="form-control" id="inventoryDescription" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description" required>
-        <div class="invalid-feedback">Please enter a description for the item.</div>
+        <input type="text" name="Description" ng-model="descripInput" class="form-control" id="inventoryDescription" placeholder="Description" aria-describedby="helpDescrip" [(ngModel)]="item.description" required>
+
       </div>
-      <div class="was-validated">
+      <div class="quantity">
         <!-- Quantity of Item that will be on hand at first -->
         <label for="InventoryQuantity">Quantity in Stock</label>
-        <input type="text" name="Quantity" id="inventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity" required>
-        <div class="invalid-feedback">Please enter a starting quantity for the item.</div>
+        <input type="text" name="Quantity" ng-model="quantityInput" id="inventoryQuantity" class="form-control" placeholder="Quantity" aria-describedby="helpQuantity" [(ngModel)]="item.quantity" required>
+
       </div>
       <!-- Submit button that creates a new item -->
       <button type="submit" class="btn btn-outline-success" (click)="addItem()">Add Item</button>
-    </form>
-    <div class="testData">
-      <div><span>UPC: </span>{{item.upc}}</div>
-      <div><span>price: </span>{{item.price}}</div>
-      <div><span>name: </span>{{item.name}}</div>
-      <div><span>description: </span>{{item.description}}</div>
-      <div><span>quantity: </span>{{item.quantity}}</div>
+      <label class="form-text text-muted">**Since this calls an outside database we cannot guarauntee the information will be well formatted or even complete. Your milage may vary.</label>
     </div>
+    </form>
+    
   </body>

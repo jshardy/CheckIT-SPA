@@ -5,6 +5,7 @@ import { Item } from '../_models/item';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Item2 } from '../_models/item2';
+import { RawItemInfo } from '../_models/RawItemInfo';
 
 @Injectable({
   providedIn: 'root'
@@ -51,7 +52,7 @@ export class ItemService {
     return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/?UPC=' + upc);
   }
   // fetches an item from the UPC database connection to auto fill in information
-  public searchUPC(upc: string): Observable<Item> {
-    return this.httpClient.get<Item>(this.baseURL + 'UpcInfo/' + upc);
+  public searchUPC(upc: string): Observable<any> {
+    return this.httpClient.get<RawItemInfo>(this.baseURL + 'UpcInfo/' + upc);
   }
 }
