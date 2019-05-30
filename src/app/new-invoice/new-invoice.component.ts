@@ -224,10 +224,7 @@ export class NewInvoiceComponent implements OnInit {
           this.submitQuickBooks();
         }
 
-        setTimeout(() => {
-          this.clearPage();
-        }, 5000);
-
+        setTimeout(() => { this.clearPage(); }, 5000);
       });
     }
   }
