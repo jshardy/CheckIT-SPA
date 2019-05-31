@@ -36,11 +36,16 @@ export class InventoryComponent implements OnInit {
 
   // This is Create Alert
   alertToggle(ItemId: number, threshhold: number): void {
-    this.itemAlert.addAlert(ItemId, threshhold).subscribe();
+    this.itemAlert.addAlert(ItemId, threshhold).subscribe(() => {
+      this.alertify.success('Alert created');
+    }, error => {
+      this.alertify.error('Could not create alert');
+    });
   }
 
   updateItem(item: Item) {
     return this.itemService.updateItem(item).subscribe(() => {
+      this.alertify.success('Success');
       this.item = item;
     }, error => {
       this.alertify.error(error);
