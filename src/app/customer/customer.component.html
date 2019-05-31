@@ -93,7 +93,7 @@
       </tr>
 
       <tr class="item" *ngFor="let invoice of invoices">
-        <td style="all: initial">
+        <td>
           {{ invoice?.invoiceDate | date:'short' || '-'}}
           <span class="right-align">
               {{ invoice?.amountPaid | currency }}
