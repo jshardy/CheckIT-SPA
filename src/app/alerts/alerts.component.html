@@ -17,13 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of items">
-                  <td>{{"itemName"}}</td>
-                  <td>{{"UPC"}}</td>
-                  <td>{{"Quantity"}}</td>
-                  <td>{{"Threshold"}}</td>
-                  <td>{{"Date here"}}</td>
-                  <td>{{"Date under"}}</td>
+              <tr *ngFor="let alert of triggeredAlertData">
+                  <td>{{ alert.itemName }}</td>
+                  <td>{{ alert.itemUPC }}</td>
+                  <td>{{ alert.quantity }}</td>
+                  <td>{{ alert.threshold }}</td>
+                  <td>{{ alert.dateOrdered | date:'MM-dd-yyyy'}}</td>
+                  <td>{{ alert.dateUnder | date:'MM-dd-yyyy'}}</td>
                   <td><input type="checkbox" checked/></td>
                   <td>
                     <button class="fa-align-right" class="btn btn-outline-success mr-3">Order</button>
