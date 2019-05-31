@@ -56,7 +56,7 @@
         <td>{{ alert.quantity }}</td>
         <td>{{ alert.threshold }} </td>
         <td>
-          <input type="checkbox" checked="{{ alert.alertOn }}" />
+          <input type="checkbox" [ngModel]="alert?.alertOn" (ngModelChange)='alert.alertOn = $event'/>
         </td>
         <td>
           <button class="fa-align-right" class="btn btn-outline-success mr-3">Delete</button>
