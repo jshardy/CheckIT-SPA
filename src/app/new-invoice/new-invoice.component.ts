@@ -209,7 +209,7 @@ export class NewInvoiceComponent implements OnInit {
           console.log('Quantity on hand ' + this.items[i].quantityOnHand);
           if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
             const lineItem: LineItemData = {
-              InvoiceId: linvoice.lastInvoiceId,
+              InvoiceId: this.lastInvoiceId,
               price: this.items[i].price,
               quantity: this.items[i].quantity,
               itemId: this.items[i].id
