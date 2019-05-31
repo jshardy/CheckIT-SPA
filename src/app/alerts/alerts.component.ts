@@ -13,25 +13,24 @@ import { AlertData } from '../_models/alertData';
   styleUrls: ['./alerts.component.css']
 })
 export class AlertsComponent implements OnInit {
-  triggeredAlerts?: ItemAlert[];
-  disabledAlerts?: ItemAlert[];
-  alert?: ItemAlert;
-  item?: Item;
-  items?: Item[];
-  checkModel = '1';
-
-  triggeredAlertData: AlertData[];
-  nonTriggeredAlertData: AlertData[];
+  triggeredAlertData: AlertData[] = [];
+  nonTriggeredAlertData: AlertData[] = [];
 
   constructor(private alertify: AlertifyService, private itemAlert: ItemAlertService, private itemService: ItemService) {
    }
 
   ngOnInit() {
-    this.getTrigedAlerts();
-    this.getDisabledAlerts();
+    this.getTriggeredAlerts();
+    this.getNonTriggeredAlerts();
   }
 
-  getTrigedAlerts() {
+  orderMore(id: Number): void {
+    this.itemAlert.orderedMore(id).subscribe(() => {
+      this.getTriggeredAlerts();
+    });
+  }
+
+  getTriggeredAlerts() {
     return this.itemAlert.getTriggeredAlerts().subscribe((alerts: AlertData[]) => {
       this.triggeredAlertData = alerts;
     }, error => {
@@ -40,18 +39,9 @@ export class AlertsComponent implements OnInit {
     });
   }
 
-  getDisabledAlerts() {
+  getNonTriggeredAlerts() {
     return this.itemAlert.getNonTriggeredAlerts().subscribe((alerts: AlertData[]) => {
       this.nonTriggeredAlertData = alerts;
-    }, error => {
-      this.alertify.error(error);
-      console.error(error);
-    });
-  }
-
-  getItems() {
-    return this.itemService.getItems().subscribe((items: Item[]) => {
-       this.items = items;
     }, error => {
       this.alertify.error(error);
       console.error(error);

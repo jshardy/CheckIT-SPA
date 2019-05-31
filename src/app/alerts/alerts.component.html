@@ -16,14 +16,14 @@
         </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let alert of triggeredAlertData">
+      <tr *ngFor="let alert of triggeredAlertData; let i = index">
         <td>{{ alert.itemName }}</td>
         <td>{{ alert.itemUPC }}</td>
         <td>{{ alert.quantity }}</td>
         <td>{{ alert.threshold }}</td>
         <td>{{ alert.dateUnder | date:'MM-dd-yyyy'}}</td>
         <td>
-          <button class="btn btn-outline-success">Order</button>
+          <button class="btn btn-outline-success" (click)="orderMore(alert.id);">Order</button>
         </td>
         <td>{{ alert.dateOrdered | date:'MM-dd-yyyy'}}</td>
         <td><input type="checkbox" [ngModel]="alert?.alertOn" (ngModelChange)='alert.alertOn = $event' (click)="setUsed(alert)"/></td>
