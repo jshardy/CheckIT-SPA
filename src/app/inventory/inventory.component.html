@@ -17,7 +17,7 @@
     <tr *ngFor="let item of items">
         <td ng-repeat-start="item in items">
           <div class="form-group">
-              <input type="text" name=InventoryId id="InventoryId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId" readonly [(ngModel)]="item.id">
+              <input type="text" #invId name=InventoryId id="InventoryId" class="form-control" placeholder="Inventory Id" aria-describedby="helpId" readonly [(ngModel)]="item.id">
           </div>
         </td>
         <td>
@@ -49,7 +49,7 @@
           <button class="btn btn-outline-success mr-3" type="post" id="modifyButton" (click)="updateItem(item)">Modify Item</button>
         </td>
         <td>
-          <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(thresholdInput.value)">Create Alert</button>
+          <button class="btn btn-outline-success mr-3" type="submit" id="alertButton" (click)="alertToggle(invId.value,thresholdInput.value)">Create Alert</button>
         </td>
         <td ng-repeat-end>
           <input #thresholdInput class="form-control" type="text" id="thresholdInput" placeholder="0">

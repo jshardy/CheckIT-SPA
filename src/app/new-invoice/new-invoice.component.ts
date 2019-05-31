@@ -197,38 +197,40 @@ export class NewInvoiceComponent implements OnInit {
         lineItemList: []
       };
 
-      this.invoiceService.addInvoice(invoice).subscribe();
-      setTimeout(() => { return; }, 1000);
+      this.invoiceService.addInvoice(invoice).subscribe(() => {
+        setTimeout(() => { return; }, 1000);
 
-      this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
-        this.lastInvoiceId = linvoice.lastInvoiceId;
-        console.log('Last Invoice ID = ' + this.lastInvoiceId);
-        console.log('this.items.length = ' + this.items.length);
-        for (let i = 0; i < this.items.length; i++) {
-          console.log('Quanitity wanted ' + this.items[i].quantity);
-          console.log('Quantity on hand ' + this.items[i].quantityOnHand);
-          if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
-            console.log('Last Invoice ID = ' + this.lastInvoiceId);
-            const lineItem: LineItemData = {
-              InvoiceId: this.lastInvoiceId,
-              price: this.items[i].price,
-              quantity: this.items[i].quantity,
-              itemId: this.items[i].id
-            };
-            console.log('Adding Line Item #: ' + i + ' added.');
-            console.log(lineItem);
-            console.log('End LineItem');
-            this.invoiceService.addInvoiceLineItem(lineItem).subscribe(() => {
-              console.log('Added line item: ' + lineItem);
-            });
+        this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
+          this.lastInvoiceId = linvoice.lastInvoiceId;
+          console.log('Last Invoice ID = ' + this.lastInvoiceId);
+          console.log('this.items.length = ' + this.items.length);
+          for (let i = 0; i < this.items.length; i++) {
+            console.log('Quanitity wanted ' + this.items[i].quantity);
+            console.log('Quantity on hand ' + this.items[i].quantityOnHand);
+            if (this.items[i].quantity > 0 && this.items[i].quantityOnHand > 0) {
+              console.log('Last Invoice ID = ' + this.lastInvoiceId);
+              const lineItem: LineItemData = {
+                InvoiceId: this.lastInvoiceId,
+                price: this.items[i].price,
+                quantity: this.items[i].quantity,
+                itemId: this.items[i].id
+              };
+              console.log('Adding Line Item #: ' + i + ' added.');
+              console.log(lineItem);
+              console.log('End LineItem');
+              this.invoiceService.addInvoiceLineItem(lineItem).subscribe(() => {
+                console.log('Added line item: ' + lineItem);
+              });
+            }
           }
-        }
 
-        if (this.sendToQuickBooks === true) {
-          this.submitQuickBooks();
-        }
+          if (this.sendToQuickBooks === true) {
+            setTimeout(() => { return; }, 1000);
+            this.submitQuickBooks();
+          }
 
-        setTimeout(() => { this.clearPage(); }, 5000);
+          setTimeout(() => { this.clearPage(); }, 2000);
+        });
       });
     }
   }
