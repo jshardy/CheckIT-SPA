@@ -14,19 +14,34 @@ export class ItemAlertService {
 
   constructor(private httpClient: HttpClient) { }
 
+  public orderedMore(id: Number): Observable<any> {
+    console.log('ItemAlertService - Ordering more' + ' for id: ' + id);
+
+    // this.httpClient.patch(this.baseURL + 'OrderedMore', {
+    //   params: new HttpParams().set('id', id.toString())
+    // });
+
+    return this.httpClient.patch(this.baseURL + 'OrderedMore/' + id, id);
+  }
+
+
   public getAlerts(): Observable<ItemAlert[]> {
+    console.log('ItemAlertService - GetAllAlerts')
     return this.httpClient.get<ItemAlert[]>(this.baseURL + 'GetAllAlerts');
   }
 
   public getTriggeredAlerts(): Observable<any> {
+    console.log('ItemAlertService - GetTriggeredAlerts')
     return this.httpClient.get<AlertData[]>(this.baseURL + 'GetTriggeredAlerts');
   }
 
   public getNonTriggeredAlerts(): Observable<any> {
+    console.log('ItemAlertService - GetNonTriggeredAlerts')
     return this.httpClient.get<AlertData[]>(this.baseURL + 'GetNonTriggeredAlerts');
   }
 
   public addAlert(alert: ItemAlert): Observable<ItemAlert> {
+    console.log('ItemAlertService - AddAlert')
     return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', alert);
   }
 
