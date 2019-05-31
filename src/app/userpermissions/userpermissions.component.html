@@ -17,7 +17,7 @@
       <div *ngIf="IsMainAdmin(); else standardUser" style="width: 28%">
         <span>{{user.id}}</span>
         <span style="float:right; margin-right: 32%;">
-          <button type="button" (click)="SetMainAdmin(user)" class='btn btn-outline-success'>Set Admin</button>
+          <button *ngIf="user.permissionLevel === 0;" type="button" (click)="SetMainAdmin(user)" class='btn btn-outline-success'>Set Admin</button>
         </span>
       </div>
       <ng-template #standardUser>
