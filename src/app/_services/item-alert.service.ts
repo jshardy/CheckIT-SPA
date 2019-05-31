@@ -29,4 +29,11 @@ export class ItemAlertService {
   public addAlert(alert: ItemAlert): Observable<ItemAlert> {
     return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', alert);
   }
+
+  public setUsed(alert: AlertData): Observable<ItemAlert> {
+    return this.httpClient.patch(this.baseURL + 'SetAlertBit', alert, { params: new HttpParams()
+    .set('Id', alert.id.toString())
+    .set('Set', alert.alertOn ? 'false' : 'true')});
+  }
+
 }

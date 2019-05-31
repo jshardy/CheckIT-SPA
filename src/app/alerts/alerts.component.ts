@@ -58,6 +58,10 @@ export class AlertsComponent implements OnInit {
     });
   }
 
+  setUsed(alert: AlertData) {
+    return this.itemAlert.setUsed(alert).subscribe();
+  }
+
   toggleAlert() {
     console.log('toggleAlert function called');
   }
