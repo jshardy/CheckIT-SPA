@@ -47,7 +47,7 @@ export class LocationService {
     });
   }
 
-  public deleteLocation(id: number): Observable<any> {
-    return this.http.delete(this.baseURL + 'DeleteLocation', { params: new HttpParams().set('id', id.toString())});
+  public deleteLocation(loc: Location): Observable<any> {
+    return this.http.delete(this.baseURL + 'DeleteLocation', { params: new HttpParams().set('id', loc.id.toString())});
   }
 }
