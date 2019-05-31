@@ -1,52 +1,89 @@
 <body>
-  <h1>Alerts</h1>
+    <div class="wrapper">
+  <h1 style="text-align: center">Alerts</h1>
     <div class="triggeredAlerts">
         <h2>Triggered Alerts</h2>
+            <div class="tableBlock">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Item UPC</th>
+                            <th>Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <ng-container *ngIf="item.id == alert.alertItemId"> -->
+                        <tr *ngFor="let item of items">
+                            <td>{{item.name}}</td>
+                            <td>{{item.upc}}</td>
+                            <td>{{item.quantity}}</td>
+                        </tr>
+                    <!-- </ng-container> -->
+                    </tbody>
+                </table>
+        </div>
+        <div class="tableBlock">
             <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Item Name</th>
-                    <th>Upc</th>
-                    <th>Quantity</th>
                     <th>Threshold</th>
                     <th>Date Under</th>
                     <th>Date Ordered</th>
+                    <th>Delete Alert</th>
+                    <th>Alert Status</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let alert of triggeredAlerts">
-                    <!-- <td>{{item.name}}</td>
-                    <td>{{item.upc}}</td>
-                    <td>{{item.quantity}}</td> -->
                     <td>{{alert.threshold}}</td>
                     <td>{{alert.dateUnder}}</td>
                     <td>{{alert.dateOrdered}}</td>
                     <td>
-                        <pre class="card card-block card-header">{{ checkModel }}</pre>
-                        <button type="button" class="btn btn-primary" [(ngModel)]="checkModel" btnCheckbox btnCheckboxTrue="1" btnCheckboxFalse="0">Enable</button>
+                        <button type="primary" class="btn btn-outline-success" (click)="deleteAlert(alert.id)">Delete</button>
                     </td>
+                    <td>{{alert.alertStatus}}</td>
                 </tr>
             </tbody>
         </table>
+        </div>
     </div>
+
     <div class="untriggeredAlerts">
         <h2>Untriggered Alerts</h2>
+            <div class="tableBlock">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Item Name</th>
-                        <th>Upc</th>
+                        <th>Item UPC</th>
                         <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- <ng-container *ngIf="item.id == alert.alertItemId"> -->
+                        <tr *ngFor="let item of items">
+                            <td>{{item.name}}</td>
+                            <td>{{item.upc}}</td>
+                            <td>{{item.quantity}}</td>
+                        </tr>
+                    <!-- </ng-container> -->
+                </tbody>
+            </table>
+        </div>
+        <div class="tableBlock">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
                         <th>Threshold</th>
                         <th>Date Under</th>
                         <th>Date Ordered</th>
+                        <th>Delete Alert</th>
+                        <th>Alert Enabled</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let alert of disabledAlerts">
-                        <!-- <td>{{item.name}}</td>
-                        <td>{{item.upc}}</td>
-                        <td>{{item.quantity}}</td> -->
                         <td>{{alert.threshold}}</td>
                         <td>{{alert.dateUnder}}</td>
                         <td>{{alert.dateOrdered}}</td>
@@ -54,10 +91,12 @@
                             <button type="primary" class="btn btn-outline-success" (click)="deleteAlert(alert.id)">Delete</button>
                         </td>
                         <td>
-                            <input type="checkbox" class="custom-control-input" id="enabledCheck">
+                            {{alert.alertStatus}}
                         </td>
                     </tr>
                 </tbody>
-        </table>
+            </table>
+        </div>
     </div>
+</div>
 </body>

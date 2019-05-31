@@ -34,13 +34,15 @@ export class InventoryComponent implements OnInit {
   }
 
   alertToggle(id: number, trigger: number) {
-    this.alert.id = id;
-    this.alert.threshold = trigger;
-    return this.itemAlert.addAlert(this.alert).subscribe(() => {
-    }, error => {
-      this.alertify.error(error);
-      console.error(error);
-    });
+    console.log(id);
+    console.log(trigger);
+    // this.alert.id = id;
+    // this.alert.threshold = trigger;
+    // return this.itemAlert.addAlert(this.alert).subscribe(() => {
+    // }, error => {
+    //   this.alertify.error(error);
+    //   console.error(error);
+    // });
   }
 
   updateItem(item: Item) {
