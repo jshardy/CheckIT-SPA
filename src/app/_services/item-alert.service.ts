@@ -40,15 +40,10 @@ export class ItemAlertService {
     return this.httpClient.get<AlertData[]>(this.baseURL + 'GetNonTriggeredAlerts');
   }
 
-  public addAlert(id: Number, threshold: Number): Observable<any> {
-    console.log('ItemAlertService - AddAlert')
-    // return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', alert);
-    return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', {
-      params: new HttpParams()
-        .set('id', id.toString())
-        .set('threshold', threshold.toString())
-    });
-
+  public addAlert(ItemId: number, threshhold: number): Observable<any> {
+    return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', ItemId, { params: new HttpParams()
+    .set('itemId', ItemId.toString())
+    .set('threshold', threshhold.toString())});
   }
 
   public setUsed(alert: AlertData): Observable<ItemAlert> {

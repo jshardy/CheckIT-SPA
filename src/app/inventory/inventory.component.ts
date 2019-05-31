@@ -6,6 +6,7 @@ import { AlertifyService } from './../_services/alertify.service';
 import { ItemAlertService } from './../_services/item-alert.service';
 // import { Alert } from 'selenium-webdriver';
 import { ItemAlert } from '../_models/alert';
+import { AlertData } from '../_models/alertData';
 
 @Component({
   selector: 'app-inventory',
@@ -34,8 +35,8 @@ export class InventoryComponent implements OnInit {
   }
 
   // This is Create Alert
-  alertToggle(id: number, trigger: number): void {
-    this.itemAlert.addAlert(id, trigger);
+  alertToggle(ItemId: number, threshhold: number): void {
+    this.itemAlert.addAlert(ItemId, threshhold).subscribe();
   }
 
   updateItem(item: Item) {
