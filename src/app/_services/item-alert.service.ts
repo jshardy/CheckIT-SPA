@@ -36,7 +36,7 @@ export class ItemAlertService {
   }
 
   public getNonTriggeredAlerts(): Observable<any> {
-    console.log('ItemAlertService - GetNonTriggeredAlerts')
+    console.log('ItemAlertService - GetNonTriggeredAlerts');
     return this.httpClient.get<AlertData[]>(this.baseURL + 'GetNonTriggeredAlerts');
   }
 
