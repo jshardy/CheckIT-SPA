@@ -198,6 +198,7 @@ export class NewInvoiceComponent implements OnInit {
       };
 
       this.invoiceService.addInvoice(invoice).subscribe();
+      setTimeout(() => { return; }, 1000);
 
       this.invoiceService.getLastInvoiceId().subscribe((linvoice: LastInvoice) => {
         this.lastInvoiceId = linvoice.lastInvoiceId;
@@ -213,7 +214,9 @@ export class NewInvoiceComponent implements OnInit {
               quantity: this.items[i].quantity,
               itemId: this.items[i].id
             };
-            console.log('Calling Item #: ' + i + ' added.');
+            console.log('Adding Line Item #: ' + i + ' added.');
+            console.log(lineItem);
+            console.log('End LineItem');
             this.invoiceService.addInvoiceLineItem(lineItem).subscribe(() => {
               console.log('Added line item: ' + lineItem);
             });
