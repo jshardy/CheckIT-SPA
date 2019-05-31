@@ -49,10 +49,19 @@ export class AlertsComponent implements OnInit {
   }
 
   setUsed(alert: AlertData) {
-    return this.itemAlert.setUsed(alert).subscribe();
+    this.itemAlert.setUsed(alert).subscribe(() => {
+    this.refresh();
+    });
   }
 
   deleteAlert(alert: AlertData) {
-    return this.itemAlert.deleteAlert(alert).subscribe();
+    this.itemAlert.deleteAlert(alert).subscribe(() => {
+      this.refresh();
+    });
+  }
+
+  refresh() {
+    this.getNonTriggeredAlerts();
+    this.getTriggeredAlerts();
   }
 }
