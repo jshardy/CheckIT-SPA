@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { ItemAlert } from '../_models/alert';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AlertData } from '../_models/alertData';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,11 @@ export class ItemAlertService {
   }
 
   public getTriggeredAlerts(): Observable<any> {
-    return this.httpClient.get<ItemAlert[]>(this.baseURL + 'GetTriggeredAlerts');
+    return this.httpClient.get<AlertData[]>(this.baseURL + 'GetTriggeredAlerts');
   }
 
-  public getDisabledAlerts(): Observable<any> {
-    return this.httpClient.get<ItemAlert[]>(this.baseURL + 'GetNonTriggeredAlerts');
+  public getNonTriggeredAlerts(): Observable<any> {
+    return this.httpClient.get<AlertData[]>(this.baseURL + 'GetNonTriggeredAlerts');
   }
 
   public addAlert(alert: ItemAlert): Observable<ItemAlert> {

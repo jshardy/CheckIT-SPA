@@ -5,6 +5,7 @@ import { AlertifyService } from '../_services/alertify.service';
 import { Item } from '../_models/item';
 import { ItemService } from '../_services/inventory.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AlertData } from '../_models/alertData';
 
 @Component({
   selector: 'app-alerts',
@@ -19,18 +20,20 @@ export class AlertsComponent implements OnInit {
   items?: Item[];
   checkModel = '1';
 
+  triggeredAlertData: AlertData[];
+  nonTriggeredAlertData: AlertData[];
+
   constructor(private alertify: AlertifyService, private itemAlert: ItemAlertService, private itemService: ItemService) {
    }
 
   ngOnInit() {
     this.getTrigedAlerts();
     this.getDisabledAlerts();
-    this.getItems();
   }
 
   getTrigedAlerts() {
-    return this.itemAlert.getTriggeredAlerts().subscribe((alerts: ItemAlert[]) => {
-      this.triggeredAlerts = alerts;
+    return this.itemAlert.getTriggeredAlerts().subscribe((alerts: AlertData[]) => {
+      this.triggeredAlertData = alerts;
     }, error => {
       this.alertify.error(error);
       console.error(error);
@@ -38,8 +41,8 @@ export class AlertsComponent implements OnInit {
   }
 
   getDisabledAlerts() {
-    return this.itemAlert.getDisabledAlerts().subscribe((alerts: ItemAlert[]) => {
-      this.disabledAlerts = alerts;
+    return this.itemAlert.getNonTriggeredAlerts().subscribe((alerts: AlertData[]) => {
+      this.nonTriggeredAlertData = alerts;
     }, error => {
       this.alertify.error(error);
       console.error(error);
