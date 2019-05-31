@@ -28,7 +28,7 @@
         <td>{{ alert.dateOrdered | date:'MM-dd-yyyy'}}</td>
         <td><input type="checkbox" [ngModel]="alert?.alertOn" (ngModelChange)='alert.alertOn = $event' (click)="setUsed(alert)"/></td>
         <td>
-          <button class="btn btn-outline-success">Delete</button>
+          <button class="btn btn-outline-success" (click)="deleteAlert(alert)">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -58,7 +58,7 @@
           <input type="checkbox" [ngModel]="alert?.alertOn" (ngModelChange)='alert.alertOn = $event' (click)="setUsed(alert)"/>
         </td>
         <td>
-          <button class="fa-align-right" class="btn btn-outline-success mr-3">Delete</button>
+          <button class="fa-align-right" class="btn btn-outline-success mr-3" (click)="deleteAlert(alert)">Delete</button>
         </td>
       </tr>
     </tbody>

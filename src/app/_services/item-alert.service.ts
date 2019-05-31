@@ -36,4 +36,8 @@ export class ItemAlertService {
     .set('Set', alert.alertOn ? 'false' : 'true')});
   }
 
+  public deleteAlert(alert: AlertData): Observable<ItemAlert> {
+    return this.httpClient.delete(this.baseURL + 'DeleteAlert/' + alert.id);
+  }
+
 }

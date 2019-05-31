@@ -62,11 +62,7 @@ export class AlertsComponent implements OnInit {
     return this.itemAlert.setUsed(alert).subscribe();
   }
 
-  toggleAlert() {
-    console.log('toggleAlert function called');
-  }
-
-  deleteAlert() {
-    console.log('deleteAlert function called');
+  deleteAlert(alert: AlertData) {
+    return this.itemAlert.deleteAlert(alert).subscribe();
   }
 }
