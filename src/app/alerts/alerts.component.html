@@ -3,14 +3,15 @@
   <table class="table table-striped customer-box">
     <thead>
         <tr>
+          <!-- Item Name, UPC, Quantity, Threshold, Date Under, Order More, Date Ordered, Enabled, Delete -->
           <th>Name</th>
           <th>UPC</th>
           <th>Quantity</th>
           <th>Threshold</th>
-          <th>Ordered</th>
           <th>Under Date</th>
-          <th>Enabled?</th>
           <td>Order More</td>
+          <th>Ordered</th>
+          <th>Enabled?</th>
           <td>Delete</td>
         </tr>
     </thead>
@@ -20,12 +21,12 @@
         <td>{{ alert.itemUPC }}</td>
         <td>{{ alert.quantity }}</td>
         <td>{{ alert.threshold }}</td>
-        <td>{{ alert.dateOrdered | date:'MM-dd-yyyy'}}</td>
         <td>{{ alert.dateUnder | date:'MM-dd-yyyy'}}</td>
-        <td><input type="checkbox" checked="{{ alert.alertOn }}"/></td>
         <td>
           <button class="fa-align-right" class="btn btn-outline-success mr-3">Order</button>
         </td>
+        <td>{{ alert.dateOrdered | date:'MM-dd-yyyy'}}</td>
+        <td><input type="checkbox" checked="{{ alert.alertOn }}"/></td>
         <td>
           <button class="fa-align-right" class="btn btn-outline-success mr-3">Delete</button>
         </td>
@@ -34,8 +35,9 @@
   </table>
 </div>
 <p></p><p></p>
+<div style="clear:both"></div>
 <div>
-  <h2 style="text-align: center">Untriggered Triggered Alerts</h2>
+  <h2 style="text-align: center">Not Triggered Alerts</h2>
   <table class="table table-striped customer-box">
     <thead>
       <tr>
