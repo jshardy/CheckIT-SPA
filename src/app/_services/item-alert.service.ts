@@ -42,8 +42,9 @@ export class ItemAlertService {
 
   public addAlert(id: Number, threshold: Number): Observable<any> {
     console.log('ItemAlertService - AddAlert')
+    console.log('id: ' + id + ' theshold: ' + threshold);
     // return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', alert);
-    return this.httpClient.post<ItemAlert>(this.baseURL + 'AddAlert', {
+    return this.httpClient.post(this.baseURL + 'AddAlert', {
       params: new HttpParams()
         .set('id', id.toString())
         .set('threshold', threshold.toString())
