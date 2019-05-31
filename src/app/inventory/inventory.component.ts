@@ -35,7 +35,7 @@ export class InventoryComponent implements OnInit {
 
   // This is Create Alert
   alertToggle(id: number, trigger: number): void {
-    this.itemAlert.addAlert(id, trigger);
+    this.itemAlert.addAlert(id, trigger).subscribe();
   }
 
   updateItem(item: Item) {
