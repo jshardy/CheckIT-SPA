@@ -1,6 +1,6 @@
 <div class="wrapper">
   <h1 style="text-align: center">Alerts</h1>
-    <div class="triggeredAlerts">
+    <div class="">
         <h2>Triggered Alerts</h2>
         <div class="tableBlock">
           <table class="table table-striped">
@@ -11,7 +11,10 @@
                   <th>Description</th>
                   <th>Quantity</th>
                   <th>Threshold</th>
-                  <th>Enabled/Disabled</th>
+                  <th>Date Ordered</th>
+                  <th>Date Under</th>
+                  <th>Enabled?</th>
+                  <td>Order More</td>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +24,12 @@
                   <td>{{"Description"}}</td>
                   <td>{{"Quantity"}}</td>
                   <td>{{"Threshold"}}</td>
+                  <td>{{"Date here"}}</td>
+                  <td>{{"Date under"}}</td>
                   <td><input type="checkbox" checked/></td>
+                  <td>
+                    <button class="fa-align-right" class="btn btn-outline-success mr-3">Order</button>
+                  </td>
               </tr>
             </tbody>
           </table>

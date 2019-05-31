@@ -1,5 +1,5 @@
-.wrapper { 
-    margin: 0 auto; 
+.wrapper {
+    margin: 0 auto;
     width: 60%;
   }
 
@@ -17,7 +17,7 @@
 
 .triggeredAlerts th {
     border-bottom: 1px solid #eee;
-    background-color: rgb(250, 160, 160);
+    background-color: rgb(182, 0, 0);
 }
 
 .triggeredAlerts td {
