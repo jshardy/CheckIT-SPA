@@ -96,6 +96,11 @@
     float: right;
   }
 
+  .center-align {
+    text-align: center;
+    float: center;
+  }
+
   .left-align {
     text-align: left;
     float: left;

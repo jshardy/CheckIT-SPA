@@ -55,4 +55,9 @@ export class ItemService {
   public searchUPC(upc: string): Observable<any> {
     return this.httpClient.get<RawItemInfo>(this.baseURL + 'UpcInfo/' + upc);
   }
+  // fetches an item from the UPC database connection to auto fill in information
+  public GetItemByUPC(upc: string): Observable<Item> {
+    return this.httpClient.get<Item>(this.baseURL + 'GetItemByUPC/', { params: new HttpParams()
+      .set('upc', upc)});
+  }
 }
