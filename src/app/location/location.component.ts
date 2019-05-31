@@ -46,8 +46,11 @@ export class LocationComponent implements OnInit {
       });
       this.toggleModify();
     } else {
-      this.locationService.deleteLocation(this.currentLocation.id).subscribe();
-      this.router.navigate(['/locations/locations']);
+      this.locationService.deleteLocation(this.currentLocation).subscribe(() => {
+        this.router.navigate(['/locations/locations']);
+      }, error => {
+        this.alertify.error('Could not delete location');
+      });
     }
   }
 
@@ -86,6 +89,7 @@ export class LocationComponent implements OnInit {
     }, error => {
       this.alertify.error('Invalid UPC');
     });
+    this.upc = '';
   }
 
   deleteItem(item: Item) {
