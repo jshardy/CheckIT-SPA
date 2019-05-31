@@ -1,37 +1,41 @@
-<body>
-    <div class="wrapper">
+<div class="wrapper">
   <h1 style="text-align: center">Alerts</h1>
     <div class="triggeredAlerts">
         <h2>Triggered Alerts</h2>
-            <div class="tableBlock">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th>Item UPC</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <ng-container *ngIf="item.id == alert.alertItemId"> -->
-                        <tr *ngFor="let item of items">
-                            <td>{{item.name}}</td>
-                            <td>{{item.upc}}</td>
-                            <td>{{item.quantity}}</td>
-                        </tr>
-                    <!-- </ng-container> -->
-                    </tbody>
-                </table>
+        <div class="tableBlock">
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>UPC</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Threshold</th>
+                  <th>Enabled/Disabled</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of items">
+                  <td>{{"itemName"}}</td>
+                  <td>{{"UPC"}}</td>
+                  <td>{{"Description"}}</td>
+                  <td>{{"Quantity"}}</td>
+                  <td>{{"Threshold"}}</td>
+                  <td><input type="checkbox" checked/></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
         <div class="tableBlock">
             <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Threshold</th>
-                    <th>Date Under</th>
-                    <th>Date Ordered</th>
-                    <th>Delete Alert</th>
-                    <th>Alert Status</th>
+                  <th>Item Name</th>
+                  <th>UPC</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Threshold</th>
+                  <th>Enabled/Disabled</th>
                 </tr>
             </thead>
             <tbody>
@@ -99,4 +103,3 @@
         </div>
     </div>
 </div>
-</body>
