@@ -25,8 +25,9 @@ export class AlertsComponent implements OnInit {
   }
 
   orderMore(id: Number): void {
-    this.itemAlert.orderedMore(id).subscribe();
-    this.getTriggeredAlerts();
+    this.itemAlert.orderedMore(id).subscribe(() => {
+      this.getTriggeredAlerts();
+    });
   }
 
   getTriggeredAlerts() {
